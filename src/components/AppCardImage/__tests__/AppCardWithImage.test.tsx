@@ -13,7 +13,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { CfxCardMarketplace, styled } from '@cofinity-x/shared-components'
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest'
-import { AppCardWithImage } from '../AppCardWithImage'
+import { AppCardWithImage } from '../index'
 import {
   type AppMarketplaceCard,
   SubscriptionStatus,
@@ -103,11 +103,11 @@ describe('AppCardWithImage', () => {
 
   describe('Component Rendering', () => {
     it('renders the component with correct props', () => {
-      render(<AppCardWithImage item={mockItem} />)
+      render(<AppCardWithImage item={mockItem} onClick={() => {}} />)
 
       expect(mockCfxCardMarketplace).toHaveBeenCalledWith(
         expect.objectContaining({
-          'data-testid': 'app-card-with-image-test-app-id',
+          'data-testid': 'card-with-image-test-app-id',
           price: '$10.00',
           companyName: 'Test Provider',
           applicationName: 'Test App',
@@ -121,16 +121,16 @@ describe('AppCardWithImage', () => {
     })
 
     it('renders with correct data-testid', () => {
-      render(<AppCardWithImage item={mockItem} />)
+      render(<AppCardWithImage item={mockItem} onClick={() => {}} />)
       expect(
-        screen.getByTestId('app-card-with-image-test-app-id')
+        screen.getByTestId('card-with-image-test-app-id')
       ).toBeInTheDocument()
     })
 
     it('handles empty or missing app name', () => {
       const itemWithoutName = { ...mockItem, name: undefined }
 
-      render(<AppCardWithImage item={itemWithoutName} />)
+      render(<AppCardWithImage item={itemWithoutName} onClick={() => {}} />)
 
       expect(mockCfxCardMarketplace).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -143,7 +143,11 @@ describe('AppCardWithImage', () => {
 
   describe('Navigation', () => {
     it('handles navigation on card click', () => {
-      render(<AppCardWithImage item={mockItem} />)
+      const mockOnClick = vi.fn((id) => {
+        mockNavigate(`/appdetail/${id}`)
+      })
+
+      render(<AppCardWithImage item={mockItem} onClick={mockOnClick} />)
 
       const onClickHandler = mockCfxCardMarketplace.mock.calls[0][0].onClick
       if (onClickHandler) {
@@ -161,12 +165,10 @@ describe('AppCardWithImage', () => {
 
       vi.mocked(fetchImageWithToken).mockResolvedValue(mockArrayBuffer)
 
-      render(<AppCardWithImage item={mockItem} />)
+      render(<AppCardWithImage item={mockItem} onClick={() => {}} />)
 
       await waitFor(() => {
-        expect(fetchImageWithToken).toHaveBeenCalledWith(
-          'https://api.example.com/api/apps/test-app-id/appDocuments/test-picture-id'
-        )
+        expect(fetchImageWithToken).toHaveBeenCalledWith('test-picture-id')
       })
 
       await waitFor(() => {
@@ -178,7 +180,7 @@ describe('AppCardWithImage', () => {
       const { fetchImageWithToken } = await import('services/ImageService')
       const itemWithoutImage = { ...mockItem, leadPictureId: undefined }
 
-      render(<AppCardWithImage item={itemWithoutImage} />)
+      render(<AppCardWithImage item={itemWithoutImage} onClick={() => {}} />)
 
       await waitFor(() => {
         expect(fetchImageWithToken).not.toHaveBeenCalled()
@@ -199,7 +201,7 @@ describe('AppCardWithImage', () => {
         vi.clearAllMocks()
         const itemWithStatus = { ...mockItem, subscriptionStatus: status }
 
-        render(<AppCardWithImage item={itemWithStatus} />)
+        render(<AppCardWithImage item={itemWithStatus} onClick={() => {}} />)
 
         expect(mockCfxCardMarketplace).toHaveBeenCalledWith(
           expect.objectContaining({
@@ -213,7 +215,7 @@ describe('AppCardWithImage', () => {
 
   describe('Styling and Theme', () => {
     it('applies custom styles through styled component', () => {
-      render(<AppCardWithImage item={mockItem} />)
+      render(<AppCardWithImage item={mockItem} onClick={() => {}} />)
 
       expect(mockStyled).toHaveBeenCalledWith(mockCfxCardMarketplace)
     })
@@ -221,7 +223,7 @@ describe('AppCardWithImage', () => {
     it('uses cfx theme typography for h6 styling', async () => {
       const { useCfxTheme } = await import('hooks/useCfxTheme')
 
-      render(<AppCardWithImage item={mockItem} />)
+      render(<AppCardWithImage item={mockItem} onClick={() => {}} />)
 
       expect(vi.mocked(useCfxTheme)).toHaveBeenCalled()
       expect(mockStyled).toHaveBeenCalledWith(mockCfxCardMarketplace)
@@ -233,14 +235,19 @@ describe('AppCardWithImage', () => {
       const itemWithoutLeadPictureId = { ...mockItem, leadPictureId: undefined }
 
       expect(() => {
-        render(<AppCardWithImage item={itemWithoutLeadPictureId} />)
+        render(
+          <AppCardWithImage
+            item={itemWithoutLeadPictureId}
+            onClick={() => {}}
+          />
+        )
       }).not.toThrow()
     })
 
     it('handles missing subscription status gracefully', () => {
       const itemWithoutStatus = { ...mockItem, subscriptionStatus: undefined }
 
-      render(<AppCardWithImage item={itemWithoutStatus} />)
+      render(<AppCardWithImage item={itemWithoutStatus} onClick={() => {}} />)
 
       expect(mockCfxCardMarketplace).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -253,7 +260,7 @@ describe('AppCardWithImage', () => {
     it('handles empty price gracefully', () => {
       const itemWithEmptyPrice = { ...mockItem, price: '' }
 
-      render(<AppCardWithImage item={itemWithEmptyPrice} />)
+      render(<AppCardWithImage item={itemWithEmptyPrice} onClick={() => {}} />)
 
       expect(mockCfxCardMarketplace).toHaveBeenCalledWith(
         expect.objectContaining({

@@ -7,7 +7,7 @@
     "storybook": "Storybook Shared Component Library",
     "marketplace": "Marketplace",
     "cfxAppMarketplace": "App Marktplatz",
-    "serviceMarketplace": "Service Marktplatz",
+    "cfxServiceMarketplace": "Service Marktplatz",
     "appdetails": "App Detailseite",
     "dataManagement": "Datenmanagement",
     "semantichub": "Semantik Hub",
@@ -1592,7 +1592,8 @@
         "heading": "Relevante Dokumente",
         "message": "Die Relevante Dokumente regeln das Verhältnis zwischen App Interessenten und App Anbieter. Die Relevante Dokumente, sowie die Datenmodelle und weitere Informationen können durch Anklicken der Hyperlinks eingesehen werden."
       },
-      "errorMessage": "Das Abonnement war nicht erfolgreich; Bitte wenden Sie sich an Ihren Administrator."
+      "errorMessage": "Das Abonnement war nicht erfolgreich; Bitte wenden Sie sich an Ihren Administrator.",
+      "loadMore": "Mehr laden"
     },
     "appMarketplace": {
       "headline": "App abonnieren",

@@ -139,6 +139,6 @@
     "build:legal-notice": "bash scripts/legal-notice.sh",
     "build:copy-legal-info": "cp LICENSE NOTICE.md DEPENDENCIES SECURITY.md public/",
     "cy": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run --browser chrome --headless"
   }
 }

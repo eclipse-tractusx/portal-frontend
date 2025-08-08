@@ -98,6 +98,7 @@ describe('App Marketplace', () => {
     })
 
     it('no app found for the searched app title', () => {
+      cy.wait('@getAllActiveApps', { timeout: 5000 })
       appMarketplace.searchForApp('Test App 3')
       appMarketplace.checkAppListContainerIsVisible()
       appMarketplace.checkFirstAppCardIsVisible()

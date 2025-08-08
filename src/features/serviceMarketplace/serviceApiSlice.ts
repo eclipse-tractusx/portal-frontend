@@ -53,6 +53,7 @@ export type ServiceRequest = {
   leadPictureUri: string
   leadPictureId?: string
   contactEmail: string
+  name: string
   description: string
   price: string
   website: string

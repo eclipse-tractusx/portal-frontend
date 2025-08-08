@@ -3,8 +3,10 @@ import { Typography } from '@cofinity-x/shared-components'
 import Box from '@mui/material/Box'
 import { useFetchBusinessAppsQuery } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
-import { AppCardWithImage } from 'components/pages/CFX/AppMarketplace/AppCardWithImage'
 import { GRID_STYLES } from '../sharedStyles'
+import { AppCardWithImage } from 'components/AppCardImage'
+import { useNavigate } from 'react-router-dom'
+import { getApiBase } from 'services/EnvironmentService'
 
 const EMPTY_BOX_STYLES = {
   width: '310px',
@@ -26,12 +28,22 @@ const EmptyBox = ({ text }: { text: string }) => (
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { data } = useFetchBusinessAppsQuery()
 
   const appCards =
     data?.map(CommonService.appToCard).map((item) => (
       <Box className="ph-no-capture" key={item.id}>
-        <AppCardWithImage item={item} fullWidth={false} />
+        <AppCardWithImage
+          item={{
+            ...item,
+            leadPictureId: `${getApiBase()}/api/apps/${item.id}/appDocuments/${item.leadPictureId}`,
+          }}
+          fullWidth={false}
+          onClick={() => {
+            navigate(`/appdetail/${item.id}`)
+          }}
+        />
       </Box>
     )) ?? []
 

@@ -6,8 +6,9 @@ import CommonService from 'services/CommonService'
 import { Box, Stack } from '@mui/material'
 import { useSelector } from 'react-redux'
 import type { RootState } from 'features/store'
-import { AppCardWithImage } from 'components/pages/CFX/AppMarketplace/AppCardWithImage'
 import { GRID_STYLES } from '../sharedStyles'
+import { AppCardWithImage } from 'components/AppCardImage'
+import { getApiBase } from 'services/EnvironmentService'
 
 export default function AppStoreSection() {
   const { t } = useTranslation()
@@ -21,7 +22,19 @@ export default function AppStoreSection() {
     data
       .slice(0, 4)
       .map(CommonService.appToCard)
-      .map((i) => <AppCardWithImage key={i.id} item={i} fullWidth={false} />)
+      .map((i) => (
+        <AppCardWithImage
+          key={i.id}
+          item={{
+            ...i,
+            leadPictureId: `${getApiBase()}/api/apps/${i.id}/appDocuments/${i.leadPictureId}`,
+          }}
+          fullWidth={false}
+          onClick={() => {
+            navigate(`/appdetail/${i.id}`)
+          }}
+        />
+      ))
 
   return (
     <section className="app-store-section" data-testid="new-apps-section">

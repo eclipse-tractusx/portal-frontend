@@ -34,7 +34,7 @@ export enum PAGES {
   MARKETPLACE = 'marketplace',
   CFX_MARKETPLACE = 'cfxMarketplace',
   CFX_APP_MARKETPLACE = 'cfxAppMarketplace',
-  SERVICE_MARKETPLACE = 'serviceMarketplace',
+  CFX_SERVICE_MARKETPLACE = 'cfxServiceMarketplace',
   SERVICE_MARKETPLACE_DETAIL = 'serviceMarketplaceDetail',
   APP_DETAIL = 'appdetail',
   DATA_MANAGEMENT = 'dataManagement',

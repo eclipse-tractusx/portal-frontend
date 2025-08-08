@@ -35,7 +35,6 @@ import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
 import AppSubscription from 'components/pages/AppSubscription'
-import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserDetails'
@@ -89,6 +88,7 @@ import ServiceListOverview from 'components/pages/ServiceReleaseProcess/ServiceO
 import AppOverviewNew from 'components/pages/AppOverviewNew'
 import CompanyData from 'components/pages/CompanyData'
 import CfxAppMarketplace from 'components/pages/CFX/AppMarketplace'
+import CfxServiceMarketplace from 'components/pages/CFX/ServiceMarketplace'
 
 /**
  * ALL_PAGES
@@ -127,9 +127,9 @@ export const ALL_PAGES: IPage[] = [
     element: <CfxAppMarketplace />,
   },
   {
-    name: PAGES.SERVICE_MARKETPLACE,
+    name: PAGES.CFX_SERVICE_MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW_SERVICES),
-    element: <ServiceMarketplace />,
+    element: <CfxServiceMarketplace />,
   },
   {
     name: PAGES.SERVICE_MARKETPLACE_DETAIL,
@@ -629,7 +629,7 @@ export const mainMenuFullTree = [
     name: MENUS.MARKETPLACE,
     children: [
       { name: PAGES.CFX_APP_MARKETPLACE },
-      { name: PAGES.SERVICE_MARKETPLACE },
+      { name: PAGES.CFX_SERVICE_MARKETPLACE },
       { name: PAGES.COMPANY_SUBSCRIPTIONS }, // Company Subscription
     ],
   },

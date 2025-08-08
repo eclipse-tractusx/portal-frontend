@@ -7,7 +7,7 @@
     "storybook": "Storybook Shared Component Library",
     "marketplace": "Marketplace",
     "cfxAppMarketplace": "App Marketplace",
-    "serviceMarketplace": "Service Marketplace",
+    "cfxServiceMarketplace": "Service Marketplace",
     "appdetails": "App Details",
     "dataManagement": "Data Management",
     "semantichub": "Semantic Hub",
@@ -1559,7 +1559,8 @@
         "heading": "Relevant Documents",
         "message": "The terms of use, as well as the data models and further information can be viewed by clicking on the documents shared below."
       },
-      "errorMessage": "The subscription was unsuccessful; please contact your administrator."
+      "errorMessage": "The subscription was unsuccessful; please contact your administrator.",
+      "loadMore": "Load More"
     },
     "appMarketplace": {
       "headline": "Business Application Subscription",

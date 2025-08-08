@@ -208,7 +208,7 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return (
         <NotificationContent
           item={item}
-          navlinks={[PAGES.SERVICE_MARKETPLACE]}
+          navlinks={[PAGES.CFX_SERVICE_MARKETPLACE]}
         />
       )
     case NotificationType.APP_SUBSCRIPTION_REQUEST:
@@ -250,7 +250,7 @@ const NotificationConfig = ({ item }: { item: CXNotificationContent }) => {
       return (
         <NotificationContent
           item={item}
-          navlinks={[PAGES.SERVICE_MARKETPLACE]}
+          navlinks={[PAGES.CFX_SERVICE_MARKETPLACE]}
         />
       )
     case NotificationType.SERVICE_RELEASE_APPROVAL:

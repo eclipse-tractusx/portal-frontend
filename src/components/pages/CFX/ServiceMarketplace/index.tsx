@@ -1,23 +1,3 @@
-/********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
- *
- * See the NOTICE file(s) distributed with this work for additional
- * information regarding copyright ownership.
- *
- * This program and the accompanying materials are made available under the
- * terms of the Apache License, Version 2.0 which is available at
- * https://www.apache.org/licenses/LICENSE-2.0.
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
- ********************************************************************************/
-
 import {
   useEffect,
   useState,
@@ -49,20 +29,18 @@ import {
   useFetchServicesQuery,
 } from 'features/serviceMarketplace/serviceApiSlice'
 import SortImage from 'components/shared/frame/SortImage'
-import {
-  ServiceTypeIdsEnum,
-  useFetchDocumentMutation,
-} from 'features/serviceManagement/apiSlice'
-import NoItems from '../NoItems'
+import { ServiceTypeIdsEnum } from 'features/serviceManagement/apiSlice'
 import { SORTING_TYPE } from 'features/serviceManagement/types'
 import { serviceTypeMapping } from 'types/Constants'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import NoItems from 'components/pages/NoItems'
 
 dayjs.extend(isToday)
 dayjs.extend(isYesterday)
 dayjs.extend(relativeTime)
 
-const indexToSplit = 2 //show only 2 services in recommended
+const indexToSplit = 4 //show only 2 services in recommended
 const serviceTypeIdMapping: Record<string, ServiceTypeIdsEnum> = {
   [ServiceTypeIdsEnum.DATASPACE_SERVICES]: ServiceTypeIdsEnum.DATASPACE_SERVICE,
   [ServiceTypeIdsEnum.CONSULTANCY_SERVICES]:
@@ -93,40 +71,19 @@ export default function ServiceMarketplace() {
     serviceType: serviceTypeId,
     sortingType,
   })
-  const [fetchDocument] = useFetchDocumentMutation()
   const [fullServicesList, setFullServicesList] = useState<ServiceRequest[]>([])
 
   const { data, error, isError, refetch, isFetching } =
     useFetchServicesQuery(argsData)
   const services = data?.content
 
-  // To-Do fix the type issue with status and data from FetchBaseQueryError
-  // eslint-disable-next-line
-  const servicesError = error as any
-
-  const getImage = useCallback(
-    async (service: ServiceRequest) => {
-      try {
-        const response = await fetchDocument({
-          appId: service.id,
-          documentId: service.leadPictureId,
-        }).unwrap()
-        const file = response.data
-        return URL.createObjectURL(file)
-      } catch (error) {
-        console.error('Error fetching image:', error)
-        return null
-      }
-    },
-    [fetchDocument]
-  )
+  const servicesError = error as FetchBaseQueryError
 
   const loadServicesWithImages = useCallback(async () => {
     if (services && services.length > 0) {
       const serviceWithImages = await Promise.all(
-        services.map(async (service) => {
-          const img = await getImage(service)
-          return { ...service, leadPictureId: img ?? '' }
+        services.map((service) => {
+          return { ...service, leadPictureId: service.leadPictureId ?? '' }
         })
       )
 
@@ -138,11 +95,11 @@ export default function ServiceMarketplace() {
       setCardServices(newServices)
       setFullServicesList(newServices)
     }
-  }, [services, data?.meta.page, getImage])
+  }, [services, data?.meta.page])
 
   useEffect(() => {
     loadServicesWithImages()
-  }, [services, data?.meta.page, getImage])
+  }, [services, data?.meta.page])
 
   const setView = (e: React.MouseEvent<HTMLInputElement>) => {
     const viewValue = e.currentTarget.value
@@ -174,16 +131,19 @@ export default function ServiceMarketplace() {
       buttonText: t('content.serviceMarketplace.tabs.all'),
       buttonValue: t('content.serviceMarketplace.tabs.all'),
       onButtonClick: setView,
+      dataTestId: 'filter-all-services-button',
     },
     {
       buttonText: t('content.serviceMarketplace.tabs.dataspaceService'),
       buttonValue: t('content.serviceMarketplace.tabs.dataspaceService'),
       onButtonClick: setView,
+      dataTestId: 'filter-dataspace-services-button',
     },
     {
       buttonText: t('content.serviceMarketplace.tabs.consultancyService'),
       buttonValue: t('content.serviceMarketplace.tabs.consultancyService'),
       onButtonClick: setView,
+      dataTestId: 'filter-consultancy-services-button',
     },
   ]
 
@@ -281,9 +241,11 @@ export default function ServiceMarketplace() {
         </div>
       ) : (
         <>
-          {' '}
           <div className="bg-white">
-            <div className="mainContainer">
+            <div
+              className="mainContainer"
+              data-testid="services-marketplace-container"
+            >
               <div className="mainRow">
                 <Typography className="newServicesTitle" variant="h2">
                   {t('content.serviceMarketplace.newServices')}
@@ -322,14 +284,18 @@ export default function ServiceMarketplace() {
                   ) : (
                     <ErrorBar
                       errorText={
-                        servicesError?.data?.status >= 400 &&
-                        servicesError?.data?.status < 500
+                        'status' in servicesError &&
+                        typeof servicesError.status === 'number' &&
+                        servicesError.status >= 400 &&
+                        servicesError.status < 500
                           ? t('content.serviceMarketplace.dataLoadFailed')
                           : t('content.serviceMarketplace.loadFailed')
                       }
                       showButton={
-                        servicesError.code >= 500 &&
-                        servicesError?.data?.status < 600
+                        'status' in servicesError &&
+                        typeof servicesError.status === 'number' &&
+                        servicesError.status >= 500 &&
+                        servicesError.status < 600
                       }
                       buttonText={t('error.tryAgain')}
                       handleButton={refetch}
@@ -344,11 +310,17 @@ export default function ServiceMarketplace() {
           )}
         </>
       )}
-      <div className="load-more-btn">
-        {data?.meta && data?.meta?.totalPages > page + 1 && (
-          <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
-        )}
-      </div>
+      {cardServices && cardServices.length > 0 && (
+        <div className="load-more-btn">
+          {data?.meta && data?.meta?.totalPages > page + 1 && (
+            <LoadMoreButton
+              dataTestId="load-more-services-button"
+              onClick={nextPage}
+              label={t('content.serviceMarketplace.loadMore')}
+            />
+          )}
+        </div>
+      )}
     </main>
   )
 }

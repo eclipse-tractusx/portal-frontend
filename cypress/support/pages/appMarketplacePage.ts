@@ -11,17 +11,17 @@ export class AppMarketplacePage {
   }
 
   checkFirstAppCardIsVisible(): void {
-    cy.get('[data-testid="app-card-with-image-1"]')
+    cy.get('[data-testid="card-with-image-1"]')
       .should('exist')
       .and('be.visible')
   }
 
   clickFirstAppCard() {
-    cy.get('[data-testid="app-card-with-image-1"]').click()
+    cy.get('[data-testid="card-with-image-1"]').click()
   }
 
   checkSecondAppCardIsVisible(): void {
-    cy.get('[data-testid="app-card-with-image-2"]')
+    cy.get('[data-testid="card-with-image-2"]')
       .should('exist')
       .and('be.visible')
   }

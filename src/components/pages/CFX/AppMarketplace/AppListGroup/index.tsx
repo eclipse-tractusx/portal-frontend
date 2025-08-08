@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { CategoryDivider, CfxGrid } from '@cofinity-x/shared-components'
 import { useResponsiveItems } from 'hooks/useResponsiveItems'
-import { AppCardWithImage } from '../AppCardWithImage'
+import { AppCardWithImage } from 'components/AppCardImage'
 import type { AppMarketplaceCard } from 'features/apps/types'
+import { useNavigate } from 'react-router-dom'
+import { getApiBase } from 'services/EnvironmentService'
 
 export const AppListGroup = ({
   category,
@@ -16,6 +18,11 @@ export const AppListGroup = ({
     useResponsiveItems([items])
   const itemsToShow = items.slice(0, Number(itemsShown))
   const currentResponsiveCount = getResponsiveItemsCount(window.innerWidth)
+  const navigate = useNavigate()
+
+  const handleClick = (id: string) => {
+    navigate(`/appdetail/${id}`)
+  }
 
   return (
     <>
@@ -39,7 +46,13 @@ export const AppListGroup = ({
       <CfxGrid data-testid="app-list-group" container spacing={3}>
         {itemsToShow.map((item) => (
           <CfxGrid key={item.id} size={{ xs: 12, sm: 12, md: 6, lg: 4, xl: 3 }}>
-            <AppCardWithImage item={item} />
+            <AppCardWithImage
+              item={{
+                ...item,
+                leadPictureId: `${getApiBase()}/api/apps/${item.id}/appDocuments/${item.leadPictureId}`,
+              }}
+              onClick={handleClick}
+            />
           </CfxGrid>
         ))}
       </CfxGrid>

@@ -29,7 +29,7 @@ export enum PAGES {
   // MARKETPLACE = 'marketplace', // Removed (header menu)
   APP_MARKETPLACE = 'appMarketplace',
   CFX_APP_MARKETPLACE = 'cfxAppMarketplace',
-  SERVICE_MARKETPLACE = 'serviceMarketplace',
+  CFX_SERVICE_MARKETPLACE = 'cfxServiceMarketplace',
   SERVICE_MARKETPLACE_DETAIL = 'serviceMarketplaceDetail',
   APP_DETAIL = 'appdetail',
   // DATA_MANAGEMENT = 'dataManagement', // Removed (header menu)

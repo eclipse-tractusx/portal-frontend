@@ -2,27 +2,29 @@ import {
   CfxCardMarketplace,
   styled as CfxStyled,
 } from '@cofinity-x/shared-components'
-import { useNavigate } from 'react-router-dom'
 import { fetchImageWithToken } from 'services/ImageService'
-import { getApiBase } from 'services/EnvironmentService'
 import { useState, useEffect } from 'react'
 import { type AppMarketplaceCard } from 'features/apps/types'
 import { useCfxTheme } from 'hooks/useCfxTheme'
+import { type ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 
 interface AppCardWithImageProps {
-  item: AppMarketplaceCard
+  item: AppMarketplaceCard | ServiceRequest
+  onClick: (id: string) => void
   fullWidth?: boolean
 }
 type SubscriptionStatus = 'active' | 'pending' | 'inactive' | undefined
 
 export const AppCardWithImage = ({
   item,
+  onClick,
   fullWidth = true,
 }: AppCardWithImageProps) => {
-  const navigate = useNavigate()
   const [imageUrl, setImageUrl] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const cfxTheme = useCfxTheme()
+
+  console.log('home item', item)
 
   const StyledCfxCardMarketplace = CfxStyled(CfxCardMarketplace)(() => ({
     '& .MuiTypography-h6': {
@@ -35,8 +37,7 @@ export const AppCardWithImage = ({
     if (item.leadPictureId) {
       try {
         setIsLoading(true)
-        const imageUrl = `${getApiBase()}/api/apps/${item.id}/appDocuments/${item.leadPictureId}`
-        const arrayBuffer = await fetchImageWithToken(imageUrl)
+        const arrayBuffer = await fetchImageWithToken(item.leadPictureId)
         const blob = new Blob([arrayBuffer], { type: 'image/*' })
         const url = URL.createObjectURL(blob)
         setImageUrl(url)
@@ -59,7 +60,7 @@ export const AppCardWithImage = ({
 
   return (
     <StyledCfxCardMarketplace
-      data-testid={`app-card-with-image-${item.id}`}
+      data-testid={`card-with-image-${item.id}`}
       price={item.price}
       companyName={item.provider}
       applicationName={item.name ?? ''}
@@ -67,10 +68,12 @@ export const AppCardWithImage = ({
       fullWidth={fullWidth}
       loading={isLoading}
       status={
-        item.subscriptionStatus?.toLocaleLowerCase() as SubscriptionStatus
+        (
+          item as AppMarketplaceCard
+        ).subscriptionStatus?.toLocaleLowerCase() as SubscriptionStatus
       }
       onClick={() => {
-        navigate(`/appdetail/${item.id}`)
+        onClick(item.id)
       }}
     />
   )
