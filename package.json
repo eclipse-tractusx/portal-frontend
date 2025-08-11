@@ -34,13 +34,13 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^4.0.1",
+    "@catena-x/portal-shared-components": "^4.0.2",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@hookform/error-message": "^2.0.1",
     "@mui/icons-material": "^5.16.14",
     "@mui/material": "^5.16.14",
-    "@mui/x-data-grid": "^7.29.8",
+    "@mui/x-data-grid": "^7.29.9",
     "@react-hook/cache": "^1.1.1",
     "@reduxjs/toolkit": "^2.2.8",
     "autosuggest-highlight": "^3.3.4",
