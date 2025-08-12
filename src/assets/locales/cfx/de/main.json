@@ -300,7 +300,7 @@
     "appstore": {
       "stage": {
         "title": "App Marktplatz",
-        "subtitle": "Entdecken Sie Catena-X zertifizierte Apps für verschiedenste Industrieanwendungen. Sie können das Angebot nach Use Cases sortieren oder alle Produkte durchsuchen. Markieren Sie Apps mit einem Herz, um sie im Bereich Gemerkte Apps anzuzeigen.",
+        "subtitle": "Entdecken Sie Catena-X zertifizierte Apps für verschiedenste Industrieanwendungen. Sie können das Angebot nach Use Cases sortieren oder alle Produkte durchsuchen.",
         "appButton": "App Übersicht"
       },
       "searchSection": {

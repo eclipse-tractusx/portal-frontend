@@ -299,7 +299,7 @@
     "appstore": {
       "stage": {
         "title": "App Marketplace",
-        "subtitle": "Explore Catena-X certified apps for key industry use cases. Filter by use cases or browse all products. You can mark favorite apps with a heart and display them in the Your Favorite Apps section.",
+        "subtitle": "Explore Catena-X certified apps for key industry use cases. Filter by use cases or browse all products.",
         "appButton": "App Overview"
       },
       "searchSection": {
