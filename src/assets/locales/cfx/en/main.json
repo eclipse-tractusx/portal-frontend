@@ -274,7 +274,7 @@
           "title": "Service Marketplace",
           "subtitle": "Explore advisory and consultancy services from trusted partners. Achieve your business goals with strategic insights and expert guidance on Catena-X and data exchange.",
           "buttonName": "Explore Services",
-          "navigation": "/serviceMarketplace"
+          "navigation": "/cfxServiceMarketplace"
         },
         "slider4": {
           "title": "Connector Registration",
