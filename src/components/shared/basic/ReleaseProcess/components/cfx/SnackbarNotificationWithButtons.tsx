@@ -68,7 +68,7 @@ export default function SnackbarNotificationWithButtons({
   const { t } = useTranslation()
 
   return (
-    <Box mb={2}>
+    <Box sx={{ mb: 2, px: { xs: 2, sm: 3, md: 6, lg: 8 } }}>
       {pageNotification && (
         <Grid container columns={{ xs: 12 }} sx={{ mb: 2 }}>
           <Grid size={{ xs: 6 }}></Grid>

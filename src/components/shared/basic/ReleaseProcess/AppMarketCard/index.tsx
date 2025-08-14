@@ -21,16 +21,15 @@
 import {
   Typography,
   IconButton,
-  CardHorizontal,
-  Card,
   LogoGrayData,
   SelectList,
   type UploadFileStatus,
   UploadStatus,
   PageSnackbar,
+  CfxGrid,
+  CfxBox,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
-import { Grid } from '@mui/material'
 import { useState, useEffect, useMemo, useRef } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import {
@@ -78,6 +77,7 @@ import { useFetchDocumentByIdMutation } from 'features/apps/apiSlice'
 import { download } from 'utils/downloadUtils'
 import { extractFileData } from 'utils/fileUtils'
 import { isStepCompleted } from '../AppStepHelper'
+import { AppCardPreview } from './AppCardPreview'
 
 type FormDataType = {
   title: string
@@ -496,329 +496,314 @@ export default function AppMarketCard() {
         title={t('content.apprelease.appMarketCard.headerTitle')}
         description={t('content.apprelease.appMarketCard.headerDescription')}
       />
-      <Grid container spacing={2}>
-        {pageScrolled ? (
-          <Grid size={{ md: 3 }} className={'app-release-card'}>
-            <Card
-              image={{
-                src: cardImage,
-                alt: cardImageAlt,
-              }}
-              title={cardAppTitle}
-              description={cardDescription}
-              imageSize="normal"
-              imageShape="square"
-              variant="text-details"
-              expandOnHover={false}
-              filledBackground={true}
-              buttonText={''}
-              positionValue="sticky"
-              topValue={50}
-            />
-          </Grid>
-        ) : (
-          <Grid size={{ md: 7 }} sx={{ mt: 0, mr: 'auto', mb: 10, ml: 'auto' }}>
-            <CardHorizontal
-              label={''}
-              title={cardAppTitle}
-              image={{
-                alt: cardImageAlt,
-                src: cardImage,
-              }}
-              borderRadius={0}
-              description={cardDescription}
-              backgroundColor="#F3F3F3"
-            />
-          </Grid>
-        )}
+      <CfxBox sx={{ px: { xs: 2, sm: 3, md: 5, lg: 8 } }}>
+        <CfxGrid container spacing={{ xs: 2, sm: 3, md: 5, lg: 8 }}>
+          {pageScrolled && (
+            <CfxGrid
+              sx={{ display: 'flex', justifyContent: 'center' }}
+              size={{ md: 4, xs: 12, sm: 12 }}
+            >
+              <AppCardPreview
+                appTitle={cardAppTitle}
+                description={cardDescription}
+                imageUrl={cardImage}
+                imageAlt={cardImageAlt}
+                positionValue="sticky"
+              />
+            </CfxGrid>
+          )}
 
-        <Grid
-          size={{ md: 8 }}
-          sx={{ mt: 0, mr: 'auto', mb: 0, ml: pageScrolled ? 0 : 'auto' }}
-        >
-          <form>
-            <CommonConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-              }}
-              dataTestId="release-process-title-input"
-              name="title"
-              pattern={Patterns.appMarketCard.appTitle}
-              label={
-                <>
-                  {t('content.apprelease.appMarketCard.appTitle')}
-                  <span style={{ color: 'red' }}> *</span>
-                </>
-              }
-              rules={{
-                required: `${t(
-                  'content.apprelease.appMarketCard.appTitle'
-                )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                minLength: `${t(
-                  'content.apprelease.appReleaseForm.minimum'
-                )} 5 ${t(
-                  'content.apprelease.appReleaseForm.charactersRequired'
-                )}`,
-                pattern: `${t(
-                  'content.apprelease.appReleaseForm.validCharactersIncludes'
-                )} A-Za-z0-9.:_- @&`,
-                maxLength: `${t(
-                  'content.apprelease.appReleaseForm.maximum'
-                )} 40 ${t(
-                  'content.apprelease.appReleaseForm.charactersAllowed'
-                )}`,
-              }}
-              maxTextLength={40}
-            />
-
-            <div className="form-field">
-              {['shortDescriptionEN', 'shortDescriptionDE'].map(
-                (item: string) => (
-                  <div key={item}>
-                    <ConnectorFormInputFieldShortAndLongDescription
-                      {...{
-                        control,
-                        trigger,
-                        errors,
-                        item,
-                      }}
-                      dataTestId={`release-process-${item}-input`}
-                      label={
-                        <>
-                          {t(`content.apprelease.appMarketCard.${item}`)}
-                          <span style={{ color: 'red' }}> *</span>
-                          <IconButton sx={{ color: '#939393' }} size="small">
-                            <HelpOutlineIcon />
-                          </IconButton>
-                        </>
-                      }
-                      value={
-                        (item === 'shortDescriptionEN'
-                          ? getValues().shortDescriptionEN.length
-                          : getValues().shortDescriptionDE.length) + '/255'
-                      }
-                      patternKey="shortDescriptionEN"
-                      patternEN={Patterns.appMarketCard.shortDescriptionEN}
-                      patternDE={Patterns.appMarketCard.shortDescriptionDE}
-                      rules={{
-                        required: `${t(
-                          `content.apprelease.appMarketCard.${item}`
-                        )} ${t(
-                          'content.apprelease.appReleaseForm.isMandatory'
-                        )}`,
-                        minLength: `${t(
-                          'content.apprelease.appReleaseForm.minimum'
-                        )} 10 ${t(
-                          'content.apprelease.appReleaseForm.charactersRequired'
-                        )}`,
-                        pattern: `${t(
-                          'content.apprelease.appReleaseForm.validCharactersIncludes'
-                        )} ${
-                          item === 'shortDescriptionEN'
-                            ? 'a-zA-Z0-9 !?@&#\'"()_-=/*.,;:'
-                            : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'
-                        }`,
-                        maxLength: `${t(
-                          'content.apprelease.appReleaseForm.maximum'
-                        )} 255 ${t(
-                          'content.apprelease.appReleaseForm.charactersAllowed'
-                        )}`,
-                      }}
-                      maxTextLength={255}
-                    />
-                  </div>
-                )
-              )}
-            </div>
-
-            <div className="form-field">
-              <ConnectorFormInputField
+          <CfxGrid size={{ md: 8, xs: 12, sm: 12 }}>
+            <form>
+              <CommonConnectorFormInputField
                 {...{
                   control,
                   trigger,
                   errors,
-                  name: 'useCaseCategory',
-                  dataTestId: 'release-process-use-case-input',
-                  label: (
-                    <>
-                      {t('content.apprelease.appMarketCard.useCaseCategory')}
-                      <span style={{ color: 'red' }}> *</span>
-                    </>
-                  ),
-                  placeholder: t(
-                    'content.apprelease.appMarketCard.useCaseCategoryPlaceholder'
-                  ),
-                  type: 'multiSelectList',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.useCaseCategory'
-                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                    },
-                    pattern: {
-                      value: Patterns.appMarketCard.useCaseCategory,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.validCharactersIncludes'
-                      )} A-Za-z`,
-                    },
-                  },
-                  items: useCasesList,
-                  keyTitle: 'name',
-                  saveKeyTitle: 'useCaseId',
-                  notItemsText: t(
-                    'content.apprelease.appReleaseForm.noItemsSelected'
-                  ),
-                  buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
-                  defaultValues: defaultUseCaseVal,
                 }}
-              />
-            </div>
-
-            <div className="form-field">
-              <ConnectorFormInputField
-                {...{
-                  control,
-                  trigger,
-                  errors,
-                  name: 'appLanguage',
-                  dataTestId: 'release-process-app-language-input',
-                  label: (
-                    <>
-                      {t('content.apprelease.appMarketCard.appLanguage')}
-                      <span style={{ color: 'red' }}> *</span>
-                    </>
-                  ),
-                  placeholder: t(
-                    'content.apprelease.appMarketCard.appLanguagePlaceholder'
-                  ),
-                  type: 'multiSelectList',
-                  rules: {
-                    required: {
-                      value: true,
-                      message: `${t(
-                        'content.apprelease.appMarketCard.appLanguage'
-                      )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                    },
-                    pattern: {
-                      value: Patterns.appMarketCard.appLanguage,
-                      message: `${t(
-                        'content.apprelease.appReleaseForm.validCharactersIncludes'
-                      )} A-Z a-z`,
-                    },
-                  },
-                  items: appLanguagesList,
-                  keyTitle: 'languageShortName',
-                  saveKeyTitle: 'languageShortName',
-                  notItemsText: t(
-                    'content.apprelease.appReleaseForm.noItemsSelected'
-                  ),
-                  buttonAddMore: t('content.apprelease.appReleaseForm.addMore'),
-                  filterOptionsArgs: {
-                    matchFrom: 'any',
-                    stringify: (option: appLanguagesItem) =>
-                      option.languageShortName +
-                      option.languageLongNames[0].longDescription +
-                      option.languageLongNames[1].longDescription,
-                  },
-                  defaultValues: defaultAppLanguageVal,
+                dataTestId="release-process-title-input"
+                name="title"
+                pattern={Patterns.appMarketCard.appTitle}
+                label={
+                  <>
+                    {t('content.apprelease.appMarketCard.appTitle')}
+                    <span style={{ color: 'red' }}> *</span>
+                  </>
+                }
+                rules={{
+                  required: `${t(
+                    'content.apprelease.appMarketCard.appTitle'
+                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
+                  minLength: `${t(
+                    'content.apprelease.appReleaseForm.minimum'
+                  )} 5 ${t(
+                    'content.apprelease.appReleaseForm.charactersRequired'
+                  )}`,
+                  pattern: `${t(
+                    'content.apprelease.appReleaseForm.validCharactersIncludes'
+                  )} A-Za-z0-9.:_- @&`,
+                  maxLength: `${t(
+                    'content.apprelease.appReleaseForm.maximum'
+                  )} 40 ${t(
+                    'content.apprelease.appReleaseForm.charactersAllowed'
+                  )}`,
                 }}
+                maxTextLength={40}
               />
-            </div>
 
-            <div className="form-field">
-              <Typography
-                sx={{ fontFamily: 'LibreFranklin-Medium' }}
-                variant="subtitle2"
-              >
-                {t('content.apprelease.appMarketCard.salesManager')}
-              </Typography>
-              <Typography variant="body2" sx={{ mb: 1 }}>
-                {t('content.apprelease.appMarketCard.salesManagerDescription')}
-              </Typography>
-              <SelectList
-                dataTestId="release-process-sales-manager-input"
-                defaultValue={defaultSalesManagerValue}
-                items={salesManagerListData}
-                label={''}
-                placeholder={t(
-                  'content.apprelease.appMarketCard.salesManagerPlaceholder'
+              <div className="form-field">
+                {['shortDescriptionEN', 'shortDescriptionDE'].map(
+                  (item: string) => (
+                    <div key={item}>
+                      <ConnectorFormInputFieldShortAndLongDescription
+                        {...{
+                          control,
+                          trigger,
+                          errors,
+                          item,
+                        }}
+                        dataTestId={`release-process-${item}-input`}
+                        label={
+                          <>
+                            {t(`content.apprelease.appMarketCard.${item}`)}
+                            <span style={{ color: 'red' }}> *</span>
+                            <IconButton sx={{ color: '#939393' }} size="small">
+                              <HelpOutlineIcon />
+                            </IconButton>
+                          </>
+                        }
+                        value={
+                          (item === 'shortDescriptionEN'
+                            ? getValues().shortDescriptionEN.length
+                            : getValues().shortDescriptionDE.length) + '/255'
+                        }
+                        patternKey="shortDescriptionEN"
+                        patternEN={Patterns.appMarketCard.shortDescriptionEN}
+                        patternDE={Patterns.appMarketCard.shortDescriptionDE}
+                        rules={{
+                          required: `${t(
+                            `content.apprelease.appMarketCard.${item}`
+                          )} ${t(
+                            'content.apprelease.appReleaseForm.isMandatory'
+                          )}`,
+                          minLength: `${t(
+                            'content.apprelease.appReleaseForm.minimum'
+                          )} 10 ${t(
+                            'content.apprelease.appReleaseForm.charactersRequired'
+                          )}`,
+                          pattern: `${t(
+                            'content.apprelease.appReleaseForm.validCharactersIncludes'
+                          )} ${
+                            item === 'shortDescriptionEN'
+                              ? 'a-zA-Z0-9 !?@&#\'"()_-=/*.,;:'
+                              : 'a-zA-ZÀ-ÿ0-9 !?@&#\'"()_-=/*.,;:'
+                          }`,
+                          maxLength: `${t(
+                            'content.apprelease.appReleaseForm.maximum'
+                          )} 255 ${t(
+                            'content.apprelease.appReleaseForm.charactersAllowed'
+                          )}`,
+                        }}
+                        maxTextLength={255}
+                      />
+                    </div>
+                  )
                 )}
-                onChangeItem={(e) => {
-                  e && onSalesManagerChange(e.userId as string)
+              </div>
+
+              <div className="form-field">
+                <ConnectorFormInputField
+                  {...{
+                    control,
+                    trigger,
+                    errors,
+                    name: 'useCaseCategory',
+                    dataTestId: 'release-process-use-case-input',
+                    label: (
+                      <>
+                        {t('content.apprelease.appMarketCard.useCaseCategory')}
+                        <span style={{ color: 'red' }}> *</span>
+                      </>
+                    ),
+                    placeholder: t(
+                      'content.apprelease.appMarketCard.useCaseCategoryPlaceholder'
+                    ),
+                    type: 'multiSelectList',
+                    rules: {
+                      required: {
+                        value: true,
+                        message: `${t(
+                          'content.apprelease.appMarketCard.useCaseCategory'
+                        )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
+                      },
+                      pattern: {
+                        value: Patterns.appMarketCard.useCaseCategory,
+                        message: `${t(
+                          'content.apprelease.appReleaseForm.validCharactersIncludes'
+                        )} A-Za-z`,
+                      },
+                    },
+                    items: useCasesList,
+                    keyTitle: 'name',
+                    saveKeyTitle: 'useCaseId',
+                    notItemsText: t(
+                      'content.apprelease.appReleaseForm.noItemsSelected'
+                    ),
+                    buttonAddMore: t(
+                      'content.apprelease.appReleaseForm.addMore'
+                    ),
+                    defaultValues: defaultUseCaseVal,
+                  }}
+                />
+              </div>
+
+              <div className="form-field">
+                <ConnectorFormInputField
+                  {...{
+                    control,
+                    trigger,
+                    errors,
+                    name: 'appLanguage',
+                    dataTestId: 'release-process-app-language-input',
+                    label: (
+                      <>
+                        {t('content.apprelease.appMarketCard.appLanguage')}
+                        <span style={{ color: 'red' }}> *</span>
+                      </>
+                    ),
+                    placeholder: t(
+                      'content.apprelease.appMarketCard.appLanguagePlaceholder'
+                    ),
+                    type: 'multiSelectList',
+                    rules: {
+                      required: {
+                        value: true,
+                        message: `${t(
+                          'content.apprelease.appMarketCard.appLanguage'
+                        )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
+                      },
+                      pattern: {
+                        value: Patterns.appMarketCard.appLanguage,
+                        message: `${t(
+                          'content.apprelease.appReleaseForm.validCharactersIncludes'
+                        )} A-Z a-z`,
+                      },
+                    },
+                    items: appLanguagesList,
+                    keyTitle: 'languageShortName',
+                    saveKeyTitle: 'languageShortName',
+                    notItemsText: t(
+                      'content.apprelease.appReleaseForm.noItemsSelected'
+                    ),
+                    buttonAddMore: t(
+                      'content.apprelease.appReleaseForm.addMore'
+                    ),
+                    filterOptionsArgs: {
+                      matchFrom: 'any',
+                      stringify: (option: appLanguagesItem) =>
+                        option.languageShortName +
+                        option.languageLongNames[0].longDescription +
+                        option.languageLongNames[1].longDescription,
+                    },
+                    defaultValues: defaultAppLanguageVal,
+                  }}
+                />
+              </div>
+
+              <div className="form-field">
+                <Typography
+                  sx={{ fontFamily: 'LibreFranklin-Medium' }}
+                  variant="subtitle2"
+                >
+                  {t('content.apprelease.appMarketCard.salesManager')}
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  {t(
+                    'content.apprelease.appMarketCard.salesManagerDescription'
+                  )}
+                </Typography>
+                <SelectList
+                  dataTestId="release-process-sales-manager-input"
+                  defaultValue={defaultSalesManagerValue}
+                  items={salesManagerListData}
+                  label={''}
+                  placeholder={t(
+                    'content.apprelease.appMarketCard.salesManagerPlaceholder'
+                  )}
+                  onChangeItem={(e) => {
+                    e && onSalesManagerChange(e.userId as string)
+                  }}
+                  keyTitle={'fullName'}
+                />
+              </div>
+
+              <CommonConnectorFormInputField
+                {...{
+                  control,
+                  trigger,
+                  errors,
                 }}
-                keyTitle={'fullName'}
+                name="price"
+                dataTestId="release-process-price-input"
+                pattern={Patterns.appMarketCard.pricingInformation}
+                maxLength={15}
+                minLength={1}
+                label={
+                  <>
+                    {t('content.apprelease.appMarketCard.pricingInformation')}
+                    <span style={{ color: 'red' }}> *</span>
+                  </>
+                }
+                rules={{
+                  required: `${t(
+                    'content.apprelease.appMarketCard.pricingInformation'
+                  )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
+                  minLength: `${t(
+                    'content.apprelease.appReleaseForm.minimum'
+                  )} 1 ${t(
+                    'content.apprelease.appReleaseForm.charactersRequired'
+                  )}`,
+                  pattern: `${t(
+                    'content.apprelease.appReleaseForm.validCharactersIncludes'
+                  )} A-Za-z0-9/ €`,
+                  maxLength: `${t(
+                    'content.apprelease.appReleaseForm.maximum'
+                  )} 15 ${t(
+                    'content.apprelease.appReleaseForm.charactersAllowed'
+                  )}`,
+                }}
               />
-            </div>
 
-            <CommonConnectorFormInputField
-              {...{
-                control,
-                trigger,
-                errors,
-              }}
-              name="price"
-              dataTestId="release-process-price-input"
-              pattern={Patterns.appMarketCard.pricingInformation}
-              maxLength={15}
-              minLength={1}
-              label={
-                <>
-                  {t('content.apprelease.appMarketCard.pricingInformation')}
-                  <span style={{ color: 'red' }}> *</span>
-                </>
-              }
-              rules={{
-                required: `${t(
-                  'content.apprelease.appMarketCard.pricingInformation'
-                )} ${t('content.apprelease.appReleaseForm.isMandatory')}`,
-                minLength: `${t(
-                  'content.apprelease.appReleaseForm.minimum'
-                )} 1 ${t(
-                  'content.apprelease.appReleaseForm.charactersRequired'
-                )}`,
-                pattern: `${t(
-                  'content.apprelease.appReleaseForm.validCharactersIncludes'
-                )} A-Za-z0-9/ €`,
-                maxLength: `${t(
-                  'content.apprelease.appReleaseForm.maximum'
-                )} 15 ${t(
-                  'content.apprelease.appReleaseForm.charactersAllowed'
-                )}`,
-              }}
-            />
-
-            <ConnectorFormInputFieldImage
-              {...{
-                control,
-                trigger,
-                errors,
-              }}
-              dataTestId="release-process-lead-image-input"
-              label={
-                <>
-                  {t('content.apprelease.appMarketCard.appLeadImageUpload')}
-                  <span style={{ color: 'red' }}> *</span>
-                </>
-              }
-              noteDescription={t(
-                'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
-              )}
-              note={t('content.apprelease.appReleaseForm.note')}
-              requiredText={t(
-                'content.apprelease.appReleaseForm.fileUploadIsMandatory'
-              )}
-              handleDownload={handleDownload}
-              handleDelete={(documentId: string) => {
-                setCardImage(LogoGrayData)
-                documentId && deleteAppReleaseDocument(documentId)
-              }}
-            />
-          </form>
-        </Grid>
-      </Grid>
+              <ConnectorFormInputFieldImage
+                {...{
+                  control,
+                  trigger,
+                  errors,
+                }}
+                dataTestId="release-process-lead-image-input"
+                label={
+                  <>
+                    {t('content.apprelease.appMarketCard.appLeadImageUpload')}
+                    <span style={{ color: 'red' }}> *</span>
+                  </>
+                }
+                noteDescription={t(
+                  'content.apprelease.appReleaseForm.OnlyOneFileAllowed'
+                )}
+                note={t('content.apprelease.appReleaseForm.note')}
+                requiredText={t(
+                  'content.apprelease.appReleaseForm.fileUploadIsMandatory'
+                )}
+                handleDownload={handleDownload}
+                handleDelete={(documentId: string) => {
+                  setCardImage(LogoGrayData)
+                  documentId && deleteAppReleaseDocument(documentId)
+                }}
+              />
+            </form>
+          </CfxGrid>
+        </CfxGrid>
+      </CfxBox>
       <SnackbarNotificationWithButtons
         pageNotification={appCardNotification}
         pageSnackbar={appCardSnackbar}

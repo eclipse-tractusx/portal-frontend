@@ -20,7 +20,6 @@
 
 import {
   Button,
-  Card,
   Checkbox,
   LanguageSwitch,
   LogoGrayData,
@@ -33,8 +32,9 @@ import {
   ImageGallery,
   type ImageType,
   BackButton,
+  CfxGrid,
 } from '@cofinity-x/shared-components'
-import { Grid, Divider, Box } from '@mui/material'
+import { Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -75,6 +75,7 @@ import '../../../../pages/AppDetail/AppDetailPrivacy/style.scss'
 import 'components/styles/document.scss'
 import { TechUserTable } from '../TechnicalIntegration/TechUserTable'
 import { DATA_SOVEREIGNTY_ID } from 'types/cfx/Constants'
+import AppCardPreview from '../AppMarketCard/AppCardPreview'
 
 export interface DefaultValueType {
   images: Array<string>
@@ -310,31 +311,22 @@ export default function CommonValidateAndPublish({
       )}
       <div className="header-description">
         {type === ReleaseProcessTypes.APP_RELEASE && (
-          <Grid container sx={{ mt: 0 }}>
-            <Grid
+          <CfxGrid container sx={{ mt: 0 }}>
+            <CfxGrid
               className={'verify-app-release-card'}
               sx={{ ml: 0, mr: 0 }}
               size={{ md: 4 }}
             >
-              <Card
-                dataTestId="release-process-app-release-card"
-                image={{
-                  src: cardImage ?? LogoGrayData,
-                }}
-                title={statusData?.title ?? ''}
-                subtitle={statusData?.provider}
+              <AppCardPreview
+                appTitle={statusData?.title ?? ''}
                 description={
                   statusData?.descriptions?.filter(
                     (lang: { languageCode: string }) =>
                       lang.languageCode === cardLanguage
-                  )[0]?.shortDescription
+                  )[0]?.shortDescription ?? ''
                 }
-                imageSize="normal"
-                imageShape="square"
-                variant="text-details"
-                expandOnHover={false}
-                filledBackground={true}
-                buttonText={''}
+                imageUrl={cardImage}
+                imageAlt={'app-release-card-preview'}
               />
               <div className="language-switch">
                 <LanguageSwitch
@@ -346,9 +338,9 @@ export default function CommonValidateAndPublish({
                   }}
                 />
               </div>
-            </Grid>
+            </CfxGrid>
 
-            <Grid
+            <CfxGrid
               sx={{ paddingLeft: '71px', marginTop: '22%' }}
               size={{ md: 8 }}
             >
@@ -366,8 +358,8 @@ export default function CommonValidateAndPublish({
                   </Typography>
                 </div>
               ))}
-            </Grid>
-          </Grid>
+            </CfxGrid>
+          </CfxGrid>
         )}
         {type === ReleaseProcessTypes.SERVICE_RELEASE && (
           <CardHorizontal
@@ -564,16 +556,20 @@ export default function CommonValidateAndPublish({
               {t('content.adminboardDetail.roles.message')}
             </Typography>
             {rolesData.length > 0 ? (
-              <Grid container spacing={2} sx={{ margin: '0px' }}>
+              <CfxGrid container spacing={2} sx={{ margin: '0px' }}>
                 {rolesData?.map((role) => (
-                  <Grid size={{ xs: 6 }} key={role.role} className="roles-data">
+                  <CfxGrid
+                    size={{ xs: 6 }}
+                    key={role.role}
+                    className="roles-data"
+                  >
                     <Typography variant="label2">{role.role}</Typography>
                     <Typography variant="body3">
                       {role.descriptions?.[0].description}
                     </Typography>
-                  </Grid>
+                  </CfxGrid>
                 ))}
-              </Grid>
+              </CfxGrid>
             ) : (
               <Typography variant="caption2" className="not-available">
                 {t('global.errors.noRolesAvailable')}
@@ -669,9 +665,9 @@ export default function CommonValidateAndPublish({
       {type !== AppOverviewTypes.APP_OVERVIEW_DETAILS && (
         <Box data-testid="release-process-validate-publish-container" mb={2}>
           {validatePublishNotification && (
-            <Grid container columns={{ xs: 12 }} sx={{ mb: 2 }}>
-              <Grid size={{ xs: 6 }}></Grid>
-              <Grid size={{ xs: 6 }}>
+            <CfxGrid container columns={{ xs: 12 }} sx={{ mb: 2 }}>
+              <CfxGrid size={{ xs: 6 }}></CfxGrid>
+              <CfxGrid size={{ xs: 6 }}>
                 <PageNotifications
                   title={error.title}
                   description={error.message}
@@ -681,8 +677,8 @@ export default function CommonValidateAndPublish({
                     setValidatePublishNotification(false)
                   }}
                 />
-              </Grid>
-            </Grid>
+              </CfxGrid>
+            </CfxGrid>
           )}
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
 

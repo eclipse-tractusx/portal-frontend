@@ -35,8 +35,6 @@
 
   .app-release-card {
     max-width: 250px !important;
-    margin: 0 30px 60px auto !important;
-    padding-left: 0px !important;
   }
 
   .form-divider {
@@ -54,12 +52,6 @@
 
   .verify-app-release-card {
     width: 290px !important;
-    padding-left: 0px !important;
-    > div:first-of-type {
-      height: auto !important;
-      min-height: 351.4px !important;
-      margin-bottom: 0 !important;
-    }
   }
 
   .verify-validate-images {
