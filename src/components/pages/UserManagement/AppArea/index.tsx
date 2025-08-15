@@ -18,14 +18,18 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography, Card, Carousel } from '@cofinity-x/shared-components'
+import { Typography } from '@cofinity-x/shared-components'
 import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { type ActiveSubscriptionItem } from 'features/apps/types'
+import {
+  type ActiveSubscriptionItem,
+  type AppMarketplaceCard,
+} from 'features/apps/types'
 import { useFetchSubscriptionStatusQuery } from 'features/apps/apiSlice'
-import { fetchImageWithToken } from 'services/ImageService'
+import { Carousel } from 'components/shared/cfx/Carousel'
+import { AppCardWithImage } from 'components/AppCardImage'
 
 export const AppArea = () => {
   const navigate = useNavigate()
@@ -40,34 +44,38 @@ export const AppArea = () => {
           variant="h3"
         />
       </div>
+
       <Carousel
         infinite={false}
+        slidesToShow={4}
+        slidesToShowXl={4}
+        slidesToShowLg={3}
+        slidesToShowMd={2}
+        slidesToShowSm={1}
         gapToDots={5}
-        position={cards && cards.length > 0 ? 'relative' : ''}
+        gapToArrows={24}
+        gapCarouselTop={8}
+        position={cards && cards?.length > 0 ? 'relative' : ''}
+        itemHeight={279}
       >
         {cards && cards.length > 0
-          ? cards?.map((item: ActiveSubscriptionItem) => {
-              return (
-                <div className="ph-mask-text">
-                  <Card
-                    {...item}
-                    title={item.name ?? ''}
-                    subtitle={item.provider}
-                    key={item.offerId}
-                    buttonText="Details"
-                    imageSize="small"
-                    imageShape="round"
-                    imageLoader={fetchImageWithToken}
-                    variant="minimal"
-                    expandOnHover={false}
-                    filledBackground={true}
-                    onClick={() => {
-                      navigate(`/appUserManagement/${item.offerId}`)
-                    }}
-                  />
-                </div>
-              )
-            })
+          ? cards.map((item: ActiveSubscriptionItem) => (
+              <Box key={item.offerId} sx={{ height: '100%' }}>
+                <AppCardWithImage
+                  item={
+                    {
+                      id: item.offerId,
+                      name: item.name,
+                      provider: item.provider,
+                      leadPictureId: item.image?.src ?? '',
+                    } as unknown as AppMarketplaceCard
+                  }
+                  onClick={() => {
+                    navigate(`/appUserManagement/${item.offerId}`)
+                  }}
+                />
+              </Box>
+            ))
           : Array.from(Array(2), (_item, i) => (
               <Box
                 key={i}

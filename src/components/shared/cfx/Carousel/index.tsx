@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useState, Children, useEffect, useCallback } from 'react'
+import { useState, Children } from 'react'
 import Slider from 'react-slick'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -35,6 +35,10 @@ export interface CarouselProps {
   dots?: boolean
   infinite?: boolean
   slidesToShow?: number
+  slidesToShowXl?: number
+  slidesToShowLg?: number
+  slidesToShowMd?: number
+  slidesToShowSm?: number
   itemWidth?: number
   itemHeight?: number
   gapBetweenSlides?: number
@@ -73,7 +77,11 @@ export const Carousel = ({
   dots = true,
   infinite = true,
   slidesToShow = 4,
-  itemWidth = 266,
+  slidesToShowXl,
+  slidesToShowLg,
+  slidesToShowMd,
+  slidesToShowSm,
+  itemWidth: _itemWidth = 266,
   itemHeight = 279,
   gapBetweenSlides = 32,
   gapToDots = 40,
@@ -92,19 +100,12 @@ export const Carousel = ({
   }
   const arrayChildren = Children.toArray(children)
 
-  useEffect(() => {
-    window.addEventListener('resize', updateWindowSize)
+  const clampSlides = (n: number | undefined) => {
+    const base = n && n > 0 ? n : 1
+    return base > arrayChildren.length ? arrayChildren.length : base
+  }
 
-    return () => {
-      window.removeEventListener('resize', updateWindowSize)
-    }
-  })
-
-  slidesToShow = slidesToShow && slidesToShow > 0 ? slidesToShow : 1
-  slidesToShow =
-    slidesToShow && slidesToShow > arrayChildren.length
-      ? arrayChildren.length
-      : slidesToShow
+  slidesToShow = clampSlides(slidesToShow)
   gapToArrows = gapToArrows && gapToArrows > 0 ? gapToArrows : 1
   gapBetweenSlides =
     gapBetweenSlides && gapBetweenSlides > 0 ? gapBetweenSlides : 1
@@ -115,62 +116,38 @@ export const Carousel = ({
   const innerGapToArrow = gapToArrows ? `${gapToArrows / 2}px` : 0
   const outerGapToDots = gapToDots && dots ? `${gapToDots}px` : 'auto'
 
-  const getCarouselWidth = useCallback(
-    (slides: number) =>
-      slides && itemWidth && gapBetweenSlides && gapToArrows
-        ? slides * itemWidth + slides * gapBetweenSlides + 3 * gapToArrows
-        : 0,
-    [itemWidth, gapBetweenSlides, gapToArrows]
-  )
+  const baseSlides = clampSlides(slidesToShowXl ?? slidesToShow)
 
-  const getCarouselLeft = () => {
-    return gapBetweenSlides ? `-${2 * gapBetweenSlides}px` : 0
-  }
-
-  const [responsiveSlides, setResponsiveSlides] = useState(slidesToShow)
-  const [responsiveWidth, setResponsiveWidth] = useState(
-    getCarouselWidth(slidesToShow)
-  )
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setCarouselLeft] = useState(getCarouselLeft())
-
-  const updateWindowSize = () => {
-    const appId = document.getElementById('app')
-    if (appId?.clientWidth) {
-      if (appId.clientWidth >= theme.breakpoints.values.lg) {
-        setResponsiveSlides(slidesToShow)
-        setCarouselLeft(getCarouselLeft)
-      }
-      if (
-        appId.clientWidth <= theme.breakpoints.values.lg &&
-        appId.clientWidth > theme.breakpoints.values.md
-      ) {
-        setResponsiveSlides(2)
-        setCarouselLeft(0)
-      }
-      if (appId.clientWidth <= theme.breakpoints.values.md) {
-        setResponsiveSlides(1)
-        setCarouselLeft(0)
-      }
-
-      setResponsiveWidth(getCarouselWidth(responsiveSlides))
-    } else {
-      setCarouselLeft(0)
-    }
-  }
-
-  useEffect(() => {
-    setResponsiveSlides(slidesToShow)
-    setResponsiveWidth(getCarouselWidth(slidesToShow))
-  }, [slidesToShow, getCarouselWidth])
-
-  const showDotAndArrow = responsiveSlides >= arrayChildren.length
+  const showDotAndArrow = baseSlides >= arrayChildren.length
 
   const settings = {
     dots: !showDotAndArrow,
     infinite,
-    slidesToShow: responsiveSlides,
-    slidesToScroll: responsiveSlides,
+    slidesToShow: baseSlides,
+    slidesToScroll: baseSlides,
+    responsive: [
+      {
+        breakpoint: theme.breakpoints.values.md, // below md => use sm config
+        settings: {
+          slidesToShow: clampSlides(slidesToShowSm ?? 1),
+          slidesToScroll: clampSlides(slidesToShowSm ?? 1),
+        },
+      },
+      {
+        breakpoint: theme.breakpoints.values.lg,
+        settings: {
+          slidesToShow: clampSlides(slidesToShowMd ?? 2),
+          slidesToScroll: clampSlides(slidesToShowMd ?? 2),
+        },
+      },
+      {
+        breakpoint: theme.breakpoints.values.xl,
+        settings: {
+          slidesToShow: clampSlides(slidesToShowLg ?? slidesToShow),
+          slidesToScroll: clampSlides(slidesToShowLg ?? slidesToShow),
+        },
+      },
+    ],
     nextArrow: <NavArrows show={showArrows} isNext={true} />,
     prevArrow: <NavArrows show={showArrows} isNext={false} />,
     arrows: !showDotAndArrow,
@@ -178,10 +155,9 @@ export const Carousel = ({
 
   return (
     <Box
-      key={slidesToShow}
+      key={`${baseSlides}-${arrayChildren.length}`}
       sx={{
-        width: 'max-content',
-        maxWidth: `${responsiveWidth}px`,
+        width: 'calc(100% - 100px)',
         position: `${position}`,
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -204,15 +180,16 @@ export const Carousel = ({
         },
         '.slick-prev': {
           top: '50% !important',
-          marginTop: '-10px',
-          left: '-33px',
+          marginTop: '-66px',
+          left: '-20px',
           ':before': {
             content: 'none',
           },
         },
         '.slick-next': {
           top: '50% !important',
-          marginTop: '-10px',
+          marginTop: '-66px',
+          right: '-20px',
           ':before': {
             content: 'none',
           },
@@ -223,9 +200,7 @@ export const Carousel = ({
           marginLeft: outerGapToArrow,
           marginRight: outerGapToArrow,
         },
-        '.slick-slide': {
-          width: 'max-content !important',
-        },
+        '.slick-slide': {},
         '.slick-dots': {
           marginLeft: '-16px',
           bottom: dotsBottom,
@@ -241,19 +216,16 @@ export const Carousel = ({
         {Children.map(arrayChildren, (child) => {
           return (
             <div key={uniqueId('cax-carousel')}>
-              <Box sx={{ display: 'flex' }}>
-                <Box sx={{ width: slidsInnerGap }}></Box>
-                <Box
-                  sx={{
-                    width: `${itemWidth}px`,
-                    height: itemHeight ? `${itemHeight}px` : '100%',
-                    marginTop: `${gapCarouselTop}px`,
-                    marginBottom: outerGapToDots,
-                  }}
-                >
-                  {child}
-                </Box>
-                <Box sx={{ width: slidsInnerGap }}></Box>
+              <Box
+                sx={{
+                  width: '100%',
+                  height: itemHeight ? `${itemHeight}px` : 'auto',
+                  mt: `${gapCarouselTop}px`,
+                  mb: outerGapToDots,
+                  px: slidsInnerGap,
+                }}
+              >
+                {child}
               </Box>
             </div>
           )
