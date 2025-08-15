@@ -66,7 +66,6 @@ export default function UserListContent() {
       onSelection={(id: GridRowId[]) => {
         dispatch(setSelectedUserToAdd(id))
       }}
-      noRowsMsg={t('content.usermanagement.table.noRowsMsg')}
       title={t('content.usermanagement.table.title')}
       loadLabel={t('global.actions.loadmore')}
       fetchHook={useFetchAppUsersSearchQuery}
@@ -98,6 +97,8 @@ export default function UserListContent() {
         },
       ]}
       checkboxSelection
+      emptyDataMsg={t('global.table.emptyDataMsg')}
+      noSearchResultsMsg={t('global.table.noSearchResults')}
     />
   )
 }

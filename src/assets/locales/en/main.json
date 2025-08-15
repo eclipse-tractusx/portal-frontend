@@ -2501,7 +2501,9 @@
     },
     "table": {
       "search": "Enter email to search",
-      "searchName": "Enter name to search"
+      "searchName": "Enter name to search",
+      "emptyDataMsg": "No items to display.\nItems will appear here once they are added.",
+      "noSearchResults": "No results found.\nPlease try again with different keywords."
     },
     "noData": {
       "heading": "No data available",
