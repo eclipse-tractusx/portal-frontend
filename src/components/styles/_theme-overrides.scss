@@ -2214,6 +2214,17 @@ p.MuiTypography-root.MuiTypography-body3.description,
       padding: 40px 30px 60px !important;
       margin: 0;
 
+      .cx-table__compact-data > div > div > div {
+        position: relative;
+        min-width: -webkit-fill-available;
+
+        .MuiButton-containedPrimary {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+
       .cx-table {
         .MuiDataGrid-autoHeight {
           min-height: 792px;

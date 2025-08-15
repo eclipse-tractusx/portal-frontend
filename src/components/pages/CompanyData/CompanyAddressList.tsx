@@ -393,8 +393,13 @@ export const CompanyAddressList = ({
               sx={{
                 marginRight: '0 !important',
                 margin: '0 auto',
-                width: '100px',
-                maxWidth: '100px',
+                width: '120px',
+                maxWidth: '120px',
+                '& .MuiChip-label': {
+                  fontWeight: 700,
+                  fontSize: '14px',
+                  textOverflow: 'inherit',
+                },
               }}
             />
           </Box>
