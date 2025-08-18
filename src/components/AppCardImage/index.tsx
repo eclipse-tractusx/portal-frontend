@@ -1,11 +1,7 @@
-import {
-  CfxCardMarketplace,
-  styled as CfxStyled,
-} from '@cofinity-x/shared-components'
+import { CfxCardMarketplace } from '@cofinity-x/shared-components'
 import { fetchImageWithToken } from 'services/ImageService'
 import { useState, useEffect } from 'react'
 import { type AppMarketplaceCard } from 'features/apps/types'
-import { useCfxTheme } from 'hooks/useCfxTheme'
 import { type ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 
 interface AppCardWithImageProps {
@@ -22,14 +18,6 @@ export const AppCardWithImage = ({
 }: AppCardWithImageProps) => {
   const [imageUrl, setImageUrl] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const cfxTheme = useCfxTheme()
-
-  const StyledCfxCardMarketplace = CfxStyled(CfxCardMarketplace)(() => ({
-    '& .MuiTypography-h6': {
-      // To prevent global overridden (legacy) styles of h6
-      ...cfxTheme.typography.h6,
-    },
-  }))
 
   const loadImage = async () => {
     if (item.leadPictureId) {
@@ -57,7 +45,7 @@ export const AppCardWithImage = ({
   }, [item.leadPictureId])
 
   return (
-    <StyledCfxCardMarketplace
+    <CfxCardMarketplace
       data-testid={`card-with-image-${item.id}`}
       price={item.price}
       companyName={item.provider}

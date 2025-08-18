@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { cfxTheme } from '@cofinity-x/shared-components'
+import { cfxLightTheme } from '@cofinity-x/shared-components'
 
 export const getResponsiveItemsCount = (width: number): number => {
-  if (width >= cfxTheme.breakpoints.values.xl) {
+  if (width >= cfxLightTheme.breakpoints.values.xl) {
     return 4
-  } else if (width >= cfxTheme.breakpoints.values.lg) {
+  } else if (width >= cfxLightTheme.breakpoints.values.lg) {
     return 3
-  } else if (width >= cfxTheme.breakpoints.values.md) {
+  } else if (width >= cfxLightTheme.breakpoints.values.md) {
     return 2
   } else {
     return 1

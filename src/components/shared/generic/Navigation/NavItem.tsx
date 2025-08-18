@@ -57,29 +57,22 @@ export const NavItem = ({
       <Link
         className={classNames({ active: isActive })}
         component={component}
+        underline="hover"
         sx={{
           display: 'block',
           typography: 'label1',
           margin: spacing(1, 2.25),
           marginTop: spacing(1.5),
           color: 'accent.accent03',
+          paddingBottom: '7px',
           ':hover, &.active': {
             color: 'primary.main',
-          },
-          '&.active': {
-            borderBottom: '2px solid',
-            paddingBottom: '7px',
           },
           ...(!unstyled && {
             typography: 'label3',
             color: 'text.tertiary',
             padding: spacing(1, 0),
             margin: spacing(0, 2),
-            '&.active': {
-              color: 'primary.main',
-              borderBottom: '2px solid',
-              marginBottom: '-2px',
-            },
           }),
         }}
         {...props}

@@ -1,6 +1,6 @@
 import { type Theme, createTheme, type ThemeOptions } from '@mui/material'
 import { deepmerge } from '@mui/utils'
-import { theme, cfxTheme } from '@cofinity-x/shared-components'
+import { cfxLightTheme } from '@cofinity-x/shared-components'
 
 export const getFontFamily = (name: string): string =>
   [
@@ -274,7 +274,6 @@ export const typographyDefinitions = {
   htmlFontSize: 16,
   allVariants: {
     color: TEXT_PALETTE.PRIMARY,
-    overflow: 'visible !important',
   },
   h1: {
     fontFamily: getFontFamily('Switzer'),
@@ -301,20 +300,6 @@ export const typographyDefinitions = {
     fontFamily: getFontFamily('Switzer'),
     fontWeight: 600, // Conflict
     fontSize: 32,
-    lineHeight: '110%',
-    letterSpacing: 0,
-  },
-  h5: {
-    fontFamily: getFontFamily('Switzer'),
-    fontWeight: 600,
-    fontSize: 24,
-    lineHeight: '110%',
-    letterSpacing: 0,
-  },
-  h6: {
-    fontFamily: getFontFamily('Switzer'),
-    fontWeight: 600,
-    fontSize: 16,
     lineHeight: '110%',
     letterSpacing: 0,
   },
@@ -1028,6 +1013,7 @@ export const customTheme = {
             {
               color: `${COLOR_PALETTE.BLACK} !important`,
               backgroundColor: COLOR_PALETTE_CHIP.LABEL_MAIN,
+              textDecoration: 'none',
             },
         },
       },
@@ -1154,7 +1140,7 @@ export const customTheme = {
   },
 }
 
-// Create a combined theme that includes both the base theme, CFX theme, and your custom overrides
+// Create a combined theme that includes only CFX light theme and our legacy overrides
 export const cofinityTheme = createTheme(
-  deepmerge(deepmerge(theme, cfxTheme as Theme), customTheme as ThemeOptions)
+  deepmerge(cfxLightTheme as Theme, customTheme as ThemeOptions)
 )

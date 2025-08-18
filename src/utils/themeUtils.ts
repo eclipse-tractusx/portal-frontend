@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material'
-import { cfxTheme } from '@cofinity-x/shared-components'
+import { cfxLightTheme } from '@cofinity-x/shared-components'
 import { cofinityTheme } from '../theme.override'
 
 /**
@@ -13,7 +13,7 @@ export const useCurrentTheme = () => {
  * Get the CFX theme directly
  */
 export const useCfxTheme = () => {
-  return cfxTheme
+  return cfxLightTheme
 }
 
 /**
@@ -31,7 +31,7 @@ export const useThemes = () => {
 
   return {
     current: currentTheme,
-    cfx: cfxTheme,
+    cfx: cfxLightTheme,
     cofinity: cofinityTheme,
   }
 }

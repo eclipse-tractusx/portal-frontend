@@ -261,15 +261,6 @@ export const Header = ({
             </Link>
           </div>
           <div className="mobileHeaderRight">
-            <div
-              onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
-              className="mobile-search-icon"
-              onKeyDown={() => {
-                // do nothing
-              }}
-            >
-              <SearchIcon className="searchIcon" />
-            </div>
             <Box
               onClick={() => dispatch(setAppear({ MENU: !appearShow }))}
               className="mobile-search-icon"

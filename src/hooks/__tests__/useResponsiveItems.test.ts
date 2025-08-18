@@ -6,7 +6,7 @@ import {
 } from '../useResponsiveItems'
 
 vi.mock('@cofinity-x/shared-components', () => ({
-  cfxTheme: {
+  cfxLightTheme: {
     breakpoints: {
       values: {
         xs: 0,

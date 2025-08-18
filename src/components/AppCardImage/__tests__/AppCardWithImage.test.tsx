@@ -11,7 +11,7 @@
  */
 
 import { render, screen, waitFor } from '@testing-library/react'
-import { CfxCardMarketplace, styled } from '@cofinity-x/shared-components'
+import { CfxCardMarketplace } from '@cofinity-x/shared-components'
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { AppCardWithImage } from '../index'
 import {
@@ -76,7 +76,6 @@ Object.defineProperty(URL, 'revokeObjectURL', {
 })
 
 const mockCfxCardMarketplace = vi.mocked(CfxCardMarketplace)
-const mockStyled = vi.mocked(styled)
 
 describe('AppCardWithImage', () => {
   const mockItem: AppMarketplaceCard = {
@@ -210,23 +209,6 @@ describe('AppCardWithImage', () => {
           {}
         )
       })
-    })
-  })
-
-  describe('Styling and Theme', () => {
-    it('applies custom styles through styled component', () => {
-      render(<AppCardWithImage item={mockItem} onClick={() => {}} />)
-
-      expect(mockStyled).toHaveBeenCalledWith(mockCfxCardMarketplace)
-    })
-
-    it('uses cfx theme typography for h6 styling', async () => {
-      const { useCfxTheme } = await import('hooks/useCfxTheme')
-
-      render(<AppCardWithImage item={mockItem} onClick={() => {}} />)
-
-      expect(vi.mocked(useCfxTheme)).toHaveBeenCalled()
-      expect(mockStyled).toHaveBeenCalledWith(mockCfxCardMarketplace)
     })
   })
 

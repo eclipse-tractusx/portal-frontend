@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Markertplace**
+
+  - Fix app titles display issue in Marketplace cards [PM2-3290](https://cofinity-x.atlassian.net/browse/PM2-3290)
+
 - **Homepage improvements**
 
   - Add new marketplace cards to New Apps and Accessible Apps section [PM2-2968](https://cofinity-x.atlassian.net/browse/PM2-2968)

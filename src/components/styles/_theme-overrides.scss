@@ -1262,10 +1262,6 @@ footer {
       color: $color-secondary;
     }
   }
-
-  .MuiAvatar-circular.MuiAvatar-colorDefault {
-    // background-color: $color-primary !important;
-  }
 }
 
 // slick slider
@@ -3127,5 +3123,11 @@ d .notification-badge-text {
       border-bottom: 2px solid $color-primary;
       color: $color-primary;
     }
+  }
+}
+
+.cx-card {
+  h5 {
+    line-height: 120%;
   }
 }
