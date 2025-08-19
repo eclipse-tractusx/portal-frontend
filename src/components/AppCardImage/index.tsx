@@ -19,14 +19,39 @@ export const AppCardWithImage = ({
   const [imageUrl, setImageUrl] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  const isValidImageBlob = async (blob: Blob): Promise<boolean> => {
+    if (blob.size === 0) return false
+
+    try {
+      const url = URL.createObjectURL(blob)
+      const img = new Image()
+
+      return await new Promise((resolve) => {
+        img.onload = () => {
+          URL.revokeObjectURL(url)
+          resolve(true)
+        }
+        img.onerror = () => {
+          URL.revokeObjectURL(url)
+          resolve(false)
+        }
+        img.src = url
+      })
+    } catch {
+      return false
+    }
+  }
+
   const loadImage = async () => {
     if (item.leadPictureId) {
       try {
         setIsLoading(true)
         const arrayBuffer = await fetchImageWithToken(item.leadPictureId)
         const blob = new Blob([arrayBuffer], { type: 'image/*' })
-        const url = URL.createObjectURL(blob)
-        setImageUrl(url)
+        if (await isValidImageBlob(blob)) {
+          const url = URL.createObjectURL(blob)
+          setImageUrl(url)
+        }
       } catch (error) {
         console.error('Failed to load image:', error)
       } finally {
