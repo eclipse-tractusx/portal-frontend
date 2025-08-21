@@ -141,7 +141,7 @@
       "lastUpdate": "Last process update: {{date}}",
       "steps": {
         "REGISTRATION_VERIFICATION": "Data Validation",
-        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "IDENTITY_WALLET": "Wallet Creation",
         "CLEARING_HOUSE": "Clearing House",
         "SELF_DESCRIPTION_LP": "Self Description",
         "APPLICATION_ACTIVATION": "Application Activation",
@@ -1815,7 +1815,7 @@
       "checkList": {
         "REGISTRATION_VERIFICATION": "Data Validation",
         "BUSINESS_PARTNER_NUMBER": "BPN Creation",
-        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "IDENTITY_WALLET": "Wallet Creation",
         "BPNL_CREDENTIAL": "BPNL Credential",
         "MEMBERSHIP_CREDENTIAL": "Membership Credential",
         "CLEARING_HOUSE": "Clearing House",
@@ -1882,7 +1882,7 @@
         }
       },
       "IDENTITY_WALLET": {
-        "stepName": "Identity Wallet Creation",
+        "stepName": "Wallet Creation",
         "stepDescription": "With successful business partner number creation as well as the manual validation of the company registration data; the managed identity wallet is getting generated for the participant.",
         "additionalText": "",
         "TO_DO": {
@@ -1895,11 +1895,11 @@
         },
         "DONE": {
           "title": "No action needed from your side",
-          "description": "The process is successfully completed. The Managed Identity Wallet got created."
+          "description": "The process is successfully completed. The Wallet got created."
         },
         "FAILED": {
           "title": "Your action is needed.",
-          "description": "The Identity Wallet creation failed. You can retrigger the endpoint or close/reject the company registration."
+          "description": "The Wallet creation failed. You can retrigger the endpoint or close/reject the company registration."
         }
       },
       "BPNL_CREDENTIAL": {

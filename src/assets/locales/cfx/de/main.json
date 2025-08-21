@@ -1847,7 +1847,7 @@
       "checkList": {
         "REGISTRATION_VERIFICATION": "Data Validation",
         "BUSINESS_PARTNER_NUMBER": "BPN Creation",
-        "IDENTITY_WALLET": "Identity Wallet Creation",
+        "IDENTITY_WALLET": "Wallet Creation",
         "BPNL_CREDENTIAL": "BPNL Credential",
         "MEMBERSHIP_CREDENTIAL": "Membership Credential",
         "CLEARING_HOUSE": "Clearing House",
@@ -1914,7 +1914,7 @@
         }
       },
       "IDENTITY_WALLET": {
-        "stepName": "Identity Wallet Creation",
+        "stepName": "Wallet Creation",
         "stepDescription": "With successful business partner number creation as well as the manual validation of the company registration data; the managed identity wallet is getting generated for the participant.",
         "additionalText": "",
         "TO_DO": {
