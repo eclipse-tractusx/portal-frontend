@@ -36,7 +36,6 @@ import { getAssetBase } from 'services/EnvironmentService'
 import useFormattedDate from 'hooks/useFormattedDate'
 import { useMemo, useState } from 'react'
 import { error, success } from 'services/NotifyService'
-import ComapnyWalletSubNavigationHeader from './ComapnyWalletSubNavigationHeader'
 import { groupBy } from 'lodash'
 
 type Hash<T> = Record<string, T>
@@ -163,7 +162,6 @@ export default function RuleCard({
                 align=""
                 views={filterOptions}
               />
-              <ComapnyWalletSubNavigationHeader />
             </div>
           )}
           <Grid container spacing={0} className="grid-layout">
