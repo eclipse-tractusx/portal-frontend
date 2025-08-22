@@ -445,6 +445,7 @@ export const CompanyAddressList = ({
         className="cx-table__page-loading cx-table__compact-data"
         loading={isFetching || isOutputLoading || isInputLoading}
         hasMore={data && data.totalPages > page + 1}
+        loadLabel={t('global.table.loadMore')}
         nextPage={() => {
           if (!isFetching && page + 1 < (data?.totalPages ?? 0)) {
             setPage((prev) => prev + 1)

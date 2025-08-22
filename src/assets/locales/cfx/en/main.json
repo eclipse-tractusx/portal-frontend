@@ -2329,7 +2329,7 @@
       },
       "table": {
         "title": "Your Sites",
-        "buttonSite": "add site",
+        "buttonSite": "Add Site",
         "buttonAddress": "add address",
         "site": "Site name",
         "location": "Location",

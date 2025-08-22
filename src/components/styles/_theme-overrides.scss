@@ -2212,7 +2212,11 @@ p.MuiTypography-root.MuiTypography-body3.description,
 
       .cx-table__compact-data > div > div > div {
         position: relative;
+        min-width: 100%;
+        min-width: stretch;
         min-width: -webkit-fill-available;
+        min-width: -moz-available;
+        min-width: fill-available;
 
         .MuiButton-containedPrimary {
           position: absolute;
