@@ -28,7 +28,7 @@ header {
     justify-content: flex-end;
     align-items: center;
   }
-  .searchIcon {
+  .menuIcon {
     color: #0f71cb;
   }
   .documentation {
@@ -55,7 +55,7 @@ header {
   .mobileNav {
     display: none;
   }
-  .mobile-search-icon {
+  .mobile-menu-icon {
     display: none;
   }
 }
@@ -103,7 +103,7 @@ header {
     width: 40px;
   }
 
-  .mobile-search-icon {
+  .mobile-menu-icon {
     margin-right: 10px;
     color: #0f71cb;
     position: relative;

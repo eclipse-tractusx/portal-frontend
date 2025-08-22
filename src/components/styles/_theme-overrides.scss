@@ -55,10 +55,6 @@ header {
   display: block;
 }
 
-.mobile-search-icon {
-  display: block;
-}
-
 .mobileNav {
   display: flex;
   justify-content: space-between;
@@ -139,12 +135,13 @@ header {
   height: 30px;
 }
 
-.mobile-search-icon {
+.mobile-menu-icon {
   margin-right: 10px;
   color: $color-primary;
   position: relative;
   z-index: -9;
   cursor: pointer;
+  display: block;
 }
 
 // desktop nav enabled start
@@ -170,7 +167,7 @@ header {
       display: none;
     }
 
-    .mobile-search-icon {
+    .mobile-menu-icon {
       display: none;
     }
   }
@@ -198,7 +195,7 @@ header {
       display: none;
     }
 
-    .mobile-search-icon {
+    .mobile-menu-icon {
       display: none;
     }
   }

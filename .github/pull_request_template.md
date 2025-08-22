@@ -10,11 +10,11 @@
 
 ## Issue
 
-<!-- Link to the issue: [Issue Number](Issue Link) -->
+<!-- Link to the issue -->
 
 ## Checklist
 
-<!-- Please remove options that do not apply. -->
+<!-- Please check the relevant options and remove those that do not apply. -->
 
 - [ ] I have updated the `CHANGELOG-CFX.md` file.
 - [ ] I have performed a self-review of my code.

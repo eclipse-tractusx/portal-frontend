@@ -24,7 +24,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Trans, useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
 import {
   Button,
   CustomAccordion,
@@ -35,11 +34,7 @@ import {
   ApplicationStatus,
   useFetchApplicationsQuery,
 } from 'features/registration/registrationApiSlice'
-import {
-  appearSearchSelector,
-  setAppear,
-  appearMenuSelector,
-} from 'features/control/appear'
+import { setAppear, appearMenuSelector } from 'features/control/appear'
 import { UserInfo } from '../UserInfo'
 import RegistrationReviewOverlay from './RegistrationReviewOverlay'
 import './style.scss'
@@ -71,7 +66,6 @@ export const Header = ({
     defaultMatches: true,
   })
 
-  const visible = useSelector(appearSearchSelector)
   const appearShow = useSelector(appearMenuSelector)
 
   const { data } = useFetchApplicationsQuery()
@@ -227,15 +221,6 @@ export const Header = ({
               />
             </Link>
             <div className="d-flex">
-              <div
-                onClick={() => dispatch(setAppear({ SEARCH: !visible }))}
-                className="search-icon"
-                onKeyUp={() => {
-                  // do nothing
-                }}
-              >
-                <SearchIcon className="searchIcon" />
-              </div>
               <Button
                 size="small"
                 color="secondary"
@@ -263,12 +248,12 @@ export const Header = ({
           <div className="mobileHeaderRight">
             <Box
               onClick={() => dispatch(setAppear({ MENU: !appearShow }))}
-              className="mobile-search-icon"
+              className="mobile-menu-icon"
               onKeyDown={() => {
                 // do nothing
               }}
             >
-              <MenuIcon className="searchIcon" />
+              <MenuIcon className="menuIcon" />
             </Box>
           </div>
         </div>
