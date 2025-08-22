@@ -798,6 +798,16 @@ export const customTheme = {
             backgroundColor: COLOR_PALETTE.LIGHT_GRAY,
             borderColor: COLOR_PALETTE.LIGHT_GRAY,
           },
+          '& .MuiDialogTitle-root': {
+            button: {
+              backgroundColor: 'transparent',
+              color: COLOR_PALETTE.GRAY,
+              '&:focus': {
+                outline: 'none !important',
+                boxShadow: 'none !important',
+              },
+            },
+          },
         },
       },
     },
