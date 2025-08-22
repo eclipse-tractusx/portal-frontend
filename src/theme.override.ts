@@ -808,6 +808,10 @@ export const customTheme = {
               },
             },
           },
+          '& .MuiDialogActions-spacing': {
+            gap: '16px',
+            justifyContent: 'center',
+          },
         },
       },
     },
