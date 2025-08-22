@@ -24,6 +24,7 @@ export const AppListGroupView = ({
             <AppCardWithImage
               item={{
                 ...item,
+                price: '',
                 leadPictureId: `${getApiBase()}/api/apps/${item.id}/appDocuments/${item.leadPictureId}`,
               }}
               onClick={() => {

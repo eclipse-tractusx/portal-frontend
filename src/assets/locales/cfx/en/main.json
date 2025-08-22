@@ -311,7 +311,6 @@
         "noFavoriteDescription": "Your app favorites will show up in this section as soon as favorites selected."
       },
       "appOverviewSection": {
-        "title": "All apps",
         "categoryViews": {
           "all": "View all",
           "useCases": "Sort by Use Case"

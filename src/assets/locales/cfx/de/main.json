@@ -312,7 +312,6 @@
         "noFavoriteDescription": "Ihre App Favoriten werden in diesem Abschnitt angezeigt, sobald Favoriten ausgewählt sind."
       },
       "appOverviewSection": {
-        "title": "Alle Apps",
         "categoryViews": {
           "all": "Gesamtansicht",
           "useCases": "Use Case Ansicht"

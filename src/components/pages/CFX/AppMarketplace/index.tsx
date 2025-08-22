@@ -1,7 +1,6 @@
 import StageSection from './StageSection'
 import AppListSection from './AppListSection'
 import SearchSection from './SearchSection'
-import HeaderSection from './HeaderSection'
 import { Box } from '@mui/material'
 import PageService from 'services/PageService'
 import { useRef } from 'react'
@@ -13,9 +12,7 @@ export default function CfxAppMarketplace() {
     <>
       <StageSection />
       <Box ref={reference} className="overview-section">
-        <Box sx={{ py: '40px' }}>
-          <HeaderSection />
-        </Box>
+        <Box sx={{ py: '40px' }}></Box>
         <SearchSection />
         <AppListSection />
       </Box>
