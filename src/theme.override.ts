@@ -303,10 +303,24 @@ export const typographyDefinitions = {
     lineHeight: '110%',
     letterSpacing: 0,
   },
+  h5: {
+    fontFamily: getFontFamily('Switzer'),
+    fontSize: '16px',
+    lineHeight: '110%',
+    fontWeight: 500,
+    letterSpacing: 0,
+  },
+  h6: {
+    fontFamily: getFontFamily('Switzer'),
+    fontSize: '14px',
+    lineHeight: '110%',
+    fontWeight: 500,
+    letterSpacing: 0,
+  },
   body1: {
     fontFamily: getFontFamily('Switzer'),
     fontWeight: 400,
-    fontSize: 20,
+    fontSize: 14,
     lineHeight: '140%',
     letterSpacing: 0,
   },
@@ -461,6 +475,13 @@ export const customTheme = {
           '&.MuiTextField-root .MuiAutocomplete-tag': {
             color: COLOR_PALETTE.SECONDARY,
             height: '32px',
+          },
+          '& .MuiInputLabel-root': {
+            position: 'relative !important',
+            top: '-20px !important',
+            left: '-8px !important',
+            display: 'flex',
+            alignItems: 'center',
           },
           '& .MuiInputBase-root.MuiFilledInput-root.MuiInputBase-multiline': {
             padding: 0,
