@@ -9,14 +9,13 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Changed Credential Name in DE translation file to English content [CS-4089](https://cofinity-x.atlassian.net/browse/CS-4089)
 
 - **Markertplace**
-
   - Fix app titles display issue in Marketplace cards [PM2-3290](https://cofinity-x.atlassian.net/browse/PM2-3290)
-
 - **Homepage improvements**
 
   - Display fallback image in Marketplace Cards if image is not valid (works also for Marketplace) [PM2-3302](https://cofinity-x.atlassian.net/browse/PM2-3302)
   - Add new marketplace cards to New Apps and Accessible Apps section [PM2-2968](https://cofinity-x.atlassian.net/browse/PM2-2968)
   - Improve responsiveness of Homepage slider [PM2-2968](https://cofinity-x.atlassian.net/browse/PM2-2968)
+  - redirect user back to previous page from App Details page [PM2-3368](https://cofinity-x.atlassian.net/browse/PM2-3368)
 
 - **Notifications**
 

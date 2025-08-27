@@ -154,10 +154,10 @@ export const ALL_PAGES: IPage[] = [
       <Route
         key={PAGES.APP_DETAIL}
         path={PAGES.APP_DETAIL}
-        element={<AppDetail navigate={'marketplace'} />}
+        element={<AppDetail />}
       >
         <Route index element={null} />
-        <Route path=":appId" element={<AppDetail navigate={'marketplace'} />} />
+        <Route path=":appId" element={<AppDetail />} />
       </Route>
     ),
   },
@@ -509,9 +509,9 @@ export const ALL_PAGES: IPage[] = [
       <Route
         key={PAGES.VIEW_DETAILS}
         path={PAGES.VIEW_DETAILS}
-        element={<AppDetail navigate={'appOverview'} />}
+        element={<AppDetail />}
       >
-        <Route path=":appId" element={<AppDetail navigate={'appOverview'} />} />
+        <Route path=":appId" element={<AppDetail />} />
       </Route>
     ),
   },
