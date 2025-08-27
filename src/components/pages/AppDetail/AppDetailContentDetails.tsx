@@ -37,13 +37,16 @@ import CommonService from 'services/CommonService'
 import AppDetailTechUserSetup from './AppDetailTechUserSetup'
 import { Box } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { PAGES } from 'types/cfx/Constants'
 
 export default function AppDetailContentDetails({
   item,
   showBack = true,
+  nav,
 }: {
   item: AppDetails
   showBack?: boolean
+  nav?: string
 }) {
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -90,7 +93,9 @@ export default function AppDetailContentDetails({
                 backButtonLabel={t('global.actions.back')}
                 backButtonVariant="outlined"
                 onBackButtonClick={() => {
-                  navigate(-1)
+                  nav === 'marketplace'
+                    ? navigate(`/${PAGES.CFX_APP_MARKETPLACE}`)
+                    : navigate(`/${PAGES.APP_OVERVIEW}`)
                 }}
               />
             </Box>
