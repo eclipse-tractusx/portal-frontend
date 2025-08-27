@@ -2267,7 +2267,7 @@
       "DEMAND_AND_CAPACITY_MANAGEMENT": "Demad And Capacity Management",
       "BUSINESS_PARTNER_DATA_MANAGEMENT": "Business Partner Data Management",
       "MEMBERSHIP": "Membership",
-      "membership": "CATENA-X MITGLIEDSCHAFT CREDENTIAL",
+      "membership": "CATENA-X MEMBERSHIP CREDENTIAL",
       "subnavigation": {
         "title": "Wallet-Operationen :",
         "button1": "Neues Credential beantragen",

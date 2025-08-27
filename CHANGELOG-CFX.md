@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Company Wallet**
+
+  - Changed Credential Name in DE translation file to English content [CS-4089](https://cofinity-x.atlassian.net/browse/CS-4089)
+
 - **Markertplace**
 
   - Fix app titles display issue in Marketplace cards [PM2-3290](https://cofinity-x.atlassian.net/browse/PM2-3290)
