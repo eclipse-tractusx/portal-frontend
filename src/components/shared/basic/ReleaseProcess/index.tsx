@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography, Button, ProcessList } from '@cofinity-x/shared-components'
+import {
+  Typography,
+  CfxButton,
+  ProcessList,
+} from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
 import './style.scss'
 import { MainHeader } from 'components/shared/cfx/MainHeader'
@@ -87,30 +91,28 @@ export const ReleaseProcess = ({
             {descMessage}
           </Typography>
           <div>
-            <Button
+            <CfxButton
               data-testid="release-process-create-button"
               key="create"
               color="primary"
-              size="small"
               className="create-btn"
               onClick={() => {
                 onStartClick()
               }}
             >
               {registerButton}
-            </Button>
-            <Button
+            </CfxButton>
+            <CfxButton
               data-testid="view-all-apps-button"
               key="overview"
               color="secondary"
-              size="small"
               className="overview-btn"
               onClick={() => {
                 onOverviewButton()
               }}
             >
               {overviewButton}
-            </Button>
+            </CfxButton>
           </div>
         </div>
       </div>
@@ -132,17 +134,16 @@ export const ReleaseProcess = ({
               </Typography>
             </div>
             <Box textAlign="center">
-              <Button
+              <CfxButton
                 data-testid="release-process-create-button"
                 color="primary"
-                size="small"
                 className="create-btn"
                 onClick={() => {
                   onStartClick()
                 }}
               >
                 {startCreatingButton}
-              </Button>
+              </CfxButton>
             </Box>
           </div>
         </div>

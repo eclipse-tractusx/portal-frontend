@@ -55,11 +55,9 @@ export class appManagementPage {
     technicalUserProfile: '[data-testid="toolbar-button-lable"]',
     selectInternalProfileRadio: 'input[type="radio"][value="Internal"]',
     rolesCheckboxes: 'div.roles input[type="checkbox"].PrivateSwitchBase-input',
-    continueButton:
-      'button.MuiButtonBase-root.MuiButton-containedPrimary.cx-button.cx-variant-contained.cx-color-primary',
     deleteConformityDoc:
       'button[type="button"] svg[aria-hidden="true"] path[d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM8 9h8v10H8zm7.5-5-1-1h-5l-1 1H5v2h14V4z"]',
-    submitApp: 'button.cx-button.cx-variant-contained.cx-color-primary',
+    submitApp: '[data-testid="release-process-validate-publish-button"]',
   }
   /**
    * Navigates to the app release process page.
@@ -112,7 +110,9 @@ export class appManagementPage {
     cy.contains('button', 'Add More').eq(0).should('be.visible').click()
     useCases.forEach((useCase) => {
       cy.get(this.selectors.openDropdown).eq(0).click()
-      cy.get(this.selectors.selectOptions).contains(useCase).click()
+      cy.get(this.selectors.selectOptions, { timeout: 30000 })
+        .contains(useCase)
+        .click()
     })
   }
 

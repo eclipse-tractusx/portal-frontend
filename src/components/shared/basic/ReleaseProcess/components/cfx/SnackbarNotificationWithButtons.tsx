@@ -19,8 +19,7 @@
  ********************************************************************************/
 
 import {
-  BackButton,
-  Button,
+  CfxButton,
   CircleProgress,
   PageNotifications,
   PageSnackbar,
@@ -29,6 +28,7 @@ import { useTranslation } from 'react-i18next'
 import { Divider, Box, Grid } from '@mui/material'
 import '../../ReleaseProcessSteps.scss'
 import { SuccessErrorType } from 'features/admin/appuserApiSlice'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 type NotificationObject = {
   title: string
@@ -98,14 +98,17 @@ export default function SnackbarNotificationWithButtons({
         autoClose={true}
       />
       <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
-      <BackButton
-        dataTestId="release-process-back-button"
-        backButtonLabel={t('global.actions.back')}
-        backButtonVariant="outlined"
-        onBackButtonClick={() => {
+      <CfxButton
+        data-testid="release-process-back-button"
+        variant="contained"
+        color="secondary"
+        startIcon={<ArrowBackIcon />}
+        onClick={() => {
           onBackIconClick?.()
         }}
-      />
+      >
+        {t('global.actions.back')}
+      </CfxButton>
       {loader ? (
         <span
           style={{
@@ -123,7 +126,7 @@ export default function SnackbarNotificationWithButtons({
         </span>
       ) : (
         <>
-          <Button
+          <CfxButton
             data-testid="release-process-save-and-proceed-button"
             sx={{ float: 'right' }}
             disabled={!isValid}
@@ -133,10 +136,11 @@ export default function SnackbarNotificationWithButtons({
             }}
           >
             {t('content.apprelease.footerButtons.saveAndProceed')}
-          </Button>
-          <Button
+          </CfxButton>
+          <CfxButton
             data-testid="release-process-save-button"
-            variant="outlined"
+            variant="contained"
+            color="secondary"
             name="send"
             sx={{ float: 'right', mr: 1 }}
             onClick={() => {
@@ -144,7 +148,7 @@ export default function SnackbarNotificationWithButtons({
             }}
           >
             {t('content.apprelease.footerButtons.save')}
-          </Button>
+          </CfxButton>
         </>
       )}
     </Box>

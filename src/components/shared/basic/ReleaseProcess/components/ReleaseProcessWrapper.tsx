@@ -18,7 +18,11 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, MainHeader, Typography } from '@cofinity-x/shared-components'
+import {
+  CfxButton,
+  MainHeader,
+  Typography,
+} from '@cofinity-x/shared-components'
 import { useCallback, useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import ReleaseStepper, {
@@ -125,7 +129,12 @@ export default function ReleaseProcessWrapper({
               {yourCatenaXTeam}
             </Typography>
           ) : null}
-          <Button onClick={onAppsOverviewClick}>{myAppsOverview}</Button>
+          <CfxButton
+            data-testid="release-process-my-apps-overview-button"
+            onClick={onAppsOverviewClick}
+          >
+            {myAppsOverview}
+          </CfxButton>
         </MainHeader>
       ) : (
         <>

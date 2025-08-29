@@ -19,20 +19,17 @@
  ********************************************************************************/
 
 import {
-  Button,
   Checkbox,
   LanguageSwitch,
-  LogoGrayData,
   PageNotifications,
   StaticTable,
   Typography,
   type TableType,
   CircleProgress,
-  CardHorizontal,
   ImageGallery,
   type ImageType,
-  BackButton,
   CfxGrid,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { Divider, Box } from '@mui/material'
 import { useForm } from 'react-hook-form'
@@ -75,6 +72,7 @@ import '../../../../pages/AppDetail/AppDetailPrivacy/style.scss'
 import 'components/styles/document.scss'
 import { TechUserTable } from '../TechnicalIntegration/TechUserTable'
 import { DATA_SOVEREIGNTY_ID } from 'types/cfx/Constants'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import AppCardPreview from '../AppMarketCard/AppCardPreview'
 
 export interface DefaultValueType {
@@ -362,22 +360,11 @@ export default function CommonValidateAndPublish({
           </CfxGrid>
         )}
         {type === ReleaseProcessTypes.SERVICE_RELEASE && (
-          <CardHorizontal
-            dataTestId="release-process-service-card"
-            borderRadius={6}
-            image={{
-              alt: 'Service Card',
-              src: cardImage ?? LogoGrayData,
-            }}
-            label={''}
-            buttonText=""
-            onBtnClick={() => {
-              // do nothing
-            }}
-            title={statusData?.title ?? ''}
-            subTitle={serviceTypes ?? ''}
-            description={''}
-            backgroundColor="rgb(224, 225, 226)"
+          <AppCardPreview
+            appTitle={statusData?.title ?? ''}
+            imageUrl={cardImage}
+            imageAlt={'app-release-card-preview'}
+            description={serviceTypes ?? ''}
           />
         )}
         <Divider className="verify-validate-form-divider" />
@@ -682,11 +669,14 @@ export default function CommonValidateAndPublish({
           )}
           <Divider sx={{ mb: 2, mr: -2, ml: -2 }} />
 
-          <BackButton
-            backButtonLabel={t('global.actions.back')}
-            backButtonVariant="outlined"
-            onBackButtonClick={onBackIconClick}
-          />
+          <CfxButton
+            data-testid="release-process-back-button"
+            variant="outlined"
+            startIcon={<ArrowBackIcon />}
+            onClick={onBackIconClick}
+          >
+            {t('global.actions.back')}
+          </CfxButton>
           {loading ? (
             <span
               style={{
@@ -703,14 +693,15 @@ export default function CommonValidateAndPublish({
               />
             </span>
           ) : (
-            <Button
+            <CfxButton
+              data-testid="release-process-validate-publish-button"
               onClick={handleSubmit(onValidatePublishSubmit)}
               variant="contained"
               disabled={!isValid}
               sx={{ float: 'right' }}
             >
               {submitButton}
-            </Button>
+            </CfxButton>
           )}
         </Box>
       )}

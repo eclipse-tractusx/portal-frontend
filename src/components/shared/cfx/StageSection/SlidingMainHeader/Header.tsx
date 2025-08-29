@@ -19,7 +19,8 @@
 
 import { Box } from '@mui/material'
 import './style.scss'
-import { Button, Typography } from '@cofinity-x/shared-components'
+import { CfxButton, Typography } from '@cofinity-x/shared-components'
+import { generateTestId } from '../../../../../utils/testIdUtils'
 
 export interface HeaderProps {
   title?: string
@@ -79,7 +80,8 @@ export const Header = ({
               </Typography>
             )}
             {buttonText && (
-              <Button
+              <CfxButton
+                data-testid={`stage-section-header-button-${generateTestId(title)}`}
                 variant="contained"
                 color="secondary"
                 onClick={() => {
@@ -88,7 +90,7 @@ export const Header = ({
                 disabled={!(hasAccess ?? true)}
               >
                 {buttonText}
-              </Button>
+              </CfxButton>
             )}
           </Box>
         </Box>

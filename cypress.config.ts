@@ -24,9 +24,16 @@ export default defineConfig({
     experimentalModifyObstructiveThirdPartyCode: true,
     chromeWebSecurity: false,
     experimentalRunAllSpecs: true,
-    pageLoadTimeout: 90000,
     viewportWidth: 1920,
     viewportHeight: 1080,
+    experimentalMemoryManagement: true,
+
+    // Retry configuration for flaky tests
+    retries: {
+      runMode: 2, // Retry failed tests twice in CI
+      openMode: 0, // No retries in open mode
+    },
+
     setupNodeEvents(on, config) {
       on('before:browser:launch', (browser, launchOptions) => {
         if (browser.name === 'chrome' || browser.name === 'chromium') {

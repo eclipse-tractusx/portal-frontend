@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   Checkbox,
   Dialog,
   DialogActions,
@@ -393,10 +393,15 @@ export const AddTechUserForm = ({
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={handleClose}>
+          <CfxButton
+            data-testid="release-process-add-tech-user-close-button"
+            variant="outlined"
+            onClick={handleClose}
+          >
             {t('global.actions.close')}
-          </Button>
-          <Button
+          </CfxButton>
+          <CfxButton
+            data-testid="release-process-add-tech-user-continue-button"
             disabled={
               !selectedRoleType ||
               (selectedRoleType !== RoleType.NONE &&
@@ -412,7 +417,7 @@ export const AddTechUserForm = ({
             }}
           >
             {t('global.actions.continue')}
-          </Button>
+          </CfxButton>
         </DialogActions>
       </Dialog>
     </div>

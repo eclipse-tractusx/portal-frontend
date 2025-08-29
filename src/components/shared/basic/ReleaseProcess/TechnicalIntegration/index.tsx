@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   Chip,
   CustomAccordion,
   LoadingButton,
@@ -499,15 +499,14 @@ export default function TechnicalIntegration() {
             download
             style={{ textDecoration: 'none' }}
           >
-            <Button
+            <CfxButton
               data-testid="release-process-template-button"
               variant="outlined"
               endIcon={<FileDownloadOutlinedIcon />}
-              size="small"
               sx={{ fontSize: '16px' }}
             >
               {t('content.apprelease.technicalIntegration.template')}
-            </Button>
+            </CfxButton>
           </a>
         </Grid>
         <Controller

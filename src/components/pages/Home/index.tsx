@@ -22,14 +22,13 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './style.scss'
 import StageSection from 'components/shared/cfx/StageSection'
-import AppStoreSection from 'components/shared/cfx/AppStoreSection'
+import AppStoreSection from 'components/pages/Home/AppStoreSection'
 import BusinessApplicationsSection from 'components/shared/cfx/BusinessApplicationsSection'
 
 export default function Home() {
   return (
     <main className="home">
       <StageSection />
-      {/* <NewsSection /> */}
       <AppStoreSection />
       <BusinessApplicationsSection />
     </main>

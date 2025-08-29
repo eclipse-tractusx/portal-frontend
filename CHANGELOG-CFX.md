@@ -8,6 +8,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Changed Credential Name in DE translation file to English content [CS-4089](https://cofinity-x.atlassian.net/browse/CS-4089)
 
+- **Shared Components**
+  - Part 1 of replacing main CTAs with Shared Components
+  - Add missing test ids
+  - Add Marketplace App Preview to Validate and Publish step
 - **Markertplace**
 
   - Fix app titles display issue in Marketplace cards [PM2-3290](https://cofinity-x.atlassian.net/browse/PM2-3290)

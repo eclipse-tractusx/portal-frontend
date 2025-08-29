@@ -1,66 +1,80 @@
-/********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
- *
- * See the NOTICE file(s) distributed with this work for additional
- * information regarding copyright ownership.
- *
- * This program and the accompanying materials are made available under the
- * terms of the Apache License, Version 2.0 which is available at
- * https://www.apache.org/licenses/LICENSE-2.0.
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
- ********************************************************************************/
-
 import { useTranslation } from 'react-i18next'
-import { Cards, Button, Typography } from '@cofinity-x/shared-components'
+import { CfxButton, Typography } from '@cofinity-x/shared-components'
 import { useNavigate } from 'react-router-dom'
-import './style.scss'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
-import { fetchImageWithToken } from 'services/ImageService'
+import { Box, Stack } from '@mui/material'
+import { useSelector } from 'react-redux'
+import type { RootState } from 'features/store'
+import { GRID_STYLES } from '../../../shared/cfx/sharedStyles'
+import { AppCardWithImage } from 'components/AppCardImage'
+import { getApiBase } from 'services/EnvironmentService'
 
 export default function AppStoreSection() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const { data } = useFetchActiveAppsQuery()
+  const isHeaderNote = useSelector((state: RootState) => state.home.headerNote)
+
+  const appCards =
+    data &&
+    data.length > 0 &&
+    data
+      .slice(0, 4)
+      .map(CommonService.appToCard)
+      .map((i) => (
+        <AppCardWithImage
+          key={i.id}
+          item={{
+            ...i,
+            leadPictureId: `${getApiBase()}/api/apps/${i.id}/appDocuments/${i.leadPictureId}`,
+          }}
+          fullWidth={false}
+          onClick={() => {
+            navigate(`/appdetail/${i.id}`)
+          }}
+        />
+      ))
 
   return (
-    <section className="app-store-section">
-      <Typography
-        sx={{ fontFamily: 'LibreFranklin-Light' }}
-        variant="h2"
-        className="section-title"
-      >
+    <section className="app-store-section" data-testid="new-apps-section">
+      <Typography variant="h2" className="section-title">
         {t('content.home.appStoreSection.title')}
       </Typography>
-      {data && data.length > 0 && (
-        <Cards
-          items={data?.slice(0, 4).map(CommonService.appToCard)}
-          columns={4}
-          buttonText="Details"
-          imageSize="small"
-          imageShape="round"
-          variant="compact"
-          expandOnHover={false}
-          filledBackground={true}
-          imageLoader={fetchImageWithToken}
-        />
-      )}
-      <Button
-        sx={{ margin: '100px auto 60px', display: 'block' }}
-        onClick={() => {
-          navigate('/cfxAppMarketplace')
-        }}
+      <Box data-testid="new-apps-cards" sx={GRID_STYLES}>
+        {appCards}
+      </Box>
+      <Stack
+        direction={{ xs: 'column', md: 'row' }}
+        justifyContent={'center'}
+        alignItems={'center'}
+        spacing={2}
       >
-        {t('pages.cfxAppMarketplace')}
-      </Button>
+        <div>
+          <CfxButton
+            data-testid="app-store-section-app-button"
+            variant="contained"
+            disabled={isHeaderNote}
+            onClick={() => {
+              navigate('/cfxAppMarketplace')
+            }}
+          >
+            {t('pages.cfxAppMarketplace')}
+          </CfxButton>
+        </div>
+        <div>
+          <CfxButton
+            data-testid="app-store-section-service-button"
+            variant="contained"
+            disabled={isHeaderNote}
+            onClick={() => {
+              navigate('/cfxServiceMarketplace')
+            }}
+          >
+            {t('pages.cfxServiceMarketplace')}
+          </CfxButton>
+        </div>
+      </Stack>
     </section>
   )
 }

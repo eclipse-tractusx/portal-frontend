@@ -40,5 +40,11 @@ runs:
         CYPRESS_CONFIG_FILE: ${{ inputs.config-file }}
         CYPRESS_userEmail: ${{ inputs.user-email }}
         CYPRESS_userPassword: ${{ inputs.user-password }}
-        # Enables debug logs on cypress
         DEBUG: ${{ inputs.debug == 'true' && '@cypress/github-action' || '' }}
+        CYPRESS_video: ${{ env.CYPRESS_video }}
+        CYPRESS_screenshotOnRunFailure: ${{ env.CYPRESS_screenshotOnRunFailure }}
+        CYPRESS_numTestsKeptInMemory: ${{ env.CYPRESS_numTestsKeptInMemory }}
+        CYPRESS_pageLoadTimeout: ${{ env.CYPRESS_pageLoadTimeout }}
+        CYPRESS_defaultCommandTimeout: ${{ env.CYPRESS_defaultCommandTimeout }}
+        CYPRESS_requestTimeout: ${{ env.CYPRESS_requestTimeout }}
+        CYPRESS_responseTimeout: ${{ env.CYPRESS_responseTimeout }}

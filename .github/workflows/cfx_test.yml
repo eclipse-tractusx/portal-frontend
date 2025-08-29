@@ -91,9 +91,18 @@ jobs:
       - uses: ./.github/actions/cypress
         with:
           config-file: cypress.config.ts
-          debug: 'true'
+          debug: 'false' # Disable debug for better performance
           user-email: ${{ secrets.CYPRESS_USER_EMAIL }}
           user-password: ${{ secrets.CYPRESS_USER_PASSWORD }}
           environment-subdomain: 'development'
         env:
           CYPRESS_INSTALL_BINARY: 0
+          # Performance optimizations
+          CYPRESS_video: false
+          CYPRESS_screenshotOnRunFailure: false
+          CYPRESS_numTestsKeptInMemory: 0 # default 1000
+          # Timeout optimizations
+          CYPRESS_pageLoadTimeout: 90000 # default 60000
+          CYPRESS_defaultCommandTimeout: 10000 # default 4000
+          CYPRESS_requestTimeout: 10000 # default 5000
+          CYPRESS_responseTimeout: 45000 # default 30000
