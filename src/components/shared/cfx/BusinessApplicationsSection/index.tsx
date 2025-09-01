@@ -5,7 +5,6 @@ import { useFetchBusinessAppsQuery } from 'features/apps/apiSlice'
 import CommonService from 'services/CommonService'
 import { GRID_STYLES } from '../sharedStyles'
 import { AppCardWithImage } from 'components/AppCardImage'
-import { useNavigate } from 'react-router-dom'
 import { getApiBase } from 'services/EnvironmentService'
 
 const EMPTY_BOX_STYLES = {
@@ -28,7 +27,6 @@ const EmptyBox = ({ text }: { text: string }) => (
 
 export default function BusinessApplicationsSection() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const { data } = useFetchBusinessAppsQuery()
 
   const appCards =
@@ -41,7 +39,11 @@ export default function BusinessApplicationsSection() {
           }}
           fullWidth={false}
           onClick={() => {
-            navigate(`/appdetail/${item.id}`)
+            if (item.uri) {
+              if (/^https?:\/\//.test(item.uri)) {
+                window.open(item.uri, '_blank')
+              }
+            }
           }}
         />
       </Box>
