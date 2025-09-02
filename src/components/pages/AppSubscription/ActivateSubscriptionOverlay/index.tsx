@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -184,15 +184,15 @@ const ActivateSubscriptionOverlay = ({
         </div>
       </DialogContent>
       <DialogActions>
-        <Button
+        <CfxButton
           data-testid="overlay-close-button"
-          variant="outlined"
+          color="secondary"
           onClick={() => {
             handleOverlayClose()
           }}
         >
           {t('global.actions.close')}
-        </Button>
+        </CfxButton>
         {loading ? (
           <LoadingButton
             dataTestId="activate-subscription-loading-button"
@@ -209,14 +209,14 @@ const ActivateSubscriptionOverlay = ({
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
+          <CfxButton
             data-testid="activate-subscription-button"
             variant="contained"
             disabled={!inputURL || URLErrorMsg !== ''}
             onClick={addTentantURL}
           >
             {t('global.actions.confirm')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </Dialog>

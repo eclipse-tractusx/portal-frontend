@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -121,15 +121,15 @@ const DeclineSubscriptionOverlay = ({
         </div>
       </DialogContent>
       <DialogActions>
-        <Button
+        <CfxButton
           data-testid="decline-subscription-cancel-button"
-          variant="outlined"
+          color="secondary"
           onClick={() => {
             handleOverlayClose()
           }}
         >
           {t('content.appSubscription.decline.cancelBtn')}
-        </Button>
+        </CfxButton>
         {loading ? (
           <LoadingButton
             color="primary"
@@ -145,14 +145,14 @@ const DeclineSubscriptionOverlay = ({
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
+          <CfxButton
             data-testid="decline-subscription-button"
             className="cx-decline-btn"
             variant="contained"
             onClick={() => handleDecline(subscriptionId)}
           >
             {t('content.appSubscription.decline.declineBtn')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </Dialog>

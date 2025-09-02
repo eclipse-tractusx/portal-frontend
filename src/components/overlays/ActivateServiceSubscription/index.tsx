@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -156,14 +156,14 @@ export default function ActivateserviceSubscription({
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
+        <CfxButton
+          color="secondary"
           onClick={() => {
             handleOverlayClose()
           }}
         >
           {t('serviceSubscription.register.close')}
-        </Button>
+        </CfxButton>
         {loading ? (
           <LoadingButton
             color="primary"
@@ -179,9 +179,9 @@ export default function ActivateserviceSubscription({
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button variant="contained" onClick={() => handleConfrim()}>
+          <CfxButton variant="contained" onClick={() => handleConfrim()}>
             {t('serviceSubscription.register.confirm')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </Dialog>
