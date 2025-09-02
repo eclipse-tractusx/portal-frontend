@@ -20,7 +20,7 @@
 
 import { Trans, useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -138,9 +138,13 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
+        <CfxButton
+          data-testid="update-idp-cancel-button"
+          onClick={() => dispatch(closeOverlay())}
+          color="secondary"
+        >
           {t('action.cancel')}
-        </Button>
+        </CfxButton>
         {loading ? (
           <LoadingButton
             color="primary"
@@ -156,13 +160,14 @@ export const UpdateIDP = ({ id }: { id: string }) => {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
+          <CfxButton
+            data-testid="update-idp-save-meta-button"
             variant="contained"
             onClick={doUpdateIDP}
             disabled={!idpUpdateData}
           >
             {t('action.saveMetadata')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </>

@@ -21,7 +21,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -167,9 +167,13 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
       </DialogContent>
 
       <DialogActions helperText={t('content.addUser.helperText')}>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <CfxButton
+          data-testid="add-user-cancel-button"
+          color="secondary"
+          onClick={() => dispatch(closeOverlay())}
+        >
           {t('global.actions.cancel')}
-        </Button>
+        </CfxButton>
         {loading ? (
           <LoadingButton
             color="primary"
@@ -185,9 +189,14 @@ export const AddUserContent = ({ idp }: { idp: IdentityProvider }) => {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button variant="contained" disabled={!valid} onClick={handleConfirm}>
+          <CfxButton
+            data-testid="add-user-confirm-button"
+            variant="contained"
+            disabled={!valid}
+            onClick={handleConfirm}
+          >
             {t('global.actions.confirm')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </>

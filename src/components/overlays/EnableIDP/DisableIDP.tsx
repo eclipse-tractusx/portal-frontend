@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -76,12 +76,20 @@ export const DisableIDP = ({ id }: { id: string }) => {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <CfxButton
+          data-testid="disable-idp-cancel-button"
+          color="secondary"
+          onClick={() => dispatch(closeOverlay())}
+        >
           {t('action.cancel')}
-        </Button>
-        <Button variant="contained" onClick={doDisable}>
+        </CfxButton>
+        <CfxButton
+          data-testid="disable-idp-confirm-button"
+          variant="contained"
+          onClick={doDisable}
+        >
           {t('action.confirm')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </Dialog>
   )

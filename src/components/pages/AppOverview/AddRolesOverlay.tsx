@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -193,14 +193,14 @@ const AddRolesOverlay = ({
               style={{ textDecoration: 'none' }}
               download
             >
-              <Button
-                variant="outlined"
+              <CfxButton
+                data-testid="download-template-button"
                 endIcon={<FileDownloadOutlinedIcon />}
                 sx={{ fontSize: '16px' }}
                 size="small"
               >
                 {t('content.apprelease.technicalIntegration.template')}
-              </Button>
+              </CfxButton>
             </a>
             <Typography variant="body2" sx={{ mt: 2, mb: 2 }}>
               {t('content.addRoles.uploadAdditionalRolesDescriptionNote')}
@@ -250,14 +250,15 @@ const AddRolesOverlay = ({
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="add-app-roles-cancel-button"
+            color="secondary"
             onClick={() => {
               handleClose()
             }}
           >
             {t('global.actions.cancel')}
-          </Button>
+          </CfxButton>
 
           {isLoading ? (
             <LoadingButton
@@ -272,13 +273,14 @@ const AddRolesOverlay = ({
               sx={{ ml: 3 }}
             />
           ) : (
-            <Button
+            <CfxButton
+              data-testid="add-app-roles-confirm-button"
               variant="contained"
               onClick={() => handleConfirm()}
               disabled={rolesPreviews?.length <= 0}
             >
               {t('global.actions.confirm')}
-            </Button>
+            </CfxButton>
           )}
         </DialogActions>
       </Dialog>

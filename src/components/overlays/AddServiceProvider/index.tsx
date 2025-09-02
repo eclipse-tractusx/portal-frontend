@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   CircleProgress,
   DialogActions,
   DialogContent,
@@ -163,9 +163,13 @@ export default function AddServiceProvider() {
       </DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <CfxButton
+          data-testid="cancel-sp-button"
+          color="secondary"
+          onClick={() => dispatch(closeOverlay())}
+        >
           {t('global.actions.cancel')}
-        </Button>
+        </CfxButton>
         {loading ? (
           <LoadingButton
             color="primary"
@@ -181,7 +185,8 @@ export default function AddServiceProvider() {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
+          <CfxButton
+            data-testid="create-sp-button"
             variant="contained"
             onClick={() => {
               void addURL()
@@ -189,7 +194,7 @@ export default function AddServiceProvider() {
             disabled={UrlErrorMsg !== '' || !inputURL}
           >
             {t('global.actions.confirm')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
       <PageSnackbar

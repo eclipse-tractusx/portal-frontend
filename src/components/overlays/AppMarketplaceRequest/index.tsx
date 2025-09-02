@@ -21,11 +21,11 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-  Button,
   Typography,
   Checkbox,
   OrderStatusButton,
   paletteDefinitions,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -167,10 +167,15 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
           </DialogContent>
 
           <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            <CfxButton
+              data-testid="cancel-app-marketplace-button"
+              color="secondary"
+              onClick={() => dispatch(closeOverlay())}
+            >
               {t('global.actions.cancel')}
-            </Button>
-            <Button
+            </CfxButton>
+            <CfxButton
+              data-testid="confirm-app-marketplace-button"
               variant="contained"
               onClick={() => handleConfirmApp(id)}
               disabled={
@@ -183,7 +188,7 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
               }
             >
               {t('global.actions.confirm')}
-            </Button>
+            </CfxButton>
           </DialogActions>
         </>
       )}
@@ -216,9 +221,13 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            <CfxButton
+              data-testid="close-app-marketplace-button"
+              color="secondary"
+              onClick={() => dispatch(closeOverlay())}
+            >
               {t('global.actions.close')}
-            </Button>
+            </CfxButton>
           </DialogActions>{' '}
         </>
       )}

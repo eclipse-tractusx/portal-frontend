@@ -20,10 +20,10 @@
 
 import { useDispatch } from 'react-redux'
 import {
-  Button,
   Typography,
   LogoGrayData,
   Image,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
@@ -79,7 +79,8 @@ export default function MarketplaceHeader({
         dispatch(setSuccessType(false))
       }, 5000)
       return (
-        <Button
+        <CfxButton
+          data-testid="servicemarketplace-detail-subscribe-button"
           color="success"
           className="subscribe-btn"
           onClick={() => {
@@ -87,11 +88,12 @@ export default function MarketplaceHeader({
           }}
         >
           {t('content.appdetail.subscribed')}
-        </Button>
+        </CfxButton>
       )
     } else {
       return (
-        <Button
+        <CfxButton
+          data-testid="servicemarketplace-detail-subscribe-button"
           color="primary"
           className="subscribe-btn"
           disabled={
@@ -102,7 +104,7 @@ export default function MarketplaceHeader({
           onClick={() => dispatch(show(OVERLAYS.SERVICE_REQUEST, serviceId))}
         >
           {t('content.appdetail.subscribe')}
-        </Button>
+        </CfxButton>
       )
     }
   }

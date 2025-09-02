@@ -23,13 +23,13 @@ import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
-  Button,
   DialogActions,
   DialogHeader,
   Typography,
   Checkbox,
   StaticTable,
   LoadingButton,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import Box from '@mui/material/Box'
 import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
@@ -218,15 +218,16 @@ const UnSubscribeOverlay = ({
               </Typography>
             )}
             <Box sx={{ display: loading ? 'inline-flex' : 'block' }}>
-              <Button
-                variant="outlined"
+              <CfxButton
+                data-testid="organization-overlay-cancel-button"
+                color="secondary"
                 onClick={(e) => {
                   handleOverlayClose(e)
                 }}
                 sx={{ textTransform: 'none' }}
               >
                 {t('global.actions.cancel')}
-              </Button>
+              </CfxButton>
               {loading ? (
                 <LoadingButton
                   color="primary"
@@ -244,7 +245,8 @@ const UnSubscribeOverlay = ({
                   sx={{ ml: 2, textTransform: 'none' }}
                 />
               ) : (
-                <Button
+                <CfxButton
+                  data-testid="organization-overlay-unsubscribe-button"
                   variant="contained"
                   disabled={!checkBoxSelected || error}
                   onClick={(e) => {
@@ -253,7 +255,7 @@ const UnSubscribeOverlay = ({
                   sx={{ textTransform: 'none' }}
                 >
                   {t('content.organization.unsubscribe.buttonText')}
-                </Button>
+                </CfxButton>
               )}
             </Box>
           </DialogActions>

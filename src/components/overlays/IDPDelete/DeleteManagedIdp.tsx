@@ -19,7 +19,7 @@
 
 import { useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -112,9 +112,13 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
+        <CfxButton
+          data-testid="delete-managed-idp-cancel-button"
+          onClick={() => dispatch(closeOverlay())}
+          color="secondary"
+        >
           {t('action.cancel')}
-        </Button>
+        </CfxButton>
         {loadingButton ? (
           <LoadingButton
             color="primary"
@@ -130,9 +134,13 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
             loading={loadingButton}
           />
         ) : (
-          <Button variant="contained" onClick={handleDelete}>
+          <CfxButton
+            data-testid="delete-managed-idp-button"
+            variant="contained"
+            onClick={handleDelete}
+          >
             {t('action.delete')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </>

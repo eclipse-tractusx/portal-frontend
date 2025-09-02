@@ -23,11 +23,11 @@ import {
   DialogHeader,
   DialogContent,
   DialogActions,
-  Button,
   Typography,
   Input,
   theme,
   CircleProgress,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -140,12 +140,21 @@ const ModelImportDialog = ({ show, onClose }: ModelDetailDialogProps) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={onClose} disabled={uploading}>
+        <CfxButton
+          data-testid="import-dialog-cancel-button"
+          color="secondary"
+          onClick={onClose}
+          disabled={uploading}
+        >
           {t('content.semantichub.importDialog.buttonCancel')}
-        </Button>
-        <Button onClick={uploadModel} disabled={uploading}>
+        </CfxButton>
+        <CfxButton
+          data-testid="import-dialog-confirm-button"
+          onClick={uploadModel}
+          disabled={uploading}
+        >
           {t('content.semantichub.importDialog.buttonConfirm')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </Dialog>
   )

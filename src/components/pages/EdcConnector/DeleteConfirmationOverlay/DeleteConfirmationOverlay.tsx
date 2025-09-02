@@ -23,12 +23,12 @@ import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
-  Button,
   DialogActions,
   DialogHeader,
   CircleProgress,
   Checkbox,
   StaticTable,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import Box from '@mui/material/Box'
 
@@ -127,23 +127,25 @@ const DeleteConfirmationOverlay = ({
           )}
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="delete-connector-cancel-button"
+            color="secondary"
             onClick={(e) => {
               handleOverlayClose(e)
             }}
           >
             {t('global.actions.cancel')}
-          </Button>
+          </CfxButton>
           {!loading && (
-            <Button
-              variant="outlined"
+            <CfxButton
+              data-testid="delete-connector-confirm-button"
+              color="error"
               onClick={() => {
                 handleConfirmClick(checkBoxSelected)
               }}
             >
               {t('content.edcconnector.deletemodal.buttonConfirm')}
-            </Button>
+            </CfxButton>
           )}
           {loading && (
             <Box

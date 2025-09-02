@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   Checkbox,
   DialogActions,
   DialogContent,
@@ -175,19 +175,21 @@ export default function EditPortalRoles({ id }: { id: string }) {
       </DialogContent>
 
       <DialogActions>
-        <Button
-          variant="outlined"
+        <CfxButton
+          data-testid="portal-role-cancel-button"
+          color="secondary"
           onClick={() => dispatch(show(OVERLAYS.NONE))}
         >
           {t('global.actions.cancel')}
-        </Button>
-        <Button
+        </CfxButton>
+        <CfxButton
+          data-testid="portal-role-confirm-button"
           variant="contained"
           onClick={handleSaveRoles}
           disabled={checkConfirmButton()}
         >
           {t('global.actions.confirm')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </>
   )

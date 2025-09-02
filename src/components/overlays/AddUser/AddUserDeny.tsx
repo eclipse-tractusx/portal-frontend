@@ -20,7 +20,7 @@
 
 import { useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -64,14 +64,16 @@ export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
+        <CfxButton
+          data-testid="user-deny-cancel-button"
+          color="secondary"
           onClick={() => dispatch(closeOverlay())}
           sx={{ textTransform: 'none' }}
         >
           {t('global.actions.cancel')}
-        </Button>
-        <Button
+        </CfxButton>
+        <CfxButton
+          data-testid="idp-management-button"
           variant="contained"
           onClick={() => {
             navigate(`/${PAGES.IDP_MANAGEMENT}`)
@@ -80,7 +82,7 @@ export const AddUserDeny = ({ idps }: { idps: IdentityProvider[] }) => {
           sx={{ textTransform: 'none' }}
         >
           {t('pages.idpManagement')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </>
   )

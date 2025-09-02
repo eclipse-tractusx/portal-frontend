@@ -23,11 +23,11 @@ import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
-  Button,
   DialogActions,
   DialogHeader,
   CircleProgress,
   Typography,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import ConnectorTypeSelection from './ConnectorTypeSelection'
 import ConnectorInsertForm from './ConnectorInsertForm'
@@ -264,8 +264,9 @@ const AddConnectorOverlay = ({
           )}
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="add-connector-cancel-button"
+            color="secondary"
             onClick={() => {
               if (connectorStep === 1) onStepChange()
               else handleOverlayClose()
@@ -275,9 +276,9 @@ const AddConnectorOverlay = ({
             {connectorStep === 0
               ? `${t('global.actions.cancel')}`
               : `${t('global.actions.back')}`}
-          </Button>
+          </CfxButton>
           {!loading && (
-            <Button
+            <CfxButton
               data-testid="connector-confirm-button"
               variant="contained"
               disabled={
@@ -295,7 +296,7 @@ const AddConnectorOverlay = ({
               {connectorStep === 0
                 ? `${t('global.actions.next')}`
                 : `${t('global.actions.confirm')}`}
-            </Button>
+            </CfxButton>
           )}
           {loading && (
             <Box

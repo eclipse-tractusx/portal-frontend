@@ -20,12 +20,12 @@
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  Button,
   DialogActions,
   DialogContent,
   DialogHeader,
   CircleProgress,
   Typography,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
@@ -174,13 +174,13 @@ export const AddTechnicalUser = () => {
             />
           </DialogContent>
           <DialogActions>
-            <Button
+            <CfxButton
               data-testid="technical-user-cancel-button"
-              variant="outlined"
+              color="secondary"
               onClick={handleDispatch}
             >
               {t('global.actions.cancel')}
-            </Button>
+            </CfxButton>
             {loading ? (
               <span
                 style={{
@@ -198,14 +198,14 @@ export const AddTechnicalUser = () => {
                 />
               </span>
             ) : (
-              <Button
+              <CfxButton
                 data-testid="technical-user-confirm-button"
                 variant="contained"
                 onClick={onFormSubmit}
                 disabled={formHasErrors()}
               >
                 {t('global.actions.confirm')}
-              </Button>
+              </CfxButton>
             )}
           </DialogActions>
         </>

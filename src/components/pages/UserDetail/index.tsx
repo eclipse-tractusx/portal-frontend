@@ -24,11 +24,11 @@ import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOu
 import RestartAltOutlinedIcon from '@mui/icons-material/RestartAltOutlined'
 import { Box } from '@mui/material'
 import {
-  Button,
   UserAvatar,
   Typography,
   PageHeader,
   BackButton,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 
 import { useTranslation } from 'react-i18next'
@@ -95,36 +95,36 @@ export default function UserDetail() {
                 </span>
               )}
             </Typography>
-            <Button
-              color="secondary"
+            <CfxButton
+              data-testid="user-detail-suspend-button"
+              color="warning"
               onClick={handleSuspendUser}
               size="small"
-              variant="outlined"
               startIcon={<PowerSettingsNewOutlinedIcon />}
               sx={{ marginRight: '8px' }}
               disabled={true}
             >
               {t('content.account.suspendAccount')}
-            </Button>
-            <Button
-              color="secondary"
+            </CfxButton>
+            <CfxButton
+              data-testid="user-detail-delete-button"
+              color="error"
               onClick={handleDeleteUser}
               size="small"
-              variant="outlined"
               startIcon={<CancelOutlinedIcon />}
               sx={{ marginRight: '8px' }}
             >
               {t('content.account.deleteAccount')}
-            </Button>
-            <Button
+            </CfxButton>
+            <CfxButton
+              data-testid="user-detail-reset-password-button"
               color="secondary"
               onClick={handleResetPasswordForUser}
               size="small"
-              variant="outlined"
               startIcon={<RestartAltOutlinedIcon />}
             >
               {t('content.account.resetPswrdAccount')}
-            </Button>
+            </CfxButton>
           </Box>
 
           <Box sx={{ marginLeft: 'auto' }}>

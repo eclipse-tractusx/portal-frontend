@@ -20,9 +20,9 @@
 import {
   Typography,
   PageHeader,
-  Button,
   LoadingButton,
   TabPanel,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -311,7 +311,8 @@ export default function ChangeDescription() {
       <section>
         <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
         <Box sx={{ position: 'relative', marginTop: '30px' }}>
-          <Button
+          <CfxButton
+            data-testid="change-description-cancel-button"
             color="secondary"
             onClick={() => {
               navigate(`/${PAGES.APP_OVERVIEW}`)
@@ -319,7 +320,7 @@ export default function ChangeDescription() {
             size="small"
           >
             {t('global.actions.cancel')}
-          </Button>
+          </CfxButton>
 
           <span style={{ position: 'absolute', right: '10px' }}>
             {isLoading ? (
@@ -334,14 +335,15 @@ export default function ChangeDescription() {
                 loadIndicator="Loading..."
               />
             ) : (
-              <Button
+              <CfxButton
+                data-testid="change-description-save-button"
                 disabled={!(isDirty && isValid)}
                 size="small"
                 variant="contained"
                 onClick={handleSubmit(handleSave)}
               >
                 {t('global.actions.save')}
-              </Button>
+              </CfxButton>
             )}
           </span>
         </Box>

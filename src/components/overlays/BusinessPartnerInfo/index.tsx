@@ -20,7 +20,7 @@
 
 import BusinessPartnerDetail from 'components/pages/PartnerNetwork/BusinessPartnerDetailOverlay/BusinessPartnerDetail'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -50,9 +50,13 @@ export default function BusinessPartnerInfo({ id }: { id: string }) {
       </DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={handleClose}>
+        <CfxButton
+          data-testid="close-business-partner-button"
+          color="secondary"
+          onClick={handleClose}
+        >
           {t('global.actions.close')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </>
   )

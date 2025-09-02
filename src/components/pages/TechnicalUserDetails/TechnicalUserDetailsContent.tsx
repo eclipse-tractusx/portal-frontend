@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   CircleProgress,
   StatusTag,
   Tooltips,
@@ -209,9 +209,10 @@ export default function TechnicalUserDetailsContent({
 
   return (
     <section>
-      <Button
+      <CfxButton
+        data-testid="technical-user-delete-button"
         size="small"
-        variant="outlined"
+        color="secondary"
         startIcon={<HighlightOffIcon />}
         disabled={
           newData.status === ServiceAccountStatus.PENDING ||
@@ -222,10 +223,11 @@ export default function TechnicalUserDetailsContent({
         }
       >
         {t('content.usermanagement.technicalUser.delete')}
-      </Button>
-      <Button
+      </CfxButton>
+      <CfxButton
+        data-testid="technical-user-reset-credentials-button"
         size="small"
-        variant="outlined"
+        color="primary"
         disabled={
           loading ||
           newData.roles.some(
@@ -254,7 +256,7 @@ export default function TechnicalUserDetailsContent({
         }}
       >
         {t('content.usermanagement.technicalUser.credentialReset')}
-      </Button>
+      </CfxButton>
       <Box
         sx={{
           display: 'flex',

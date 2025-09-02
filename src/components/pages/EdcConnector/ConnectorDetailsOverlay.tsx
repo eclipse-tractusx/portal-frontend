@@ -29,6 +29,7 @@ import {
   CircleProgress,
   LoadingButton,
   IconButton,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import {
   type ConnectorDetailsType,
@@ -325,14 +326,15 @@ const ConnectorDetailsOverlay = ({
                       'content.edcconnector.details.configureYourConnectorDetails'
                     )}
                   </Typography>
-                  <Button
+                  <CfxButton
+                    data-testid="connector-details-learn-button"
                     onClick={() => {}}
                     variant="outlined"
                     size="small"
                     disabled
                   >
                     {t('content.edcconnector.details.learnMore')}
-                  </Button>
+                  </CfxButton>
                 </Box>
                 <Grid container spacing={2}>
                   <Grid size={{ xs: 12 }}>
@@ -406,8 +408,9 @@ const ConnectorDetailsOverlay = ({
                           display: 'flex',
                         }}
                       >
-                        <Button
-                          variant="outlined"
+                        <CfxButton
+                          color="secondary"
+                          data-testid="connector-details-cancel-button"
                           onClick={() => {
                             setEnableConnectorUrl(true)
                             setConnectorUrlValue(
@@ -418,7 +421,7 @@ const ConnectorDetailsOverlay = ({
                           sx={{ mr: 2 }}
                         >
                           {t('global.actions.cancel')}
-                        </Button>
+                        </CfxButton>
                         {confirmLoading ? (
                           <LoadingButton
                             size="small"
@@ -431,14 +434,15 @@ const ConnectorDetailsOverlay = ({
                             loadIndicator="Loading..."
                           />
                         ) : (
-                          <Button
-                            variant="outlined"
+                          <CfxButton
+                            data-testid="connector-details-submit-button"
+                            color="primary"
                             onClick={handleUrlSubmit}
                             size="small"
                             disabled={urlErrorMsg !== ''}
                           >
                             {t('global.actions.submit')}
-                          </Button>
+                          </CfxButton>
                         )}
                       </Box>
                     </>
@@ -536,8 +540,9 @@ const ConnectorDetailsOverlay = ({
             )}
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
+            <CfxButton
+              data-testid="edc-config-details-close-button"
+              color="secondary"
               onClick={(e) => {
                 handleOverlayClose(e)
                 setUrlErrorMsg('')
@@ -545,7 +550,7 @@ const ConnectorDetailsOverlay = ({
               }}
             >
               {t('global.actions.close')}
-            </Button>
+            </CfxButton>
           </DialogActions>
         </Dialog>
       )}

@@ -31,6 +31,7 @@ import {
   DialogContent,
   Dialog,
   LoadingButton,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box, Divider } from '@mui/material'
@@ -244,14 +245,15 @@ const OnboardingServiceProvider = () => {
           </>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="osp-close-button"
+            color="secondary"
             onClick={() => {
               setOverlayOpen(false)
             }}
           >
             {t('global.actions.close')}
-          </Button>
+          </CfxButton>
 
           {loading ? (
             <LoadingButton
@@ -268,13 +270,14 @@ const OnboardingServiceProvider = () => {
               sx={{ marginLeft: '10px' }}
             />
           ) : (
-            <Button
+            <CfxButton
+              data-testid="osp-confirm-button"
               variant="contained"
               onClick={updateCallbackIDP}
               disabled={!callbackData}
             >
               {t('global.actions.confirm')}
-            </Button>
+            </CfxButton>
           )}
         </DialogActions>
       </Dialog>

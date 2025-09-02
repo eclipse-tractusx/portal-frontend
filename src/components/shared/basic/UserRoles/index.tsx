@@ -21,7 +21,7 @@
 import { Box } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  Button,
+  CfxButton,
   Chip,
   PageSnackbar,
   Typography,
@@ -68,8 +68,9 @@ export const UserRoles = ({
         <section>
           {isUserDetail && (
             <div className="change-role-btn">
-              <Button
-                color="secondary"
+              <CfxButton
+                data-testid="user-role-change-button"
+                color="primary"
                 size="small"
                 onClick={() =>
                   dispatch(show(OVERLAYS.EDIT_PORTAL_ROLES, user.companyUserId))
@@ -77,7 +78,7 @@ export const UserRoles = ({
               >
                 <EditIcon className="edit-icon" />
                 {t('shared.userRoles.changeRoleBtn')}
-              </Button>
+              </CfxButton>
             </div>
           )}
 

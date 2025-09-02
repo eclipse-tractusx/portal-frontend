@@ -31,7 +31,7 @@ import {
   PageSnackbar,
   LoadMoreButton,
   CircleProgress,
-  Button,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import type {
   AppFiltersResponse,
@@ -567,7 +567,7 @@ export default function Subscription({
                   {readMore}
                 </Typography>
               )}
-              <Button
+              <CfxButton
                 data-testid="register-auto-setup-url-button"
                 key="create"
                 color="primary"
@@ -577,7 +577,7 @@ export default function Subscription({
                 sx={{ cursor: 'pointer' }}
               >
                 {registerURL}
-              </Button>
+              </CfxButton>
             </div>
           )}
           <div>

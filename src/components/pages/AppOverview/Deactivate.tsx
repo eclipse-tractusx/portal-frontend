@@ -23,9 +23,9 @@ import {
   PageHeader,
   Card,
   Checkbox,
-  Button,
   Tooltips,
   LoadingButton,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -117,7 +117,8 @@ export default function Deactivate() {
       <section>
         <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
         <Box sx={{ position: 'relative', marginTop: '30px' }}>
-          <Button
+          <CfxButton
+            data-testid="app-deactivate-cancel-button"
             color="secondary"
             size="small"
             onClick={() => {
@@ -125,7 +126,7 @@ export default function Deactivate() {
             }}
           >
             {t('global.actions.cancel')}
-          </Button>
+          </CfxButton>
           <Tooltips
             tooltipPlacement="bottom-start"
             tooltipText={
@@ -145,14 +146,15 @@ export default function Deactivate() {
                     label={`${t('global.actions.confirm')}`}
                   />
                 ) : (
-                  <Button
+                  <CfxButton
+                    data-testid="app-deactivate-confirm-button"
                     size="small"
                     variant="contained"
                     disabled={!checked}
                     onClick={handleSaveClick}
                   >
                     {t('global.actions.save')}
-                  </Button>
+                  </CfxButton>
                 )}
               </span>
             }

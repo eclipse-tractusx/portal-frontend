@@ -19,7 +19,7 @@
 
 import { useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -114,9 +114,13 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
+        <CfxButton
+          data-testid="disable-managed-idp-cancel-button"
+          onClick={() => dispatch(closeOverlay())}
+          color="secondary"
+        >
           {t('action.cancel')}
-        </Button>
+        </CfxButton>
 
         {loading ? (
           <LoadingButton
@@ -133,9 +137,13 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button variant="contained" onClick={handleEnableDisable}>
+          <CfxButton
+            data-testid="disable-managed-idp-button"
+            variant="contained"
+            onClick={handleEnableDisable}
+          >
             {t('action.disable')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </>

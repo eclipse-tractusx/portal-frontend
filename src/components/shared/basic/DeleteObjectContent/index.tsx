@@ -22,8 +22,8 @@ import {
   DialogHeader,
   DialogContent,
   DialogActions,
-  Button,
   CircleProgress,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import { useDispatch } from 'react-redux'
@@ -73,9 +73,13 @@ export default function DeleteObjectContent({
       </DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <CfxButton
+          data-testid="close-delete-object-button"
+          color="secondary"
+          onClick={() => dispatch(closeOverlay())}
+        >
           {t('global.actions.cancel')}
-        </Button>
+        </CfxButton>
         {showLoader && (
           <Box
             sx={{
@@ -95,9 +99,13 @@ export default function DeleteObjectContent({
           </Box>
         )}
         {!showLoader && (
-          <Button variant="contained" onClick={handleConfirm}>
+          <CfxButton
+            data-testid="confirm-delete-object-button"
+            variant="contained"
+            onClick={handleConfirm}
+          >
             {confirmTitle}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </>

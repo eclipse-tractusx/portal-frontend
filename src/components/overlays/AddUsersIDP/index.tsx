@@ -33,6 +33,7 @@ import {
   Textarea,
   Typography,
   type DropAreaProps,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
@@ -678,21 +679,26 @@ export const AddUsersIDP = ({ id }: { id: string }) => {
       </DialogContent>
       {userResponse?.data ? (
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="user-idp-close-button"
+            color="secondary"
             onClick={() => {
               storeResponse('')
               dispatch(closeOverlay())
             }}
           >
             {t('action.close')}
-          </Button>
+          </CfxButton>
         </DialogActions>
       ) : (
         <DialogActions>
-          <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+          <CfxButton
+            data-testid="user-idp-cancel-button"
+            color="secondary"
+            onClick={() => dispatch(closeOverlay())}
+          >
             {t('action.cancel')}
-          </Button>
+          </CfxButton>
           {loading ? (
             <LoadingButton
               color="primary"
@@ -708,13 +714,14 @@ export const AddUsersIDP = ({ id }: { id: string }) => {
               sx={{ marginLeft: '10px' }}
             />
           ) : (
-            <Button
+            <CfxButton
+              data-testid="upload-user-list-button"
               variant="contained"
               disabled={!id || uploadedFile === undefined}
               onClick={postUsers}
             >
               {t('action.uploadUserList')}
-            </Button>
+            </CfxButton>
           )}
         </DialogActions>
       )}

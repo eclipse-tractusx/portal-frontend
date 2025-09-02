@@ -20,12 +20,12 @@
 import {
   Typography,
   PageHeader,
-  Button,
   LoadingButton,
   Checkbox,
   Chip,
   Table,
   Tooltips,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -172,14 +172,15 @@ export default function AddRoles() {
       <div className="main-container">
         <div className="main-row">
           <Box sx={{ textAlign: 'center', paddingTop: '20px' }}>
-            <Button
+            <CfxButton
+              data-testid="add-app-roles-button"
               size="small"
               onClick={() => {
                 setAddRolesOverlayOpen(true)
               }}
             >
               {t('content.addRoles.uploadAdditionalRoles')}
-            </Button>
+            </CfxButton>
           </Box>
           <Box width={620} margin={'0 auto'} justifyContent="center">
             <Table
@@ -207,7 +208,8 @@ export default function AddRoles() {
       <section>
         <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
         <Box sx={{ marginTop: '30px', position: 'relative' }}>
-          <Button
+          <CfxButton
+            data-testid="add-app-roles-cancel-button"
             color="secondary"
             onClick={() => {
               navigate(`/${PAGES.APP_OVERVIEW}`)
@@ -215,7 +217,7 @@ export default function AddRoles() {
             size="small"
           >
             {t('global.actions.cancel')}
-          </Button>
+          </CfxButton>
 
           <span style={{ position: 'absolute', right: '10px' }}>
             {isLoading ? (
@@ -230,14 +232,15 @@ export default function AddRoles() {
                 label={`${t('global.actions.confirm')}`}
               />
             ) : (
-              <Button
+              <CfxButton
+                data-testid="add-app-roles-save-button"
                 disabled={true}
                 size="small"
                 variant="contained"
                 onClick={handleSaveClick}
               >
                 {t('global.actions.save')}
-              </Button>
+              </CfxButton>
             )}
           </span>
         </Box>

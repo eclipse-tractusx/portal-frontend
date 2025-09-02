@@ -21,11 +21,11 @@
 import {
   Typography,
   PageHeader,
-  Button,
   LoadingButton,
   Card,
   type UploadFileStatus,
   UploadStatus,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -195,15 +195,16 @@ export default function ChangeImage() {
                 </Box>
               ) : (
                 <Box sx={{ width: '50%', marginTop: '14%' }}>
-                  <Button
-                    color="secondary"
+                  <CfxButton
+                    data-testid="upload-new-image-button"
+                    color="primary"
                     size="small"
                     onClick={() => {
                       setEnableImageUpload(true)
                     }}
                   >
                     {t('content.changeImage.uploadNewImage')}
-                  </Button>
+                  </CfxButton>
                 </Box>
               )}
             </Box>
@@ -213,7 +214,8 @@ export default function ChangeImage() {
       <section>
         <hr style={{ border: 0, borderTop: '1px solid #DCDCDC' }} />
         <Box sx={{ position: 'relative', marginTop: '30px' }}>
-          <Button
+          <CfxButton
+            data-testid="change-image-cancel-button"
             color="secondary"
             size="small"
             onClick={() => {
@@ -221,7 +223,7 @@ export default function ChangeImage() {
             }}
           >
             {t('global.actions.cancel')}
-          </Button>
+          </CfxButton>
 
           <span style={{ position: 'absolute', right: '10px' }}>
             {isLoading ? (
@@ -236,7 +238,8 @@ export default function ChangeImage() {
                 label={`${t('global.actions.confirm')}`}
               />
             ) : (
-              <Button
+              <CfxButton
+                data-testid="change-image-save-button"
                 size="small"
                 variant="contained"
                 disabled={
@@ -245,7 +248,7 @@ export default function ChangeImage() {
                 onClick={handleSaveClick}
               >
                 {t('global.actions.save')}
-              </Button>
+              </CfxButton>
             )}
           </span>
         </Box>

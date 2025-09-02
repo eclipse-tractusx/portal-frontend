@@ -26,11 +26,11 @@ import UserService from 'services/UserService'
 import {
   Typography,
   PageSnackbar,
-  Button,
   IconButton,
   Tabs,
   Tab,
   TabPanel,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import AddConnectorOverlay from './AddConnectorOverlay'
 import type { FormFieldsType } from 'components/pages/EdcConnector/AddConnectorOverlay'
@@ -450,7 +450,7 @@ const EdcConnector = () => {
           </Box>
 
           <div>
-            <Button
+            <CfxButton
               data-testid="connector-register-button"
               size="small"
               startIcon={<AddCircleOutlineIcon />}
@@ -460,7 +460,7 @@ const EdcConnector = () => {
               className="add-idp-btn"
             >
               {t('content.edcconnector.addconnectorbutton')}
-            </Button>
+            </CfxButton>
           </div>
         </div>
       </section>

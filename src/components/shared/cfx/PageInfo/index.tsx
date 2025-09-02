@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from '@cofinity-x/shared-components'
+import { CfxButton } from '@cofinity-x/shared-components'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 
@@ -58,14 +58,14 @@ export default function PageInfo({
           )}
           {buttonLabel && buttonAction && (
             <div className="cx-page-info__button">
-              <Button
+              <CfxButton
                 data-testid="technical-user-add-button"
                 size="small"
                 startIcon={<AddCircleOutlineIcon />}
                 onClick={buttonAction}
               >
                 {buttonLabel}
-              </Button>
+              </CfxButton>
             </div>
           )}
         </div>

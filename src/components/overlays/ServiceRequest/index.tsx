@@ -21,9 +21,9 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-  Button,
   Typography,
   Checkbox,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -145,10 +145,15 @@ export default function ServiceRequest({ id }: { id: string }) {
             )}
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
+            <CfxButton
+              data-testid="service-request-cancel-button"
+              onClick={() => dispatch(closeOverlay())}
+              color="secondary"
+            >
               {t('global.actions.cancel')}
-            </Button>
-            <Button
+            </CfxButton>
+            <CfxButton
+              data-testid="service-request-confirm-button"
               onClick={() => handleConfirmService(id)}
               variant="contained"
               disabled={
@@ -161,7 +166,7 @@ export default function ServiceRequest({ id }: { id: string }) {
               }
             >
               {t('global.actions.confirm')}
-            </Button>
+            </CfxButton>
           </DialogActions>
         </>
       )}
@@ -185,9 +190,13 @@ export default function ServiceRequest({ id }: { id: string }) {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
+            <CfxButton
+              data-testid="service-request-close-button"
+              onClick={() => dispatch(closeOverlay())}
+              color="secondary"
+            >
               {t('global.actions.close')}
-            </Button>
+            </CfxButton>
           </DialogActions>
         </>
       )}

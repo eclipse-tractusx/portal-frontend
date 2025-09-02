@@ -20,7 +20,6 @@
 import {
   Typography,
   PageHeader,
-  Button,
   IconButton,
   DialogHeader,
   Dialog,
@@ -29,6 +28,7 @@ import {
   DropArea,
   type DropAreaProps,
   Tooltips,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -213,7 +213,8 @@ export default function ChangeDocuments() {
             }
             children={
               <span>
-                <Button
+                <CfxButton
+                  data-testid="upload-new-document-button"
                   size="small"
                   variant="contained"
                   color="secondary"
@@ -232,7 +233,7 @@ export default function ChangeDocuments() {
                   {docType === getDocumentName(DocumentNameType.APP_IMAGE)
                     ? t('content.changeDocuments.uploadNewImage')
                     : t('content.changeDocuments.uploadNewDocument')}
-                </Button>
+                </CfxButton>
               </span>
             }
           />
@@ -357,7 +358,8 @@ export default function ChangeDocuments() {
         <Box
           sx={{ position: 'relative', marginTop: '30px', textAlign: 'center' }}
         >
-          <Button
+          <CfxButton
+            data-testid="change-documents-close-button"
             color="secondary"
             size="small"
             onClick={() => {
@@ -365,7 +367,7 @@ export default function ChangeDocuments() {
             }}
           >
             {t('global.actions.close')}
-          </Button>
+          </CfxButton>
         </Box>
       </section>
     </main>

@@ -645,7 +645,6 @@ export const customTheme = {
             borderWidth: 2,
           },
         },
-
         outlinedSizeMedium: {
           padding: '12px 22px',
         },

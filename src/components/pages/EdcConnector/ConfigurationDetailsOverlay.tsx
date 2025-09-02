@@ -20,7 +20,6 @@
 
 import { Trans, useTranslation } from 'react-i18next'
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -30,6 +29,7 @@ import {
   Typography,
   CircleProgress,
   ErrorBar,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './style.scss'
@@ -227,14 +227,15 @@ const ConfigurationDetailsOverlay = ({
           )}
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="edc-config-details-close-button"
+            color="secondary"
             onClick={() => {
               handleOverlayClose()
             }}
           >
             {t('global.actions.close')}
-          </Button>
+          </CfxButton>
         </DialogActions>
       </Dialog>
     </div>

@@ -29,6 +29,7 @@ import {
   Button,
   DialogActions,
   CircleProgress,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { semanticModelsSelector } from 'features/semanticModels/slice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -290,13 +291,14 @@ const ModelDetailDialog = ({ show, onClose }: ModelDetailDialogProps) => {
                     value={openApiUrlInput}
                   />
                 </Box>
-                <Button
+                <CfxButton
+                  data-testid="semantic-hub-url-button"
                   size="small"
                   title={t('content.semantichub.detail.openApi.buttonTitle')}
                   onClick={onOpenApiUrlChange}
                 >
                   {t('content.semantichub.detail.openApi.buttonText')}
-                </Button>
+                </CfxButton>
               </Box>
               {openApiError && (
                 <Typography sx={{ typography: 'body3', mt: 1 }} color="error">
