@@ -52,7 +52,6 @@ import { statusColorMap } from 'utils/dataMapper'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import dayjs from 'dayjs'
 import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
-import { getBpnActualBpn } from './addressUtils'
 
 export const CompanyAddressList = ({
   handleButtonClick,
@@ -298,9 +297,7 @@ export const CompanyAddressList = ({
       flex: 1.5,
       valueGetter: (_value_, row: CompanyDataType) => getSiteActualName(row),
       renderCell: ({ row }: { row: CompanyDataType }) => (
-        <Box className="ph-mask-text" sx={{ display: 'grid' }}>
-          {getSiteActualName(row)}
-        </Box>
+        <Box className="ph-mask-text">{getSiteActualName(row)}</Box>
       ),
     },
     {
@@ -314,7 +311,7 @@ export const CompanyAddressList = ({
           ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''}${row.address.physicalPostalAddress.street?.houseNumber ? ' ' + row.address.physicalPostalAddress.street?.houseNumber : ''}, ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.city ?? ''}, ${row.address.physicalPostalAddress.country ?? ''}`
           : '',
       renderCell: ({ row }: { row: CompanyDataType }) => (
-        <Box className="ph-mask-text" sx={{ display: 'grid' }}>
+        <Box className="ph-mask-text">
           {row.address
             ? `${row.address.name ?? ''} ${row.address.physicalPostalAddress.street?.name ?? ''}${row.address.physicalPostalAddress.street?.houseNumber ? ' ' + row.address.physicalPostalAddress.street?.houseNumber : ''}, ${row.address.physicalPostalAddress.postalCode ?? ''} ${row.address.physicalPostalAddress.city ?? ''}, ${row.address.physicalPostalAddress.country ?? ''}`
             : ''}
@@ -322,32 +319,36 @@ export const CompanyAddressList = ({
       ),
     },
     {
-      field: 'bpn',
+      field: 'bpns',
       headerAlign: 'left',
       align: 'left',
-      headerName: t('content.companyData.table.bpn'),
-      flex: 1.5,
-      valueGetter: (_value_, row: CompanyDataType) =>
-        getBpnActualBpn(row) ?? '',
+      headerName: t('content.companyData.table.bpns'),
+      flex: 2,
       sortable: true,
       renderCell: ({ row }: { row: CompanyDataType }) =>
-        getBpnActualBpn(row) !== '-' ? (
-          <Box className="ph-mask-text" sx={{ display: 'grid' }}>
-            <CopyToClipboard text={getBpnActualBpn(row)} />
+        row?.site?.siteBpn ? (
+          <Box className="ph-mask-text">
+            <CopyToClipboard text={row?.site?.siteBpn ?? undefined} />
           </Box>
         ) : (
-          <Box className="ph-mask-text" sx={{ display: 'grid' }}>
-            -
-          </Box>
+          '-'
         ),
     },
     {
-      field: 'type',
+      field: 'bpna',
       headerAlign: 'left',
       align: 'left',
-      headerName: t('content.companyData.table.type'),
-      flex: 1.5,
-      valueGetter: (_value_, row: CompanyDataType) => getBpnTypeLabel(row),
+      headerName: t('content.companyData.table.bpna'),
+      flex: 2,
+      sortable: true,
+      renderCell: ({ row }: { row: CompanyDataType }) =>
+        row?.address?.addressBpn ? (
+          <Box className="ph-mask-text">
+            <CopyToClipboard text={row?.address?.addressBpn ?? undefined} />
+          </Box>
+        ) : (
+          '-'
+        ),
     },
     {
       field: 'processDate',
@@ -362,7 +363,7 @@ export const CompanyAddressList = ({
       field: 'status',
       headerName: t('content.companyData.table.status'),
       align: 'left',
-      flex: 2,
+      flex: 1.5,
       valueGetter: (_value_, row: CompanyDataType) =>
         statusColorMap[getStatus(row.externalId) as SharingStateStatusType],
       sortable: true,
@@ -410,7 +411,7 @@ export const CompanyAddressList = ({
       field: 'details',
       headerName: t('content.companyData.table.details'),
       align: 'right',
-      flex: 0.7,
+      flex: 0.8,
       hideSortIcons: true,
       renderCell: ({ row }: { row: CompanyDataType }) => {
         return (

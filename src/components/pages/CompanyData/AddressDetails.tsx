@@ -90,7 +90,9 @@ export default function AddressDetails() {
         ? getBpnActualBpnText(companyAddressData)
         : '',
       value: companyAddressData?.address?.addressBpn ? (
-        <CopyToClipboard text={getBpnActualBpn(companyAddressData)} />
+        <Box className="ph-mask-text">
+          <CopyToClipboard text={getBpnActualBpn(companyAddressData)} />
+        </Box>
       ) : (
         ''
       ),

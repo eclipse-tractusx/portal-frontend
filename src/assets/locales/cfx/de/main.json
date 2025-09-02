@@ -2373,6 +2373,9 @@
         "search": "search address / site",
         "noRowsMsg": "Kein Standort hinzugefügt. Nach dem Übermitteln der Standortdaten werden die Informationen vom Cofinity-X Golden Record Service überprüft.",
         "type": "BPN Typ",
+        "bpns": "BPNS",
+        "bpna": "BPNA",
+        "bpnl": "BPNL",
         "status": "Status",
         "details": "Details"
       },

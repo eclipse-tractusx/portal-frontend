@@ -70,7 +70,19 @@ export default function SiteDetails({
     {
       attr: t('content.companyData.site.bpns.name'),
       val: companySiteData?.site?.siteBpn ? (
-        <CopyToClipboard text={companySiteData?.site?.siteBpn} />
+        <Box className="ph-mask-text">
+          <CopyToClipboard text={companySiteData?.site?.siteBpn} />
+        </Box>
+      ) : (
+        '-'
+      ),
+    },
+    {
+      attr: t('content.companyData.address.bpna.name'),
+      val: companySiteData?.address?.addressBpn ? (
+        <Box className="ph-mask-text">
+          <CopyToClipboard text={companySiteData?.address?.addressBpn} />
+        </Box>
       ) : (
         '-'
       ),
