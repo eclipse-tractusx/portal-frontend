@@ -53,7 +53,7 @@ export default function ServiceMarketplaceDetail() {
           backButtonVariant="outlined"
           onBackButtonClick={() => {
             dispatch(setSuccessType(false))
-            navigate(`/${PAGES.CFX_SERVICE_MARKETPLACE}`)
+            navigate(`/${PAGES.SERVICE_MARKETPLACE}`)
           }}
         />
       </Box>

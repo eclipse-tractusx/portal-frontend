@@ -87,8 +87,8 @@ import ServiceReleaseProcessForm from 'components/pages/ServiceReleaseProcess/Se
 import ServiceListOverview from 'components/pages/ServiceReleaseProcess/ServiceOverview/ServiceListOverview'
 import AppOverviewNew from 'components/pages/AppOverviewNew'
 import CompanyData from 'components/pages/CompanyData'
-import CfxAppMarketplace from 'components/pages/CFX/AppMarketplace'
-import CfxServiceMarketplace from 'components/pages/CFX/ServiceMarketplace'
+import AppMarketplace from 'components/pages/AppMarketplace'
+import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 
 /**
  * ALL_PAGES
@@ -115,21 +115,15 @@ export const ALL_PAGES: IPage[] = [
     name: PAGES.DOCUMENTATION,
     element: <Redirect path="documentation" tab={'documentation'} />,
   },
-  // Removed on purpose
-  // {
-  //   name: PAGES.MARKETPLACE,
-  //   allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
-  //   element: <AppMarketplace />,
-  // },
   {
-    name: PAGES.CFX_APP_MARKETPLACE,
+    name: PAGES.APP_MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
-    element: <CfxAppMarketplace />,
+    element: <AppMarketplace />,
   },
   {
-    name: PAGES.CFX_SERVICE_MARKETPLACE,
+    name: PAGES.SERVICE_MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW_SERVICES),
-    element: <CfxServiceMarketplace />,
+    element: <ServiceMarketplace />,
   },
   {
     name: PAGES.SERVICE_MARKETPLACE_DETAIL,
@@ -628,8 +622,8 @@ export const mainMenuFullTree = [
   {
     name: MENUS.MARKETPLACE,
     children: [
-      { name: PAGES.CFX_APP_MARKETPLACE },
-      { name: PAGES.CFX_SERVICE_MARKETPLACE },
+      { name: PAGES.APP_MARKETPLACE },
+      { name: PAGES.SERVICE_MARKETPLACE },
       { name: PAGES.COMPANY_SUBSCRIPTIONS }, // Company Subscription
     ],
   },

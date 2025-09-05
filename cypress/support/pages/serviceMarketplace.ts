@@ -1,6 +1,6 @@
 export class ServiceMarketplacePage {
   visit(): void {
-    cy.visit(`${Cypress.env('baseUrl')}/cfxServiceMarketplace`)
+    cy.visit(`${Cypress.env('baseUrl')}/serviceMarketplace`)
   }
 
   checkServiceListContainerIsVisible(): void {

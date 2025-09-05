@@ -6,8 +6,8 @@
     "swagger": "Swagger OpenAPI Definition",
     "storybook": "Storybook Shared Component Library",
     "marketplace": "Marketplace",
-    "cfxAppMarketplace": "App Marktplatz",
-    "cfxServiceMarketplace": "Service Marktplatz",
+    "appMarketplace": "App Marktplatz",
+    "serviceMarketplace": "Service Marktplatz",
     "appdetails": "App Detailseite",
     "dataManagement": "Datenmanagement",
     "semantichub": "Semantik Hub",
@@ -269,13 +269,13 @@
           "title": "App Marktplatz",
           "subtitle": "Ihre zentrale Anlaufstelle für sofort einsatzbereite Business-Applikationen. Entdecken Sie Catena-X zertifizierte Anwendungen für effizienten Datenaustausch.",
           "buttonName": "Apps entdecken",
-          "navigation": "/cfxAppMarketplace"
+          "navigation": "/appMarketplace"
         },
         "slider3": {
           "title": "Service Marktplatz",
           "subtitle": "Hier finden Sie Beratungsdienstleistungen von qualifizierten Partnern. Erreichen Sie Ihre Geschäftsziele durch fachkundige Beratung rundum Catena-X und Datenaustausch.",
           "buttonName": "Services entdecken",
-          "navigation": "/cfxServiceMarketplace"
+          "navigation": "/serviceMarketplace"
         },
         "slider4": {
           "title": "Connector Registrierung",

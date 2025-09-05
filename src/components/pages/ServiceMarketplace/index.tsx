@@ -250,9 +250,6 @@ export default function ServiceMarketplace() {
                 <Typography className="newServicesTitle" variant="h2">
                   {t('content.serviceMarketplace.newServices')}
                 </Typography>
-                <Typography className="recommendationsTitle" variant="body1">
-                  {t('content.serviceMarketplace.recommendations')}
-                </Typography>
                 <div>
                   <div className="cx-search-grid">
                     <div className="searchContainer">

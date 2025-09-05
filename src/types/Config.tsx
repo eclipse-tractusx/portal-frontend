@@ -23,7 +23,7 @@ import SetLang from 'components/actions/SetLang'
 import SignOut from 'components/actions/SignOut'
 import RegistrationRequests from 'components/pages/Admin/RegistrationRequests'
 import AppDetail from 'components/pages/AppDetail'
-import CfxAppMarketplace from 'components/pages/CFX/AppMarketplace'
+import AppMarketplace from 'components/pages/AppMarketplace'
 import AppOverview from 'components/pages/AppOverview'
 import AppOverviewNew from 'components/pages/AppOverviewNew'
 import AppReleaseProcess from 'components/pages/AppReleaseProcess'
@@ -41,7 +41,7 @@ import PartnerNetwork from 'components/pages/PartnerNetwork'
 import Privacy from 'components/pages/Privacy'
 import SemanticHub from 'components/pages/SemanticHub'
 import AppSubscription from 'components/pages/AppSubscription'
-import CfxServiceMarketplace from 'components/pages/CFX/ServiceMarketplace'
+import ServiceMarketplace from 'components/pages/ServiceMarketplace'
 import ServiceMarketplaceDetail from 'components/pages/ServiceMarketplaceDetail'
 import TechnicalUserManagement from 'components/pages/TechnicalUserManagement'
 import TechnicalUserDetails from 'components/pages/TechnicalUserDetails'
@@ -129,14 +129,14 @@ export const ALL_PAGES: IPage[] = [
     element: <Redirect path="documentation" tab={'documentation'} />,
   },
   {
-    name: PAGES.CFX_MARKETPLACE,
+    name: PAGES.APP_MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW),
-    element: <CfxAppMarketplace />,
+    element: <AppMarketplace />,
   },
   {
-    name: PAGES.CFX_SERVICE_MARKETPLACE,
+    name: PAGES.SERVICE_MARKETPLACE,
     allowTo: () => userHasPortalRole(ROLES.APPSTORE_VIEW_SERVICES),
-    element: <CfxServiceMarketplace />,
+    element: <ServiceMarketplace />,
   },
   {
     name: PAGES.SERVICE_MARKETPLACE_DETAIL,
@@ -786,8 +786,8 @@ export const mainMenuFullTree = [
   {
     name: PAGES.MARKETPLACE,
     children: [
-      { name: PAGES.CFX_APP_MARKETPLACE },
-      { name: PAGES.CFX_SERVICE_MARKETPLACE, hint: HINTS.NEW },
+      { name: PAGES.APP_MARKETPLACE },
+      { name: PAGES.SERVICE_MARKETPLACE, hint: HINTS.NEW },
     ],
   },
   {

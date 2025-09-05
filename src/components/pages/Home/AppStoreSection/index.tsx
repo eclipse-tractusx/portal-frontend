@@ -56,10 +56,10 @@ export default function AppStoreSection() {
             variant="contained"
             disabled={isHeaderNote}
             onClick={() => {
-              navigate('/cfxAppMarketplace')
+              navigate('/appMarketplace')
             }}
           >
-            {t('pages.cfxAppMarketplace')}
+            {t('pages.appMarketplace')}
           </CfxButton>
         </div>
         <div>
@@ -68,10 +68,10 @@ export default function AppStoreSection() {
             variant="contained"
             disabled={isHeaderNote}
             onClick={() => {
-              navigate('/cfxServiceMarketplace')
+              navigate('/serviceMarketplace')
             }}
           >
-            {t('pages.cfxServiceMarketplace')}
+            {t('pages.serviceMarketplace')}
           </CfxButton>
         </div>
       </Stack>

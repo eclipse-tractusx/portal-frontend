@@ -1,6 +1,6 @@
 export class AppMarketplacePage {
   visit(): void {
-    cy.visit(`${Cypress.env('baseUrl')}/cfxAppMarketplace`)
+    cy.visit(`${Cypress.env('baseUrl')}/appMarketplace`)
   }
 
   checkAppListContainerIsVisible(): void {

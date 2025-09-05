@@ -1,27 +1,10 @@
-/********************************************************************************
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
- *
- * See the NOTICE file(s) distributed with this work for additional
- * information regarding copyright ownership.
- *
- * This program and the accompanying materials are made available under the
- * terms of the Apache License, Version 2.0 which is available at
- * https://www.apache.org/licenses/LICENSE-2.0.
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- *
- * SPDX-License-Identifier: Apache-2.0
- ********************************************************************************/
-
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Cards, CategoryDivider } from '@cofinity-x/shared-components'
-import { fetchImageWithToken } from 'services/ImageService'
+import { CategoryDivider, CfxGrid } from '@cofinity-x/shared-components'
+import { useResponsiveItems } from 'hooks/useResponsiveItems'
+import { AppCardWithImage } from 'components/AppCardImage'
 import type { AppMarketplaceCard } from 'features/apps/types'
+import { useNavigate } from 'react-router-dom'
+import { getApiBase } from 'services/EnvironmentService'
 
 export const AppListGroup = ({
   category,
@@ -31,14 +14,22 @@ export const AppListGroup = ({
   items: AppMarketplaceCard[]
 }) => {
   const { t } = useTranslation()
-  const [itemsShown, setItemsShown] = useState(4)
+  const { itemsShown, handleToggleItems, getResponsiveItemsCount } =
+    useResponsiveItems([items])
   const itemsToShow = items.slice(0, Number(itemsShown))
+  const currentResponsiveCount = getResponsiveItemsCount(window.innerWidth)
+  const navigate = useNavigate()
+
+  const handleClick = (id: string) => {
+    navigate(`/appdetail/${id}`)
+  }
 
   return (
     <>
       <CategoryDivider
         buttonText={
-          items.length <= 4 || itemsToShow.length < items.length
+          items.length <= currentResponsiveCount ||
+          itemsToShow.length < items.length
             ? t('global.actions.more')
             : t('global.actions.collapse')
         }
@@ -47,23 +38,25 @@ export const AppListGroup = ({
           'content.appstore.appOverviewSection.categories.' +
             category.replace(/\s+/g, '').toLowerCase()
         )}
-        disabled={items.length <= 4}
+        disabled={items.length <= currentResponsiveCount}
         onButtonClick={() => {
-          setItemsShown(itemsToShow.length >= items.length ? 4 : items.length)
+          handleToggleItems(itemsToShow, items)
         }}
       />
-      <Cards
-        buttonText={t('global.actions.details')}
-        columns={4}
-        imageShape={'round'}
-        imageSize={'small'}
-        items={itemsToShow}
-        variant={'compact'}
-        expandOnHover={true}
-        imageLoader={fetchImageWithToken}
-        boxClickable={true}
-        showFavIcon={true}
-      />
+      <CfxGrid data-testid="app-list-group" container spacing={3}>
+        {itemsToShow.map((item) => (
+          <CfxGrid key={item.id} size={{ xs: 12, sm: 12, md: 6, lg: 4, xl: 3 }}>
+            <AppCardWithImage
+              item={{
+                ...item,
+                price: '',
+                leadPictureId: `${getApiBase()}/api/apps/${item.id}/appDocuments/${item.leadPictureId}`,
+              }}
+              onClick={handleClick}
+            />
+          </CfxGrid>
+        ))}
+      </CfxGrid>
     </>
   )
 }
