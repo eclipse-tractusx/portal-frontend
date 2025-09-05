@@ -64,6 +64,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Remove app provider field from App release process [PM2-2747](https://cofinity-x.atlassian.net/browse/PM2-2747)
 - **Request Management**
   - Service approval/decline request toast message [PM2-3086](https://cofinity-x.atlassian.net/browse/PM2-3086)
+- **Service Subscription**
+  - display all assigned roles of technical users in service subscription [PM2-2898](https://cofinity-x.atlassian.net/browse/PM2-2898)
 
 ## Hotfixes
 
