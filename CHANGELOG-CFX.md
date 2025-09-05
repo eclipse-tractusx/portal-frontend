@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Credential Request Page**
+
+  - Fixed Search bar so that its functional again [CS-3991](https://cofinity-x.atlassian.net/browse/CS-3991)
+
 - **Company Wallet**
 
   - Changed Credential Name in DE translation file to English content [CS-4089](https://cofinity-x.atlassian.net/browse/CS-4089)
