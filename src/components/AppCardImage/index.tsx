@@ -72,7 +72,7 @@ export const AppCardWithImage = ({
   return (
     <CfxCardMarketplace
       data-testid={`card-with-image-${item.id}`}
-      price={item.price}
+      price={''}
       companyName={item.provider}
       applicationName={item.name ?? ''}
       image={imageUrl}
