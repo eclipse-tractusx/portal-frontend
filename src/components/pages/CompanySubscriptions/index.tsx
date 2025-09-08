@@ -278,9 +278,6 @@ export default function CompanySubscriptions() {
               display: 'inline-flex',
               width: '100%',
               maxWidth: '550px',
-              '&.Mui-selected': {
-                borderBottom: '3px solid #0f71cb',
-              },
             }}
           />
           <Tab
@@ -294,9 +291,6 @@ export default function CompanySubscriptions() {
               display: 'inline-flex',
               width: '100%',
               maxWidth: '550px',
-              '&.Mui-selected': {
-                borderBottom: '3px solid #0f71cb',
-              },
             }}
           />
         </Tabs>
