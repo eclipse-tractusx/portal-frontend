@@ -28,7 +28,6 @@ export type AppDetails = AppMarketplaceApp & {
   contactNumber: string
   images: string[]
   longDescription: string
-  isSubscribed: string
   tags: string[]
   languages: string[]
   leadPictureId?: string
