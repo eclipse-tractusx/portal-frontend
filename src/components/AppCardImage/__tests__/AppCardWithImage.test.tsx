@@ -82,7 +82,7 @@ describe('AppCardWithImage', () => {
     id: 'test-app-id',
     name: 'Test App',
     provider: 'Test Provider',
-    price: '$10.00',
+    price: '',
     leadPictureId: 'test-picture-id',
     subscriptionStatus: SubscriptionStatus.ACTIVE,
     title: 'Test App',
@@ -107,7 +107,7 @@ describe('AppCardWithImage', () => {
       expect(mockCfxCardMarketplace).toHaveBeenCalledWith(
         expect.objectContaining({
           'data-testid': 'card-with-image-test-app-id',
-          price: '$10.00',
+          price: '',
           companyName: 'Test Provider',
           applicationName: 'Test App',
           image: '',

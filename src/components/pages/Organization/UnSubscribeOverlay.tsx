@@ -217,7 +217,16 @@ const UnSubscribeOverlay = ({
                 {t('content.organization.unsubscribe.unsubscribeError')}
               </Typography>
             )}
-            <Box sx={{ display: loading ? 'inline-flex' : 'block' }}>
+            <Box
+              sx={{
+                display: loading ? 'inline-flex' : 'flex',
+                ...(!loading && {
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: 2,
+                }),
+              }}
+            >
               <CfxButton
                 data-testid="organization-overlay-cancel-button"
                 color="secondary"
