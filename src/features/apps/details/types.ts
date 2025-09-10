@@ -19,6 +19,7 @@
  ********************************************************************************/
 
 import type { AppMarketplaceApp } from 'features/apps/marketplaceDeprecated/types'
+import { type OfferSubscriptionDataType } from 'features/serviceSubscription/serviceSubscriptionApiSlice'
 
 export const name = 'apps/details'
 
@@ -31,6 +32,7 @@ export type AppDetails = AppMarketplaceApp & {
   tags: string[]
   languages: string[]
   leadPictureId?: string
+  offerSubscriptionDetailData?: OfferSubscriptionDataType[]
 }
 
 export type AppDetailsState = {
@@ -55,6 +57,7 @@ export const AppDetailInitial = {
   isSubscribed: '',
   tags: [''],
   languages: [''],
+  offerSubscriptionDetailData: [],
 }
 
 export const initialState: AppDetailsState = {

@@ -32,6 +32,7 @@ import CommonService from 'services/CommonService'
 import type { UseCaseType } from 'features/appManagement/types'
 import { userHasPortalRole } from 'services/AccessService'
 import { resetDialog } from 'features/overlay/slice'
+import AppDetailSubscription from '../AppDetailSubscription'
 export interface AppDetailHeaderProps {
   item: AppDetails
 }
@@ -135,6 +136,7 @@ export default function AppDetailHeader({
           </Typography>
         </div>
         {getSubscribeBtn()}
+        <AppDetailSubscription item={item} />
       </div>
     </div>
   )
