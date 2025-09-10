@@ -763,10 +763,10 @@
           },
           "url": {
             "label": "Connector Catalogue Endpoint*",
-            "placeholder": "Connector URL",
+            "placeholder": "Connector_URL/api/v1/dsp",
             "mandatoryError": "Connector URL is mandatory.",
-            "patternError": "Enter a valid url - eg: https://catena-x.net",
-            "tooltipMsg": "URL of the connector endpoint. Only https:// endpoints are allowed"
+            "patternError": "Enter a valid url - eg: https://catena-x.net/api/v1/dsp",
+            "tooltipMsg": "URL of the connector DSP (Dataspace Protocol) endpoint. Only https:// endpoints are allowed."
           },
           "bpn": {
             "label": "Connector Owner*",

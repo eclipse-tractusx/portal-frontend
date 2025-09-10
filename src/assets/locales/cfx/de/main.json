@@ -759,10 +759,10 @@
           },
           "url": {
             "label": "Connector-Katalog-Endpunkt*",
-            "placeholder": "Connector-URL",
+            "placeholder": "Connector_URL/api/v1/dsp",
             "mandatoryError": "Die Connector-URL ist obligatorisch.",
-            "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net",
-            "tooltipMsg": "URL des Connector-Endpunkts. Nur https:// Endpunkte sind erlaubt"
+            "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net/api/v1/dsp",
+            "tooltipMsg": "URL des Connector DSP-Endpunkts (Dataspace Protocol). Es sind nur https://-Endpunkte erlaubt."
           },
           "bpn": {
             "label": "Connector-Besitzer*",

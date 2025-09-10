@@ -33,6 +33,10 @@ const urlPattern = new RegExp(
   'i'
 )
 const prefixUrlPattern = new RegExp(`^${urlProtocol}:`, 'i')
+const dspPattern = new RegExp(
+  `^(${urlProtocol})://(${DOMAIN.source})(:\\d{1,5})?/api/v\\d+/dsp$`,
+  'i'
+)
 const nameGroup = 'A-Za-z\u00C0-\u017F'
 const personNameToken = `([${nameGroup}]\\.|[${nameGroup}']{2,30})`
 const personNamePattern = new RegExp(
@@ -48,6 +52,7 @@ export const Patterns = {
   DOMAIN: new RegExp(`^${DOMAIN.source}$`, 'i'),
   PATH: new RegExp(`^${URLPATH.source}$`, 'i'),
   URL: urlPattern,
+  DSP_URL: dspPattern,
   UUID: /^[a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8}$/i,
   EXTID: /^[a-z0-9]{6,36}$/i,
   COMPANY_NAME:
@@ -136,6 +141,7 @@ export const isMail = (expr: string) => Patterns.MAIL.test(expr)
 export const isBPN = (expr: string) => Patterns.BPN.test(expr)
 export const isDomain = (expr: string) => Patterns.DOMAIN.test(expr)
 export const isURL = (expr: string) => Patterns.URL.test(expr)
+export const isDspURL = (expr: string) => Patterns.DSP_URL.test(expr)
 export const isKeycloakURL = (expr: string) =>
   isURL(expr) && !expr.includes('#')
 export const isUUID = (expr: string) => Patterns.UUID.test(expr)

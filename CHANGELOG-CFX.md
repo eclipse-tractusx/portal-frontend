@@ -45,6 +45,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
   - Prevent company connector creation without technical user [PM2-2320](https://cofinity-x.atlassian.net/browse/PM2-2320)
   - Fix connector deletion text [PM2-3111](https://cofinity-x.atlassian.net/browse/PM2-3111)
+  - Extend connector enhance url validation [PM2-3376](https://cofinity-x.atlassian.net/browse/PM2-3376)
 
 - **OSP Registration form**
 
