@@ -325,6 +325,8 @@ export const CompanyAddressList = ({
       headerName: t('content.companyData.table.bpns'),
       flex: 2,
       sortable: true,
+      valueGetter: (_value_, row: CompanyDataType) =>
+        row?.site?.siteBpn ? row.site.siteBpn : '-',
       renderCell: ({ row }: { row: CompanyDataType }) =>
         row?.site?.siteBpn ? (
           <Box className="ph-mask-text">
@@ -341,6 +343,8 @@ export const CompanyAddressList = ({
       headerName: t('content.companyData.table.bpna'),
       flex: 2,
       sortable: true,
+      valueGetter: (_value_, row: CompanyDataType) =>
+        row?.address?.addressBpn ? row.address.addressBpn : '-',
       renderCell: ({ row }: { row: CompanyDataType }) =>
         row?.address?.addressBpn ? (
           <Box className="ph-mask-text">
