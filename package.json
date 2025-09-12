@@ -34,14 +34,17 @@
     ]
   },
   "dependencies": {
-    "@cofinity-x/shared-components": "^0.7.4",
+    "@cofinity-x/shared-components": "^0.7.10",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@faker-js/faker": "^9.8.0",
     "@hookform/error-message": "^2.0.1",
     "@mui/icons-material": "^7.1.2",
+    "@mui/lab": "^7.0.0-beta.17",
     "@mui/material": "7.3.1",
     "@mui/x-data-grid": "8.10.0",
+    "@mui/x-date-pickers": "^7.29.4",
+    "@mui/x-tree-view": "^8.11.2",
     "@react-hook/cache": "^1.1.1",
     "@react-pdf/renderer": "^3.4.4",
     "@reduxjs/toolkit": "^2.2.8",
