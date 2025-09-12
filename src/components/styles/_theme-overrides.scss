@@ -3137,3 +3137,22 @@ d .notification-badge-text {
     line-height: 120%;
   }
 }
+
+.cx-content-technical__container {
+  .MuiDataGrid-mainContent {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1 1 0%;
+
+    > .MuiBox-root {
+      padding: 16px 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      flex-direction: row;
+    }
+  }
+}
