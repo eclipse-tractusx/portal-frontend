@@ -30,9 +30,10 @@ export class technicalUserManagementPage {
     cy.wait(2000)
     cy.get('textarea[placeholder="Description*"]').type(description)
     cy.contains(selectedRole).click()
-    cy.get('button.cx-button.cx-variant-contained.cx-color-primary')
+    /*cy.get('button.cx-button.cx-variant-contained.cx-color-primary')
       .contains('Confirm')
-      .click()
+      .click()*/
+    cy.get('[data-testid="technical-user-confirm-button"]').click()
 
     // Save technical user details to Cypress environment variables
     Cypress.env('recentTechnicalUser', {
@@ -53,9 +54,11 @@ export class technicalUserManagementPage {
     // Select the random role from the available roles
     cy.contains(selectedRole).click()
     // Submit the data to create the user
-    cy.get('button.cx-button.cx-variant-contained.cx-color-primary')
+    cy.get('[data-testid="technical-user-confirm-button"]').click()
+
+    /* cy.get('button.cx-button.cx-variant-contained.cx-color-primary')
       .contains('Bestätigen')
-      .click()
+      .click()*/
 
     // Verify if the success message is visible
     cy.get('h4')

@@ -72,9 +72,7 @@ export class connectorManagementPage {
       .type(connectorData.location, { force: true })
 
     // Submit the connector form
-    cy.get('button[type="button"].MuiButton-containedPrimary.cx-button').click({
-      force: true,
-    })
+    cy.get('[data-testid="connector-confirm-button"]').click()
   }
 
   // Verify that the connector creation was successful
@@ -97,9 +95,9 @@ export class connectorManagementPage {
     })
 
     // Confirm deletion from modal/dialog
-    cy.get('.cx-button.cx-variant-outlined.cx-color-primary')
-      .eq(1)
-      .click({ force: true })
+    cy.get('[data-testid="delete-connector-confirm-button"]').click({
+      force: true,
+    })
 
     // Verify deletion success message
 
