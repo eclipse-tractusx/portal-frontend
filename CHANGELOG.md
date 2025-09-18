@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.6.0-RC1
+## 2.6.0
 
 ### Feature
 
@@ -15,11 +15,19 @@
   - Redirect companies already fully onboarded back to portal home page [#1608](https://github.com/eclipse-tractusx/portal-backend/issues/1608)
 - **App Access Management**
   - fixed logic for user remains checked on navigating back from role selection [#1605](https://github.com/eclipse-tractusx/portal-frontend/pull/1605)
+- **IDP form**
+  - removed input validation on overlay open [#1627](https://github.com/eclipse-tractusx/portal-frontend/pull/1627)
+- **Service registration**:
+  - service release path api typo [#1651](https://github.com/eclipse-tractusx/portal-frontend/pull/1651)
 
 ### Technical Support
 
 - **Dependencies**
   - updated app dependencies [#1626](https://github.com/eclipse-tractusx/portal-frontend/pull/1626), [#1631](https://github.com/eclipse-tractusx/portal-frontend/pull/1631), [#1633](https://github.com/eclipse-tractusx/portal-frontend/pull/1633)
+
+### Known Knowns
+
+- Please refer to the [list of open bugs](https://github.com/eclipse-tractusx/portal-frontend/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 ## 2.5.0
 
