@@ -99,13 +99,19 @@ export const Carousel = ({
     setShowArrows(false)
   }
   const arrayChildren = Children.toArray(children)
+  const cardCount = arrayChildren.length
 
-  const clampSlides = (n: number | undefined) => {
-    const base = n && n > 0 ? n : 1
-    return base > arrayChildren.length ? arrayChildren.length : base
+  const clampSlides = (n: number | undefined, fallback: number) => {
+    const base = n && n > 0 ? n : fallback
+    return base > cardCount ? cardCount : base
   }
 
-  slidesToShow = clampSlides(slidesToShow)
+  const slidesToShowBase = clampSlides(slidesToShow, 4)
+  const slidesToShowXlValue = clampSlides(slidesToShowXl, slidesToShowBase)
+  const slidesToShowLgValue = clampSlides(slidesToShowLg, slidesToShowBase)
+  const slidesToShowMdValue = clampSlides(slidesToShowMd, 2)
+  const slidesToShowSmValue = clampSlides(slidesToShowSm, 1)
+
   gapToArrows = gapToArrows && gapToArrows > 0 ? gapToArrows : 1
   gapBetweenSlides =
     gapBetweenSlides && gapBetweenSlides > 0 ? gapBetweenSlides : 1
@@ -116,35 +122,39 @@ export const Carousel = ({
   const innerGapToArrow = gapToArrows ? `${gapToArrows / 2}px` : 0
   const outerGapToDots = gapToDots && dots ? `${gapToDots}px` : 'auto'
 
-  const baseSlides = clampSlides(slidesToShowXl ?? slidesToShow)
-
-  const showDotAndArrow = baseSlides >= arrayChildren.length
+  const showDotAndArrow = cardCount <= slidesToShowXlValue
 
   const settings = {
     dots: !showDotAndArrow,
     infinite,
-    slidesToShow: baseSlides,
-    slidesToScroll: baseSlides,
+    slidesToShow: slidesToShowXlValue,
+    slidesToScroll: slidesToShowXlValue,
     responsive: [
       {
         breakpoint: theme.breakpoints.values.md, // below md => use sm config
         settings: {
-          slidesToShow: clampSlides(slidesToShowSm ?? 1),
-          slidesToScroll: clampSlides(slidesToShowSm ?? 1),
+          slidesToShow: slidesToShowSmValue,
+          slidesToScroll: slidesToShowSmValue,
+          dots: cardCount > slidesToShowSmValue,
+          arrows: cardCount > slidesToShowSmValue,
         },
       },
       {
         breakpoint: theme.breakpoints.values.lg,
         settings: {
-          slidesToShow: clampSlides(slidesToShowMd ?? 2),
-          slidesToScroll: clampSlides(slidesToShowMd ?? 2),
+          slidesToShow: slidesToShowMdValue,
+          slidesToScroll: slidesToShowMdValue,
+          dots: cardCount > slidesToShowMdValue,
+          arrows: cardCount > slidesToShowMdValue,
         },
       },
       {
         breakpoint: theme.breakpoints.values.xl,
         settings: {
-          slidesToShow: clampSlides(slidesToShowLg ?? slidesToShow),
-          slidesToScroll: clampSlides(slidesToShowLg ?? slidesToShow),
+          slidesToShow: slidesToShowLgValue,
+          slidesToScroll: slidesToShowLgValue,
+          dots: cardCount > slidesToShowLgValue,
+          arrows: cardCount > slidesToShowLgValue,
         },
       },
     ],
@@ -153,14 +163,28 @@ export const Carousel = ({
     arrows: !showDotAndArrow,
   }
 
+  if (cardCount <= 1) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: itemHeight ? `${itemHeight}px` : 'auto',
+          mt: `${gapCarouselTop}px`,
+        }}
+      >
+        {children}
+      </Box>
+    )
+  }
+
   return (
     <Box
-      key={`${baseSlides}-${arrayChildren.length}`}
+      key={`${slidesToShowBase}-${arrayChildren.length}`}
       sx={{
         width: 'calc(100% - 100px)',
         position: `${position}`,
-        marginLeft: 'auto',
-        marginRight: 'auto',
         li: {
           margin: 0,
           button: {
@@ -195,6 +219,7 @@ export const Carousel = ({
           },
         },
         '.slick-slider': {
+          width: '100%',
           paddingLeft: innerGapToArrow,
           paddingRight: innerGapToArrow,
           marginLeft: outerGapToArrow,

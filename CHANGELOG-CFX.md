@@ -67,6 +67,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 - **App Access Management**
   - CHERRY-PICK display selected user on naviagte back from role selection [1605](https://github.com/eclipse-tractusx/portal-frontend/pull/1605)
   - Remove app provider field from App release process [PM2-2747](https://cofinity-x.atlassian.net/browse/PM2-2747)
+  - Single card display with auto width without Carousel [PM2-3334](https://cofinity-x.atlassian.net/browse/PM2-3334)
 - **Request Management**
   - Service approval/decline request toast message [PM2-3086](https://cofinity-x.atlassian.net/browse/PM2-3086)
 - **Service Subscription**
