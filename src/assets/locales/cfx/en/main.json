@@ -2340,9 +2340,6 @@
         "search": "search address / site",
         "noRowsMsg": "No site added yet. After submitting site information, data will be validated by the Cofinity-X Golden Record Service. ",
         "type": "BPN Type",
-        "bpns": "BPNS",
-        "bpna": "BPNA",
-        "bpnl": "BPNL",
         "status": "Status",
         "details": "Details"
       },
