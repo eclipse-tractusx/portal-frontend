@@ -3093,40 +3093,6 @@ d .notification-badge-text {
   }
 }
 
-.cx-wallet-subnavigation-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 5px;
-  .subnavigation {
-    width: max-content;
-    height: auto;
-    & button {
-      height: 32px;
-    }
-  }
-
-  .cx-view-selector {
-    max-height: 40px;
-
-    .MuiButtonBase-root {
-      font-size: 14px;
-
-      &:hover {
-        border-radius: 0;
-      }
-    }
-
-    .MuiButton-contained {
-      background: none;
-      border-radius: 0;
-      border-bottom: 2px solid $color-primary;
-      color: $color-primary;
-    }
-  }
-}
-
 .cx-card {
   h5 {
     line-height: 120%;

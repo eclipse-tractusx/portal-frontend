@@ -36,8 +36,6 @@ export default function WalletCard({
   const { t } = useTranslation()
   const { formatDate } = useFormattedDate()
 
-  console.log('data', wallet)
-
   const getMessge = () => {
     if (isError) {
       return {

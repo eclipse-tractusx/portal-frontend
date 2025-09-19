@@ -4,6 +4,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ## Unreleased
 
+- **Company Wallet**
+
+  - Removed "Active" & "Expired" Filters from the wallet page. Reverting the page to IO 1.2 version [CS-4185](https://cofinity-x.atlassian.net/browse/CS-4185)
+
 - **Credential Request Page**
 
   - Fixed Search bar so that its functional again [CS-3991](https://cofinity-x.atlassian.net/browse/CS-3991)
