@@ -34,10 +34,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { closeOverlay, show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'
 import './style.scss'
-import {
-  rolesToAddSelector,
-  selectedUserSelector,
-} from 'features/admin/userDeprecated/slice'
+import { rolesToAddSelector } from 'features/admin/userDeprecated/slice'
 import {
   setUserRoleResp,
   useUpdateUserRolesMutation,
@@ -49,7 +46,8 @@ import {
   setSelectedUserToAdd,
 } from 'features/admin/userDeprecated/actions'
 import { Box } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { type GridRowId, type GridRowSelectionModel } from '@mui/x-data-grid'
 
 export default function AddAppUserRoles() {
   const { t } = useTranslation()
@@ -57,17 +55,24 @@ export default function AddAppUserRoles() {
   const { appId } = useParams()
 
   const roles = useSelector(rolesToAddSelector)
-  const users = useSelector(selectedUserSelector)
+  const [userIdsUpdated, setUserIdsUpdated] = useState(true)
+  const [selectedUsers, setSelectedUsers] = useState<GridRowId[]>([])
   const [activeStep, setActiveStep] = useState(1)
   const [updateUserRoles] = useUpdateUserRolesMutation()
 
-  const handleConfirm = () => {
-    if (!appId || !users || roles.length <= 0) return
+  const handleUserSelection = (selectedIds: GridRowSelectionModel) => {
+    const userIds = Array.from(selectedIds.ids || [])
+    setSelectedUsers(userIds)
+    setUserIdsUpdated(userIds.length <= 0)
+  }
 
-    users.map(async (user) => {
+  const handleConfirm = () => {
+    if (!appId || !selectedUsers || roles.length <= 0) return
+
+    selectedUsers.map(async (user) => {
       const data: UserRoleRequest = {
         appId,
-        companyUserId: user,
+        companyUserId: user.toString(),
         body: roles,
       }
       dispatch(setRolesToAdd([]))
@@ -91,7 +96,9 @@ export default function AddAppUserRoles() {
     dispatch(setRolesToAdd([]))
     dispatch(setSelectedUserToAdd([]))
   }
-
+  useEffect(() => {
+    setSelectedUsers(selectedUsers)
+  }, [selectedUsers])
   const AddStepsList = [
     {
       headline: 'Search & Select Users',
@@ -127,7 +134,7 @@ export default function AddAppUserRoles() {
             {t('content.addUserRight.selectUsersDescription')}
           </Typography>
           <Box sx={{ mt: '46px' }}>
-            <UserListContent />
+            <UserListContent onSelectionChange={handleUserSelection} />
           </Box>
         </Box>
         <Box
@@ -160,7 +167,7 @@ export default function AddAppUserRoles() {
             onClick={() => {
               setActiveStep(2)
             }}
-            disabled={users.length <= 0}
+            disabled={userIdsUpdated} // This should work now
           >
             {t('content.addUserRight.confirmSelectedUsers')}
           </Button>
@@ -179,7 +186,7 @@ export default function AddAppUserRoles() {
               onClick={() => {
                 handleConfirm()
               }}
-              disabled={!users || roles.length <= 0}
+              disabled={userIdsUpdated || roles.length <= 0}
             >
               {t('content.addUserRight.confirmSelectedRoles')}
             </Button>
