@@ -22,9 +22,8 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { StatusTag } from '@cofinity-x/shared-components'
-import type { GridRowId } from '@mui/x-data-grid'
+import { type GridRowSelectionModel } from '@mui/x-data-grid'
 import { useTranslation } from 'react-i18next'
-import uniqueId from 'lodash/uniqueId'
 import type { TenantUser } from 'features/admin/userApiSlice'
 import { updatePartnerSelector } from 'features/control/updates'
 import { setSelectedUserToAdd } from 'features/admin/userDeprecated/actions'
@@ -39,10 +38,14 @@ interface FetchHookArgsType {
   role: boolean
 }
 
-export default function UserListContent() {
+interface UserListContentProps {
+  onSelectionChange?: (selectedIds: GridRowSelectionModel) => void
+}
+export default function UserListContent({
+  onSelectionChange,
+}: UserListContentProps) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-
   const { appId } = useParams()
 
   const [expr, setExpr] = useState<string>('')
@@ -52,9 +55,21 @@ export default function UserListContent() {
   const validateSearchText = (text: string): boolean =>
     Patterns.SEARCH.test(text.trim())
 
+  const handleSelection = (rowSelectionModel: GridRowSelectionModel) => {
+    dispatch(
+      setSelectedUserToAdd(
+        Array.isArray(rowSelectionModel) ? rowSelectionModel : []
+      )
+    )
+    if (onSelectionChange) {
+      onSelectionChange(rowSelectionModel)
+    }
+  }
+
   return (
     <PageLoadingTable<TenantUser, FetchHookArgsType>
       tableVariant={TableVariants.SERVER_SIDE}
+      hideSelectAllCheckbox={true}
       toolbarVariant={'premium'}
       columnHeadersBackgroundColor={'transparent'}
       searchExpr={expr}
@@ -66,16 +81,14 @@ export default function UserListContent() {
         setExpr(expr)
       }}
       searchDebounce={1000}
-      onSelection={(id: GridRowId[]) => {
-        dispatch(setSelectedUserToAdd(id))
-      }}
+      onRowSelectionModelChange={handleSelection}
       noRowsMsg={t('content.usermanagement.table.noRowsMsg')}
       title={t('content.usermanagement.table.title')}
       loadLabel={t('global.actions.loadmore')}
       fetchHook={useFetchAppUsersSearchQuery}
       fetchHookArgs={{ appId, expr, role: false }}
       fetchHookRefresh={refresh}
-      getRowId={(row: { [key: string]: string }) => uniqueId(row.companyUserId)}
+      getRowId={(row: TenantUser) => row.companyUserId}
       columns={[
         {
           field: 'name',

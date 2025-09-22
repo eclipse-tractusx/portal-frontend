@@ -48,6 +48,7 @@ export const PageLoadingTable = function <Row, Args>({
   callbackToPage,
   allItemsLoadedHint,
   tableVariant = TableVariants.AUTO_SCROLL,
+  hideSelectAllCheckbox = false,
   ...props
 }: PageLoadingTableProps<Row, Args>) {
   const { t } = useTranslation()
@@ -151,6 +152,7 @@ export const PageLoadingTable = function <Row, Args>({
             pageSize,
             page,
           },
+          disableColumnSelector: true,
           initialState: {
             pagination: {
               paginationModel: {
@@ -177,6 +179,15 @@ export const PageLoadingTable = function <Row, Args>({
           paginationMode={'server'}
           {...paginationProps} // Conditionally applied props
           {...props}
+          sx={{
+            ...(tableVariant === TableVariants.SERVER_SIDE &&
+              hideSelectAllCheckbox && {
+                '& .MuiDataGrid-columnHeaderCheckbox .MuiDataGrid-columnHeaderTitleContainer':
+                  {
+                    display: 'none',
+                  },
+              }),
+          }}
         />
         {items.length > 0 && loading && (
           <ProgressLoader variant={tableVariant} />

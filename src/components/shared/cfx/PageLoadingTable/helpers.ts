@@ -72,6 +72,7 @@ export interface PageLoadingTableProps<Row, Args>
   callbackToPage?: (data: PaginResult<Row>) => void
   allItemsLoadedHint?: string
   tableVariant?: TableVariants
+  hideSelectAllCheckbox?: boolean
 }
 
 export const hasMorePages = (data: PageDataProps) => {
