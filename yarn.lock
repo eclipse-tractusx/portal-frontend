@@ -441,10 +441,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-1.0.2.tgz#bbe12dca5b4ef983a0d0af4b07b9bc90ea0ababa"
   integrity sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==
 
-"@cofinity-x/shared-components@^0.7.10":
-  version "0.7.10"
-  resolved "https://npm.pkg.github.com/download/@cofinity-x/shared-components/0.7.10/92704cf8f48917fa14eff6b951db33f02059632f#92704cf8f48917fa14eff6b951db33f02059632f"
-  integrity sha512-+LiihiLtPbtoaRoYm9LZFguJkUrLaZXLQWaf90ayQ7QrWqu3S/NDQNFpDvOg7QDnyG5Ez6OhNgqd+dUt+m7wlg==
+"@cofinity-x/shared-components@^0.7.11":
+  version "0.7.11"
+  resolved "https://npm.pkg.github.com/download/@cofinity-x/shared-components/0.7.11/17dab0c6609458fa69ba3d97de08ecd7e40aa575#17dab0c6609458fa69ba3d97de08ecd7e40aa575"
+  integrity sha512-0Z1SS7QLwg6gFEsPbxu191ukzmpCcR0Gn0eb8LjofBhjVkm+dfjP5BPeaWCoBGx4F1TgV5cwcCtbVN5mCGhKOA==
   dependencies:
     "@date-io/date-fns" "^3.0.0"
     autosuggest-highlight "^3.3.4"
