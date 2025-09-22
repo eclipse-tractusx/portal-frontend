@@ -8,7 +8,6 @@ interface AppCardWithImageProps {
   item: AppMarketplaceCard | ServiceRequest
   onClick: (id: string) => void
   fullWidth?: boolean
-  tags?: string[]
 }
 type SubscriptionStatus = 'active' | 'pending' | 'inactive' | undefined
 
@@ -16,7 +15,6 @@ export const AppCardWithImage = ({
   item,
   onClick,
   fullWidth = true,
-  tags,
 }: AppCardWithImageProps) => {
   const [imageUrl, setImageUrl] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -85,7 +83,6 @@ export const AppCardWithImage = ({
           item as AppMarketplaceCard
         ).subscriptionStatus?.toLocaleLowerCase() as SubscriptionStatus
       }
-      tags={tags}
       onClick={() => {
         onClick(item.id)
       }}
