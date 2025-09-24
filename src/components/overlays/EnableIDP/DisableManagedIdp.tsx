@@ -124,6 +124,7 @@ export const DisableManagedIDP = ({ id }: { id: string }) => {
 
         {loading ? (
           <LoadingButton
+            dataTestId="disable-managed-idp-loading-button"
             color="primary"
             helperText=""
             helperTextColor="success"

@@ -21,7 +21,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Dialog,
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -191,7 +191,8 @@ export default function CSVUploadOverlay(): JSX.Element {
               )}
             </div>
             <div>
-              <Button
+              <CfxButton
+                data-testid="copy-error-response-button"
                 color="secondary"
                 onClick={async () => {
                   await navigator.clipboard.writeText(
@@ -200,13 +201,12 @@ export default function CSVUploadOverlay(): JSX.Element {
                   CopySuccess(t('content.companyData.upload.copySuccess'))
                 }}
                 size="small"
-                variant="outlined"
                 startIcon={<WarningAmberOutlinedIcon />}
                 sx={{ marginRight: '8px' }}
                 disabled={errorResponse.length === 0 || errorStatus === 500}
               >
                 {t('content.companyData.upload.copy')}
-              </Button>
+              </CfxButton>
             </div>
           </div>
         </DialogContent>
@@ -219,15 +219,16 @@ export default function CSVUploadOverlay(): JSX.Element {
               textAlign: 'center',
             }}
           >
-            <Button
-              variant="outlined"
+            <CfxButton
+              data-testid="download-template-button"
+              color="secondary"
               endIcon={<FileDownloadOutlinedIcon />}
               sx={{ fontSize: '16px' }}
               size="small"
               onClick={() => downloadTemplate()}
             >
               {t('content.companyData.upload.templateBtn')}
-            </Button>
+            </CfxButton>
           </div>
           <Dropzone
             acceptFormat={{ 'text/csv': [] }}
@@ -249,29 +250,32 @@ export default function CSVUploadOverlay(): JSX.Element {
       )}
       {success && (
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="close-csv-upload-button"
+            color="secondary"
             onClick={() => {
               handleClose()
             }}
           >
             {t('global.actions.close')}
-          </Button>
+          </CfxButton>
         </DialogActions>
       )}
       {!success && !error && (
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="close-csv-upload-button"
+            color="secondary"
             onClick={() => {
               handleClose()
             }}
           >
             {t('global.actions.close')}
-          </Button>
+          </CfxButton>
 
           {loading ? (
             <LoadingButton
+              data-testid="submit-csv-upload-loading-button"
               color="primary"
               helperText=""
               helperTextColor="success"
@@ -285,13 +289,14 @@ export default function CSVUploadOverlay(): JSX.Element {
               sx={{ marginLeft: '10px' }}
             />
           ) : (
-            <Button
+            <CfxButton
+              data-testid="submit-csv-upload-button"
               variant="contained"
               onClick={handleSubmit}
               disabled={uploadedFile === undefined}
             >
               {t('global.actions.submit')}
-            </Button>
+            </CfxButton>
           )}
         </DialogActions>
       )}

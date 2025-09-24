@@ -20,7 +20,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { Typography, useMediaQuery, useTheme } from '@mui/material'
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogContent,
   DialogActions,
@@ -84,9 +84,14 @@ const RegistrationReviewOverlay = ({
             ></Trans>
           }
         >
-          <Button variant="contained" size="small" onClick={handleOverlayClose}>
+          <CfxButton
+            data-testid="registration-review-close-button"
+            color="secondary"
+            size="small"
+            onClick={handleOverlayClose}
+          >
             {t('global.actions.close')}
-          </Button>
+          </CfxButton>
         </DialogActions>
       </Dialog>
     </div>

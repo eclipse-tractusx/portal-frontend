@@ -157,6 +157,7 @@ export default function ActivateserviceSubscription({
       </DialogContent>
       <DialogActions>
         <CfxButton
+          data-testid="activate-service-subscription-close-button"
           color="secondary"
           onClick={() => {
             handleOverlayClose()
@@ -166,6 +167,7 @@ export default function ActivateserviceSubscription({
         </CfxButton>
         {loading ? (
           <LoadingButton
+            dataTestId="activate-service-subscription-confirm-loading-button"
             color="primary"
             helperText=""
             helperTextColor="success"
@@ -179,7 +181,11 @@ export default function ActivateserviceSubscription({
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <CfxButton variant="contained" onClick={() => handleConfrim()}>
+          <CfxButton
+            data-testid="activate-service-subscription-confirm-button"
+            variant="contained"
+            onClick={() => handleConfrim()}
+          >
             {t('serviceSubscription.register.confirm')}
           </CfxButton>
         )}

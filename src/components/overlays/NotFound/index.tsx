@@ -20,7 +20,7 @@
 
 import NotFoundContent from 'components/pages/NotFound/NotFoundContent'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -49,9 +49,13 @@ export default function NotFound() {
       </DialogContent>
 
       <DialogActions>
-        <Button variant="contained" onClick={close}>
+        <CfxButton
+          data-testid="notfound-close-button"
+          color="secondary"
+          onClick={close}
+        >
           {`${t('global.actions.close')}`}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </>
   )

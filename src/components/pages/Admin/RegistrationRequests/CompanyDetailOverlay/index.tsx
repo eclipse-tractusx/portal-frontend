@@ -25,7 +25,7 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
-  Button,
+  CfxButton,
   Tabs,
   Tab,
   TabPanel,
@@ -440,9 +440,13 @@ const CompanyDetailOverlay = ({
           </DialogContent>
         )}
         <DialogActions>
-          <Button variant="contained" onClick={handleOverlayClose}>
+          <CfxButton
+            data-testid="company-detail-overlay-close-button"
+            color="secondary"
+            onClick={handleOverlayClose}
+          >
             {t('global.actions.close')}
-          </Button>
+          </CfxButton>
         </DialogActions>
       </Dialog>
     </div>

@@ -121,6 +121,7 @@ export const DeleteManagedIDP = ({ id }: { id: string }) => {
         </CfxButton>
         {loadingButton ? (
           <LoadingButton
+            dataTestId="delete-managed-idp-loading-button"
             color="primary"
             label=""
             helperTextColor="success"

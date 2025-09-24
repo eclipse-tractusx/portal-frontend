@@ -24,7 +24,7 @@ import {
   DialogHeader,
   DialogActions,
   Typography,
-  Button,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useDispatch } from 'react-redux'
 import { exec } from 'features/control/overlay'
@@ -65,12 +65,13 @@ const RegistrationDeclinedOverlay = ({
         </div>
       </DialogContent>
       <DialogActions helperText={t('content.registrationInreview.helperText')}>
-        <Button
-          variant="contained"
+        <CfxButton
+          data-testid="registration-declined-close-button"
+          color="secondary"
           onClick={() => dispatch(exec(ACTIONS.SIGNOUT))}
         >
           {t('content.registrationDeclined.close')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </Dialog>
   )

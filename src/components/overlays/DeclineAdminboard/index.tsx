@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -106,11 +106,16 @@ export default function DeclineAdminBoard({
       </DialogContent>
 
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <CfxButton
+          data-testid="decline-adminboard-close-button"
+          color="secondary"
+          onClick={() => dispatch(closeOverlay())}
+        >
           {closeBtn}
-        </Button>
+        </CfxButton>
         {loading ? (
           <LoadingButton
+            dataTestId="decline-adminboard-loading-button"
             color="primary"
             helperText=""
             helperTextColor="success"
@@ -124,7 +129,8 @@ export default function DeclineAdminBoard({
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
+          <CfxButton
+            data-testid="decline-adminboard-button"
             variant="contained"
             onClick={() => {
               setLoading(true)
@@ -132,7 +138,7 @@ export default function DeclineAdminBoard({
             }}
           >
             {confirmBtn}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </div>

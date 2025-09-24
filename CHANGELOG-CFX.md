@@ -22,6 +22,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   - Add missing test ids
   - Add Marketplace App Preview to Validate and Publish step
   - Integrate Cfx Button in OSP Onboarding Management page [PM2-3421](https://cofinity-x.atlassian.net/browse/PM2-3421)
+  - Replace additional buttons with Cfx Buttons and add missing data-testids [PM2-3419](https://cofinity-x.atlassian.net/browse/PM2-3419)
 
 - **Marketplace**
 

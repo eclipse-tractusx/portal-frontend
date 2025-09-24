@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { store } from 'features/store'
 import { Trans, useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -399,9 +399,13 @@ export default function AddMultipleUser() {
               }
               download
             >
-              <Button variant="outlined" size="small">
+              <CfxButton
+                data-testid="add-multiple-user-step1-button"
+                color="secondary"
+                size="small"
+              >
                 {t('content.usermanagement.addMultipleUsers.step1.buttonLabel')}
-              </Button>
+              </CfxButton>
             </a>
           </div>
           <div className="secondStep backgroundSection">
@@ -458,16 +462,18 @@ export default function AddMultipleUser() {
         </DialogContent>
 
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="add-multiple-user-cancel-button"
+            color="secondary"
             onClick={() => dispatch(show(OVERLAYS.NONE))}
             sx={{ textTransform: 'none' }}
           >
             {isSuccess ? t('global.actions.close') : t('global.actions.cancel')}
-          </Button>
+          </CfxButton>
           {!isSuccess &&
             (loading ? (
               <LoadingButton
+                data-testid="add-multiple-user-confirm-loading-button"
                 color="primary"
                 helperText=""
                 helperTextColor="success"
@@ -481,7 +487,8 @@ export default function AddMultipleUser() {
                 sx={{ marginLeft: '10px', textTransform: 'none' }}
               />
             ) : (
-              <Button
+              <CfxButton
+                data-testid="add-multiple-user-confirm-button"
                 variant="contained"
                 onClick={handleConfirm}
                 disabled={
@@ -493,7 +500,7 @@ export default function AddMultipleUser() {
                 {isError
                   ? t('global.actions.exit')
                   : t('global.actions.confirm')}
-              </Button>
+              </CfxButton>
             ))}
         </DialogActions>
       </>
@@ -510,14 +517,15 @@ export default function AddMultipleUser() {
         description={
           <>
             {t('content.usermanagement.addUsers.error')}
-            <Button
+            <CfxButton
+              data-testid="add-multiple-user-error-button"
               sx={{ mt: 2, mb: 1, float: 'right' }}
               size="small"
               onClick={() => refetch()}
               endIcon={<ArrowForwardIcon />}
             >
               {t('error.tryAgain')}
-            </Button>
+            </CfxButton>
           </>
         }
         showIcon={true}

@@ -306,8 +306,8 @@ export const AddIdp = () => {
       </DialogContent>
       <DialogActions>
         <CfxButton
-          color="secondary"
           data-testid="cancel-idp-button"
+          color="secondary"
           onClick={() => {
             resetState()
             dispatch(closeOverlay())

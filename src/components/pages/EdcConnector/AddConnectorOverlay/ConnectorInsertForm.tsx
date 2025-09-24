@@ -23,7 +23,7 @@ import { Box } from '@mui/material'
 import { Controller } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import {
-  Button,
+  CfxButton,
   DropArea,
   type DropAreaProps,
   Input,
@@ -412,10 +412,10 @@ any) => {
                     'content.edcconnector.modal.createNewTechnicalUserDescription'
                   )}
                 </Typography>
-                <Button
+                <CfxButton
                   data-testid="technical-user-add-button"
+                  color="secondary"
                   size="small"
-                  sx={{ backgroundColor: '#4D4D4D' }}
                   onClick={() => {
                     navigate(
                       `/${PAGES.TECH_USER_MANAGEMENT}?overlay=${OVERLAYS.ADD_TECH_USER}`,
@@ -426,7 +426,7 @@ any) => {
                   }}
                 >
                   {t('content.edcconnector.modal.createNewTechnicalUserBtn')}
-                </Button>
+                </CfxButton>
               </div>
             )}
             <Box

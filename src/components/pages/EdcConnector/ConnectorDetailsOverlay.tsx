@@ -20,7 +20,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
-  Button,
+  CfxButton,
   DialogActions,
   DialogHeader,
   Input,
@@ -29,7 +29,6 @@ import {
   CircleProgress,
   LoadingButton,
   IconButton,
-  CfxButton,
 } from '@cofinity-x/shared-components'
 import {
   type ConnectorDetailsType,
@@ -247,8 +246,9 @@ const ConnectorDetailsOverlay = ({
             )}
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="outlined"
+            <CfxButton
+              data-testid="connector-details-close-button"
+              color="secondary"
               onClick={(e) => {
                 setOpenApiErrorModal(false)
                 handleOverlayClose(e)
@@ -256,7 +256,7 @@ const ConnectorDetailsOverlay = ({
               }}
             >
               {t('global.actions.close')}
-            </Button>
+            </CfxButton>
             {apiErrorStatus === '4xx' &&
               (isFetching ? (
                 <LoadingButton
@@ -270,14 +270,15 @@ const ConnectorDetailsOverlay = ({
                   loadIndicator="Loading..."
                 />
               ) : (
-                <Button
-                  variant="outlined"
+                <CfxButton
+                  data-testid="connector-details-reload-button"
+                  color="secondary"
                   onClick={() => {
                     refetch()
                   }}
                 >
                   {t('content.edcconnector.details.reload')}
-                </Button>
+                </CfxButton>
               ))}
           </DialogActions>
         </Dialog>
@@ -331,7 +332,7 @@ const ConnectorDetailsOverlay = ({
                   <CfxButton
                     data-testid="connector-details-learn-button"
                     onClick={() => {}}
-                    variant="outlined"
+                    color="secondary"
                     size="small"
                     disabled
                   >
@@ -411,8 +412,8 @@ const ConnectorDetailsOverlay = ({
                         }}
                       >
                         <CfxButton
-                          color="secondary"
                           data-testid="connector-details-cancel-button"
+                          color="secondary"
                           onClick={() => {
                             setEnableConnectorUrl(true)
                             setConnectorUrlValue(
@@ -426,6 +427,7 @@ const ConnectorDetailsOverlay = ({
                         </CfxButton>
                         {confirmLoading ? (
                           <LoadingButton
+                            dataTestId="connector-details-submit-loading-button"
                             size="small"
                             variant="contained"
                             onButtonClick={() => {
@@ -519,6 +521,7 @@ const ConnectorDetailsOverlay = ({
                             sx={{ color: '#9c9c9c', mr: 1 }}
                           />
                           <button
+                            data-testid="connector-details-download-button"
                             className="document-button-link"
                             onClick={() =>
                               fetchConnectorDetails?.selfDescriptionDocumentId &&

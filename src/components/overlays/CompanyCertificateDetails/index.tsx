@@ -20,7 +20,7 @@
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -207,12 +207,13 @@ export default function CompanyCertificateDetails({
                 </Typography>
               </Box>
               <Box>
-                <Button
+                <CfxButton
+                  data-testid="close-company-certificate-details-button"
                   disabled={
                     !userHasPortalRole(ROLES.SUBSCRIBE_SERVICE_MARKETPLACE)
                   }
                   startIcon={<DeleteIcon />}
-                  variant="outlined"
+                  color="secondary"
                   size="small"
                   onClick={() => {
                     dispatch(closeOverlay())
@@ -226,7 +227,7 @@ export default function CompanyCertificateDetails({
                   }}
                 >
                   {t('content.companyCertificate.details.deletebutton')}
-                </Button>
+                </CfxButton>
               </Box>
             </Box>
           </Box>
@@ -252,9 +253,13 @@ export default function CompanyCertificateDetails({
       )}
 
       <DialogActions>
-        <Button variant="outlined" onClick={close}>
+        <CfxButton
+          data-testid="close-company-certificate-details-button"
+          color="secondary"
+          onClick={close}
+        >
           {t('global.actions.close')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </Dialog>
   )

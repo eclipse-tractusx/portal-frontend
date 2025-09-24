@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -80,17 +80,17 @@ export default function AppOverViewConfirm({
       </DialogContent>
 
       <DialogActions>
-        <Button
+        <CfxButton
           data-testid="app-overview-cancel-button"
           sx={{
             minWidth: '100px',
           }}
-          variant="outlined"
+          color="secondary"
           onClick={close}
         >
           {`${t('global.actions.no')}`}
-        </Button>
-        <Button
+        </CfxButton>
+        <CfxButton
           data-testid="app-overview-confirm-button"
           sx={{
             mr: '2',
@@ -103,7 +103,7 @@ export default function AppOverViewConfirm({
           }}
         >
           {`${t('global.actions.yes')}`}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </div>
   )

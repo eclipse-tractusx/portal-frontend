@@ -20,7 +20,7 @@
 
 import { Trans, useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -165,14 +165,16 @@ export const EnableIDP = ({ id }: { id: string }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button
-          variant="outlined"
+        <CfxButton
+          data-testid="enable-idp-back-button"
+          color="secondary"
           onClick={() => dispatch(show(OVERLAYS.UPDATE_IDP, id))}
         >
           {t('action.back')}
-        </Button>
+        </CfxButton>
         {loading ? (
           <LoadingButton
+            dataTestId="enable-idp-loading-button"
             color="primary"
             helperText=""
             helperTextColor="success"
@@ -186,7 +188,8 @@ export const EnableIDP = ({ id }: { id: string }) => {
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button
+          <CfxButton
+            data-testid="enable-idp-button"
             variant="contained"
             disabled={
               !(!!id && !!data?.companyUserId && !!idpEnableData?.userId)
@@ -194,7 +197,7 @@ export const EnableIDP = ({ id }: { id: string }) => {
             onClick={doEnableIDP}
           >
             {t('action.connect')}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </>
