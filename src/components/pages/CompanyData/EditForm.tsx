@@ -27,7 +27,7 @@ import {
   Typography,
 } from '@cofinity-x/shared-components'
 import { Box } from '@mui/material'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { FormFields } from './FormFields'
 import { useTranslation } from 'react-i18next'
 import {
@@ -46,7 +46,7 @@ import {
 } from 'features/companyData/slice'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import { cloneDeep, isEqual } from 'lodash'
+import { cloneDeep } from 'lodash'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'
 
 interface FormDetailsProps {
@@ -144,10 +144,6 @@ export default function EditForm({
     }
     setLoading(false)
   }
-  // const isDataUnchanged = () => isEqual(input, inputParams)
-  const isDataUnchanged = useMemo(() => {
-    return isEqual(input, inputParams)
-  }, [input, inputParams])
 
   const handleCreation = async () => {
     try {
@@ -156,6 +152,7 @@ export default function EditForm({
         .then((response) => {
           inputParams = cloneDeep(input)
           updateStateToReady(response)
+          setIsValid(false)
         })
     } catch (e) {
       setError(true)
@@ -210,7 +207,7 @@ export default function EditForm({
           </Button>
           {!loading && (
             <Button
-              disabled={!isValid || isDataUnchanged}
+              disabled={!isValid}
               variant="contained"
               onClick={handleSubmit}
             >
