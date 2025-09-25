@@ -74,8 +74,8 @@ const BasicFormTest = () => {
         hint={'specify a valid email address'}
         errorMessage={error ? 'invalid email address' : undefined}
         value={mailValue}
-        onValue={(value?: string) => {
-          setMailValue(value ?? '')
+        onValue={(data: { value: string; isValChanged: boolean }) => {
+          setMailValue(data.value ?? '')
         }}
       />
       <BasicInput
@@ -86,8 +86,8 @@ const BasicFormTest = () => {
         errorMessage={
           error ? 'password length must be at least 8 characters' : undefined
         }
-        onValue={(value?: string) => {
-          console.log(value)
+        onValue={(data: { value: string; isValChanged: boolean }) => {
+          setMailValue(data.value ?? '')
         }}
       />
       <pre
