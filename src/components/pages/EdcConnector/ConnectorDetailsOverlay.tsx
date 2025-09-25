@@ -172,10 +172,8 @@ const ConnectorDetailsOverlay = ({
 
   const validateURL = (value: string) => {
     setConnectorUrlValue(value)
-    if (!Patterns.DSP_URL.test(value.trim())) {
-      setUrlErrorMsg(
-        t('content.edcconnector.modal.insertform.url.patternError')
-      )
+    if (!Patterns.URL.test(value.trim())) {
+      setUrlErrorMsg(t('content.edcconnector.details.pleaseEnterValidURL'))
     } else {
       setUrlErrorMsg('')
     }

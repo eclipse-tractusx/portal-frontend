@@ -24,7 +24,6 @@ import {
   isDomain,
   isMail,
   isURL,
-  isDspURL,
   isUUID,
   isCName,
   isCountryCode,
@@ -154,23 +153,6 @@ const TESTDATA = {
       'http://hostname.domain:12345/endwith/slash/',
       'https://my.domain:not_a_port/path/okay',
       'https://user:password@host.domain:1234/not/accepted/',
-    ],
-  },
-  DSP_URL: {
-    valid: [
-      'https://hostname.domain.com/api/v1/dsp',
-      'https://hostname.domain.com/api/v2/dsp',
-    ],
-    invalid: [
-      'word',
-      'some string',
-      ' https://www.bmw.com',
-      'ftp://my.server/file',
-      'https://www.bmw.com',
-      'https://:123/path',
-      'http://hostname.domain:12345/endwith/slash/',
-      'https://my.domain:not_a_port/path/okay',
-      'https://hostname.domain.com/api/v2/',
     ],
   },
   UUID: {
@@ -355,15 +337,6 @@ describe('Input Pattern Tests', () => {
     })
     TESTDATA.URL.invalid.forEach((expr) => {
       expect(isURL(expr)).toBe(false)
-    })
-  })
-
-  it('validates Connector URLs', () => {
-    TESTDATA.DSP_URL.valid.forEach((expr) => {
-      expect(isDspURL(expr)).toBe(true)
-    })
-    TESTDATA.DSP_URL.invalid.forEach((expr) => {
-      expect(isDspURL(expr)).toBe(false)
     })
   })
 

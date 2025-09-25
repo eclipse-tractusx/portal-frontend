@@ -485,7 +485,7 @@ any) => {
             errors,
             type: 'input',
             name: ConnectorFormFields.ConnectorURL,
-            pattern: Patterns.DSP_URL,
+            pattern: Patterns.URL,
             rules: {
               required: t(
                 'content.edcconnector.modal.insertform.url.mandatoryError'
