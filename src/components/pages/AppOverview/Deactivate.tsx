@@ -136,6 +136,7 @@ export default function Deactivate() {
               <span style={{ position: 'absolute', right: '10px' }}>
                 {isLoading ? (
                   <LoadingButton
+                    dataTestId="app-deactivate-confirm-loading-button"
                     size="small"
                     loading={isLoading}
                     variant="contained"

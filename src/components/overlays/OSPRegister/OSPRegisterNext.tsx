@@ -20,7 +20,7 @@
 
 import { Trans, useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   DialogActions,
   DialogContent,
   DialogHeader,
@@ -80,9 +80,13 @@ export const OSPRegisterNext = ({ id }: { id: string }) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => dispatch(closeOverlay())} variant="outlined">
+        <CfxButton
+          data-testid="osp-register-next-close-button"
+          color="secondary"
+          onClick={() => dispatch(closeOverlay())}
+        >
           {t('action.close')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </>
   )

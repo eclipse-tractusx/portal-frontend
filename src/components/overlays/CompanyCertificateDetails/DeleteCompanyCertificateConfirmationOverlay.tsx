@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
-  Button,
+  CfxButton,
   DialogActions,
   DialogHeader,
   LoadingButton,
@@ -99,11 +99,16 @@ export default function DeleteCompanyCertificateConfirmationOverlay({
         <DialogActions>
           {!success && !error ? (
             <>
-              <Button variant="outlined" onClick={close}>
+              <CfxButton
+                data-testid="delete-company-certificate-confirmation-cancel-button"
+                color="secondary"
+                onClick={close}
+              >
                 {t('global.actions.cancel')}
-              </Button>
+              </CfxButton>
               {loading ? (
                 <LoadingButton
+                  dataTestId="delete-company-certificate-confirmation-loading-button"
                   color="primary"
                   helperText=""
                   helperTextColor="success"
@@ -117,15 +122,23 @@ export default function DeleteCompanyCertificateConfirmationOverlay({
                   sx={{ marginLeft: '10px' }}
                 />
               ) : (
-                <Button variant="contained" onClick={onDelete}>
+                <CfxButton
+                  data-testid="delete-company-certificate-confirmation-button"
+                  variant="contained"
+                  onClick={onDelete}
+                >
                   {t('global.actions.confirm')}
-                </Button>
+                </CfxButton>
               )}
             </>
           ) : (
-            <Button variant="outlined" onClick={close}>
+            <CfxButton
+              data-testid="delete-company-certificate-confirmation-close-button"
+              color="secondary"
+              onClick={close}
+            >
               {t('global.actions.close')}
-            </Button>
+            </CfxButton>
           )}
         </DialogActions>
       </Dialog>

@@ -20,7 +20,7 @@
 
 import { Trans, useTranslation } from 'react-i18next'
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -202,15 +202,20 @@ export const EnableIDPSuccess = ({ id }: { id: string }) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+        <CfxButton
+          data-testid="enable-idp-success-notnow-button"
+          color="secondary"
+          onClick={() => dispatch(closeOverlay())}
+        >
           {t('action.notnow')}
-        </Button>
-        <Button
+        </CfxButton>
+        <CfxButton
+          data-testid="enable-idp-success-signout-button"
           variant="contained"
           onClick={() => dispatch(exec(ACTIONS.SIGNOUT))}
         >
           {t('action.signout')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </Dialog>
   )

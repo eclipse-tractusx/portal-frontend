@@ -21,7 +21,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import {
-  Button,
+  CfxButton,
   Chip,
   DialogActions,
   DialogContent,
@@ -211,9 +211,13 @@ export default function UpdateCertificate() {
             </div>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            <CfxButton
+              data-testid="update-certificate-success-close-button"
+              color="secondary"
+              onClick={() => dispatch(closeOverlay())}
+            >
               {t('global.actions.close')}
-            </Button>
+            </CfxButton>
           </DialogActions>
         </Dialog>
       ) : (
@@ -294,12 +298,17 @@ export default function UpdateCertificate() {
             </div>
           </DialogContent>
           <DialogActions>
-            <Button variant="outlined" onClick={() => dispatch(closeOverlay())}>
+            <CfxButton
+              data-testid="update-certificate-close-button"
+              color="secondary"
+              onClick={() => dispatch(closeOverlay())}
+            >
               {t('global.actions.close')}
-            </Button>
+            </CfxButton>
 
             {loading ? (
               <LoadingButton
+                dataTestId="update-certificate-loading-button"
                 color="primary"
                 helperText=""
                 helperTextColor="success"
@@ -313,13 +322,14 @@ export default function UpdateCertificate() {
                 sx={{ marginLeft: '10px' }}
               />
             ) : (
-              <Button
+              <CfxButton
+                data-testid="update-certificate-button"
                 variant="contained"
                 onClick={handleSubmit}
                 disabled={uploadedFile === undefined || !selectedCertificate}
               >
                 {t('global.actions.submit')}
-              </Button>
+              </CfxButton>
             )}
           </DialogActions>
         </>

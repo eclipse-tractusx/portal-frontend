@@ -21,7 +21,7 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -74,16 +74,17 @@ export const ServerResponseOverlay = ({
           <Box>{children}</Box>
         </DialogContent>
         <DialogActions>
-          <Button
+          <CfxButton
+            data-testid="server-response-close-button"
+            color="secondary"
             sx={{ minWidth: '80px', height: '44px' }}
-            variant="outlined"
             onClick={() => {
               setOpen(false)
               if (handleCallback) handleCallback()
             }}
           >
             {closeButtonText ? t(closeButtonText) : t('global.actions.close')}
-          </Button>
+          </CfxButton>
         </DialogActions>
       </Dialog>
     </div>

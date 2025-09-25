@@ -26,12 +26,11 @@ import {
   Tab,
   TabPanel,
   DialogActions,
-  Button,
+  CfxButton,
   DialogHeader,
   DialogContent,
   Dialog,
   LoadingButton,
-  CfxButton,
 } from '@cofinity-x/shared-components'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box, Divider } from '@mui/material'
@@ -352,13 +351,13 @@ const OnboardingServiceProvider = () => {
         <TabPanel value={activeTab} index={0}>
           <div className="connector-table-container">
             <Box sx={{ display: 'flex', justifyContent: 'center', p: '20px' }}>
-              <Button
+              <CfxButton
+                data-testid="add-idp-button"
                 size="small"
                 onClick={() => dispatch(show(OVERLAYS.ADD_IDP))}
-                className="add-idp-btn"
               >
                 {t('content.onboardingServiceProvider.addIdentityProvider')}
-              </Button>
+              </CfxButton>
             </Box>
             {/* <Typography variant="h5">
               {t('content.onboardingServiceProvider.userList')}

@@ -44,7 +44,7 @@ export type BasicInputProps = {
   hint?: string
   placeholder?: string
   value?: string
-  onValue?: (value: string) => void
+  onValue?: (data: BasicInputValue) => void
   type?: InputType
   disabled?: boolean
   toggleHide?: boolean
@@ -53,7 +53,10 @@ export type BasicInputProps = {
   valid?: boolean
   required?: boolean
 }
-
+export type BasicInputValue = {
+  value: string
+  isValChanged: boolean
+}
 const BasicInputStyle = {
   fontFamily:
     'LibreFranklin-Light, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -100,7 +103,10 @@ const BasicInput = ({
 
   useEffect(() => {
     if (value !== '') {
-      onValue?.(value)
+      onValue?.({
+        value,
+        isValChanged: false,
+      })
     }
   }, [value])
 
@@ -158,8 +164,12 @@ const BasicInput = ({
           type={hidden ? InputType.password : InputType.text}
           defaultValue={value}
           disabled={disabled}
-          onKeyUp={() => {
-            onValue?.(ref.current?.value ?? '')
+          onChange={() => {
+            const val = ref.current?.value ?? ''
+            onValue?.({
+              value: val,
+              isValChanged: val !== (value ?? ''),
+            })
           }}
           onBlur={() => {
             setFocus(false)

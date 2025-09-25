@@ -147,6 +147,7 @@ export const UpdateIDP = ({ id }: { id: string }) => {
         </CfxButton>
         {loading ? (
           <LoadingButton
+            dataTestId="update-idp-loading-button"
             color="primary"
             size="medium"
             helperText=""
