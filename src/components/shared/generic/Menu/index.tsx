@@ -18,6 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+import React from 'react'
 import { Box, type BoxProps, Divider, List, useTheme } from '@mui/material'
 import uniqueId from 'lodash/uniqueId'
 import { MenuItem, type MenuItemProps } from './MenuItem'
@@ -55,13 +56,8 @@ export const Menu = ({
         {items?.map((item, index) => {
           if (item.children) {
             return (
-              <>
-                <MenuItem
-                  title={item.title}
-                  key={uniqueId('Menu')}
-                  isHeader={true}
-                  component={Box}
-                />
+              <React.Fragment key={uniqueId('MenuGroup')}>
+                <MenuItem title={item.title} isHeader={true} component={Box} />
                 {item.children.map((childItem) => {
                   const isActive =
                     location.pathname === childItem.to ||
@@ -83,7 +79,7 @@ export const Menu = ({
                 {subMenuDivider && index + 1 !== items.length && (
                   <Divider sx={{ margin: spacing(1, 1) }} />
                 )}
-              </>
+              </React.Fragment>
             )
           }
           const isActive =

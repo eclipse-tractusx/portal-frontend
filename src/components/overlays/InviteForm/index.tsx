@@ -21,7 +21,7 @@
 import './style.scss'
 import type { InviteData } from 'features/admin/registration/types'
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogActions,
   DialogContent,
@@ -130,14 +130,15 @@ export const InviteForm = ({
         </form>
       </DialogContent>
       <DialogActions>
-        <Button
+        <CfxButton
+          data-testid="invite-form-cancel-button"
           variant="outlined"
           onClick={(e) => {
             handleOverlayClose(e)
           }}
         >
           {`${t('global.actions.cancel')}`}
-        </Button>
+        </CfxButton>
         {state === ProcessingType.BUSY ? (
           <LoadingButton
             color="primary"
@@ -153,9 +154,14 @@ export const InviteForm = ({
             sx={{ marginLeft: '10px' }}
           />
         ) : (
-          <Button name="send" disabled={inpValid[4]} onClick={doSubmit}>
+          <CfxButton
+            data-testid="invite-form-invite-button"
+            name="send"
+            disabled={inpValid[4]}
+            onClick={doSubmit}
+          >
             {`${t('content.invite.inviteButton')}`}
-          </Button>
+          </CfxButton>
         )}
       </DialogActions>
     </Dialog>

@@ -18,17 +18,18 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
-import { Tooltips, Typography } from '@cofinity-x/shared-components'
+import {
+  Tooltips,
+  Typography,
+  CfxButton,
+  CfxFormControl,
+  CfxFormControlLabel,
+  CfxRadio,
+  CfxRadioGroup,
+  cfxLightTheme,
+} from '@cofinity-x/shared-components'
 import './style.scss'
 import Overlay from './Overlay'
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  useTheme,
-} from '@mui/material'
 import {
   useFetchUsecaseQuery,
   type VerifiedCredentialsData,
@@ -49,7 +50,6 @@ interface SelectedCredentialData {
 export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const theme = useTheme()
   const { data, refetch, isLoading } = useFetchUsecaseQuery('Active')
   const [selectedCredential, setSelectedCredential] =
     useState<SelectedCredentialData | null>(null)
@@ -149,29 +149,30 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
     if (!data?.length) return null
 
     return (
-      <FormControl component="fieldset">
-        <RadioGroup
+      <CfxFormControl component="fieldset">
+        <CfxRadioGroup
           value={selectedCredential?.credential.externalDetailData.id}
           onChange={handleCredentialSelection}
         >
           {data.flatMap((item) =>
             item.verifiedCredentials.map((credential) => (
-              <FormControlLabel
+              <CfxFormControlLabel
                 key={credential.externalDetailData.id}
                 value={credential.externalDetailData.id}
-                control={<Radio />}
+                control={<CfxRadio />}
                 label={renderCredentialData(credential)}
               />
             ))
           )}
-        </RadioGroup>
-      </FormControl>
+        </CfxRadioGroup>
+      </CfxFormControl>
     )
   }
 
   return (
     <div className="subnavigation">
-      <Button
+      <CfxButton
+        data-testid="company-wallet-subnavigation-button4"
         key={t('content.companyWallet.subnavigation.button4')}
         onClick={() => {
           setOpenDialog(true)
@@ -179,12 +180,12 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
         variant="text"
         size="medium"
         sx={{
-          backgroundColor: theme.palette.primary.main,
-          color: theme.palette.common.white,
+          backgroundColor: cfxLightTheme.palette.primary.main,
+          color: cfxLightTheme.palette.common.white,
           fontSize: '16px',
           fontWeight: '600',
           '&:hover': {
-            backgroundColor: theme.palette.primary.dark,
+            backgroundColor: cfxLightTheme.palette.primary.dark,
           },
         }}
       >
@@ -198,7 +199,7 @@ export default function ComapnyWalletSubNavigationHeader(): JSX.Element {
           }}
         />
         {t('content.companyWallet.subnavigation.button4')}
-      </Button>
+      </CfxButton>
       <Overlay
         loading={isLoading}
         title={t('content.companyWallet.subnavigation.button1')}

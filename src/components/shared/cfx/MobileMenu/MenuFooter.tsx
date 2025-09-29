@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { LanguageSwitch, Button } from '@cofinity-x/shared-components'
+import { LanguageSwitch, CfxButton } from '@cofinity-x/shared-components'
 import { useDispatch } from 'react-redux'
 import i18next, { changeLanguage, t } from 'i18next'
 import I18nService from 'services/I18nService'
@@ -46,9 +46,9 @@ export const MenuFooter = (): JSX.Element => {
         }}
       />
       <Box sx={{ pr: 1 }}>
-        <Button
+        <CfxButton
+          data-testid="menu-footer-help-button"
           size="small"
-          color="secondary"
           variant="outlined"
           onClick={() => {
             window.open(HELP_LINK(), 'documentation', 'noreferrer')
@@ -56,7 +56,7 @@ export const MenuFooter = (): JSX.Element => {
           className="documentation"
         >
           {t('pages.help')}
-        </Button>
+        </CfxButton>
       </Box>
     </Box>
   )

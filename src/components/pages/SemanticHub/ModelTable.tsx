@@ -229,6 +229,7 @@ const ModelTable = ({ onModelSelect }: ModelTableProps) => {
       <div className="load-more-button-container">
         {modelList.totalItems > models.length && !loadingModelList && (
           <LoadMoreButton
+            dataTestId="semantic-hub-load-more-button"
             onClick={() => {
               onLoadMore()
             }}

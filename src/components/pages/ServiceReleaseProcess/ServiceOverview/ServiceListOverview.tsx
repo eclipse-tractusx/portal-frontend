@@ -322,7 +322,11 @@ export default function ServiceListOverview() {
         }}
       >
         {data?.meta && data?.meta?.totalPages > page + 1 && (
-          <LoadMoreButton onClick={nextPage} label={t('loadmore')} />
+          <LoadMoreButton
+            dataTestId="service-overview-load-more-button"
+            onClick={nextPage}
+            label={t('loadmore')}
+          />
         )}
       </div>
 

@@ -20,7 +20,11 @@
 
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Button, ImageGallery, Typography } from '@cofinity-x/shared-components'
+import {
+  CfxButton,
+  ImageGallery,
+  Typography,
+} from '@cofinity-x/shared-components'
 import BoardHeader from './BoardHeader'
 import BoardDocuments from './BoardDocuments'
 import BoardProvider from './BoardProvider'
@@ -89,7 +93,8 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
         <BoardTechnicalUserSetup item={item} />
         <div className="divider-height" />
         <BoardProvider item={item} />
-        <Button
+        <CfxButton
+          data-testid="admin-board-detail-back-to-board-button"
           color="secondary"
           size="small"
           onClick={() => {
@@ -97,7 +102,7 @@ export default function BoardContentDetails({ item }: { item: AppDetails }) {
           }}
         >
           {t('content.adminboardDetail.backToBoard')}
-        </Button>
+        </CfxButton>
       </>
     )
   )

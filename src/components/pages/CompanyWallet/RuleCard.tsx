@@ -111,11 +111,11 @@ export default function RuleCard({
               <Grid
                 size={{ xs: 4, sm: 4, md: 4 }}
                 className="main-rule-card-container"
-                key={item.expiryDate ?? index}
+                key={`${item.credentialDetailId}-${index}`}
               >
                 <Box className="gradient-container">
                   <Box
-                    key={item.expiryDate ?? index}
+                    key={`${item.credentialDetailId}-inner-${index}`}
                     className={`rule-card-container ${
                       item?.status === CredentialSubjectStatus.INACTIVE ||
                       item?.status === CredentialSubjectStatus.REVOKED

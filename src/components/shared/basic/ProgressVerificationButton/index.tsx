@@ -20,7 +20,7 @@
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
 import {
-  Button,
+  CfxButton,
   CircleProgress,
   CustomAccordion,
   Input,
@@ -487,7 +487,8 @@ export const ProgressVerificationButton = ({
                             </span>
                           )}
                           {!retriggerLoading && (
-                            <Button
+                            <CfxButton
+                              data-testid="progress-verification-retrigger-button"
                               onClick={() => {
                                 onRetrigger()
                               }}
@@ -495,11 +496,12 @@ export const ProgressVerificationButton = ({
                               variant="contained"
                             >
                               {getButtonTitle()}
-                            </Button>
+                            </CfxButton>
                           )}
                         </div>
                         <div>
-                          <Button
+                          <CfxButton
+                            data-testid="progress-verification-cancel-button"
                             onClick={() => {
                               onDecline()
                             }}
@@ -508,7 +510,7 @@ export const ProgressVerificationButton = ({
                             disabled={retriggerLoading}
                           >
                             {t('content.checklistOverlay.buttonCancel')}
-                          </Button>
+                          </CfxButton>
                         </div>
                       </>
                     )}
@@ -534,17 +536,19 @@ export const ProgressVerificationButton = ({
                           </span>
                         )}
                         {!approveLoading && (
-                          <Button
+                          <CfxButton
+                            data-testid="progress-verification-approve-button"
                             onClick={() => onApprove()}
                             size="small"
                             variant="contained"
                           >
                             {t('content.checklistOverlay.buttonApprove')}
-                          </Button>
+                          </CfxButton>
                         )}
                       </div>
                       <div>
-                        <Button
+                        <CfxButton
+                          data-testid="progress-verification-decline-button"
                           onClick={() => {
                             onDecline()
                           }}
@@ -553,7 +557,7 @@ export const ProgressVerificationButton = ({
                           disabled={approveLoading}
                         >
                           {t('content.checklistOverlay.buttonDecline')}
-                        </Button>
+                        </CfxButton>
                       </div>
                     </>
                   )}
@@ -586,14 +590,16 @@ export const ProgressVerificationButton = ({
                         )}
                         {!declineLoading && (
                           <>
-                            <Button
+                            <CfxButton
+                              data-testid="progress-verification-confirm-decline-button"
                               onClick={() => onConfirmDecline()}
                               size="small"
                               variant="contained"
                             >
                               {t('content.checklistOverlay.buttonConfirm')}
-                            </Button>
-                            <Button
+                            </CfxButton>
+                            <CfxButton
+                              data-testid="progress-verification-cancel-decline-button"
                               sx={{
                                 marginLeft: '10px',
                               }}
@@ -607,7 +613,7 @@ export const ProgressVerificationButton = ({
                               variant="outlined"
                             >
                               {t('content.checklistOverlay.cancel')}
-                            </Button>
+                            </CfxButton>
                           </>
                         )}
                       </div>

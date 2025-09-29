@@ -21,7 +21,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
-  Button,
+  CfxButton,
   DialogActions,
   DialogHeader,
   CircleProgress,
@@ -82,7 +82,8 @@ const Overlay = ({
     }
 
     return (
-      <Button
+      <CfxButton
+        data-testid="company-wallet-overlay-confirm-button"
         disabled={!showConfirmButton}
         variant="contained"
         onClick={(e) => {
@@ -90,7 +91,7 @@ const Overlay = ({
         }}
       >
         {t('global.actions.proceed')}
-      </Button>
+      </CfxButton>
     )
   }
 
@@ -111,14 +112,15 @@ const Overlay = ({
         {children && <DialogContent>{children}</DialogContent>}
       </div>
       <DialogActions>
-        <Button
+        <CfxButton
+          data-testid="company-wallet-overlay-cancel-button"
           variant="outlined"
           onClick={(e) => {
             handleOverlayClose(e)
           }}
         >
           {t('global.actions.cancel')}
-        </Button>
+        </CfxButton>
         {renderActionButton()}
       </DialogActions>
     </Dialog>

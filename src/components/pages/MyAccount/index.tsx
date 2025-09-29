@@ -19,7 +19,11 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Button, UserAvatar, Typography } from '@cofinity-x/shared-components'
+import {
+  CfxButton,
+  UserAvatar,
+  Typography,
+} from '@cofinity-x/shared-components'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Accordion from '@mui/material/Accordion'
@@ -59,7 +63,8 @@ export default function MyAccount() {
         <Box
           sx={{ marginBottom: '75px', display: 'flex', alignItems: 'flex-end' }}
         >
-          <Button
+          <CfxButton
+            data-testid="my-account-copy-to-clipboard-button"
             color="secondary"
             onClick={async () => {
               await navigator.clipboard.writeText(UserService.getToken() ?? '')
@@ -71,8 +76,9 @@ export default function MyAccount() {
             sx={{ marginRight: '8px' }}
           >
             {t('content.account.copy_to_clipboard')}
-          </Button>
-          <Button
+          </CfxButton>
+          <CfxButton
+            data-testid="my-account-delete-account-button"
             color="secondary"
             onClick={handleDeleteUser}
             size="small"
@@ -80,7 +86,7 @@ export default function MyAccount() {
             startIcon={<CancelOutlinedIcon />}
           >
             {t('content.account.deleteAccount')}
-          </Button>
+          </CfxButton>
           <Box sx={{ marginLeft: 'auto' }}>
             <UserAvatar size="large" />
           </Box>

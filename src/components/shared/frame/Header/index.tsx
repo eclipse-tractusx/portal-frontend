@@ -25,7 +25,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import {
-  Button,
+  CfxButton,
   CustomAccordion,
   Typography,
 } from '@cofinity-x/shared-components'
@@ -221,9 +221,9 @@ export const Header = ({
               />
             </Link>
             <div className="d-flex">
-              <Button
+              <CfxButton
+                data-testid="header-help-button"
                 size="small"
-                color="secondary"
                 variant="outlined"
                 onClick={() => {
                   window.open(HELP_LINK(), 'documentation', 'noreferrer')
@@ -231,7 +231,7 @@ export const Header = ({
                 className="documentation"
               >
                 {t('pages.help')}
-              </Button>
+              </CfxButton>
               <UserInfo pages={user} menuWithChild={menuWithChild} />
             </div>
           </MainNavigation>

@@ -21,7 +21,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
-  Button,
+  CfxButton,
   DialogActions,
   DialogHeader,
 } from '@cofinity-x/shared-components'
@@ -64,22 +64,24 @@ const DeleteTechnicalUserProfileOverlay = ({
           )}
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
+          <CfxButton
+            data-testid="delete-technical-user-profile-cancel-button"
+            color="secondary"
             onClick={(e) => {
               handleOverlayClose(e)
             }}
           >
             {t('global.actions.cancel')}
-          </Button>
-          <Button
+          </CfxButton>
+          <CfxButton
+            data-testid="delete-technical-user-profile-delete-button"
             variant="contained"
             onClick={(e) => {
               handleDeleteClick(e)
             }}
           >
             {t('global.actions.delete')}
-          </Button>
+          </CfxButton>
         </DialogActions>
       </Dialog>
     </div>

@@ -23,6 +23,7 @@ import {
   IconButton,
   Button,
   Typography,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { type GridColDef } from '@mui/x-data-grid'
 import {
@@ -177,7 +178,8 @@ export const CompanySubscriptionsTableColumns = (
       disableColumnMenu: true,
       sortable: false,
       renderCell: ({ row }: { row: SubscribedActiveApps }) => (
-        <Button
+        <CfxButton
+          data-testid="company-subscriptions-table-action-button"
           variant="contained"
           size="small"
           disabled={!canShowButton(row)}
@@ -188,7 +190,7 @@ export const CompanySubscriptionsTableColumns = (
           }}
         >
           {t('content.companySubscriptions.unsubscribe')}
-        </Button>
+        </CfxButton>
       ),
     },
   ]

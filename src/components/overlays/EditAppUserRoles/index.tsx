@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import {
-  Button,
+  CfxButton,
   Checkbox,
   DialogActions,
   DialogContent,
@@ -135,19 +135,21 @@ export default function EditAppUserRoles({ id }: { id: string }) {
       </DialogContent>
 
       <DialogActions>
-        <Button
+        <CfxButton
+          data-testid="edit-app-user-roles-cancel-button"
           variant="outlined"
           onClick={() => dispatch(show(OVERLAYS.NONE))}
         >
           {t('global.actions.cancel')}
-        </Button>
-        <Button
+        </CfxButton>
+        <CfxButton
+          data-testid="edit-app-user-roles-confirm-button"
           variant="contained"
           onClick={saveRoles}
           disabled={checkConfirmBtn()}
         >
           {t('global.actions.confirm')}
-        </Button>
+        </CfxButton>
       </DialogActions>
     </>
   )
