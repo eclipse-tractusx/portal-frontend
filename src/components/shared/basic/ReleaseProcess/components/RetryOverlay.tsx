@@ -22,9 +22,8 @@ import { useTranslation } from 'react-i18next'
 import {
   Dialog,
   DialogContent,
-  Button,
+  CfxButton,
   Typography,
-  BackButton,
 } from '@cofinity-x/shared-components'
 import Box from '@mui/material/Box'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
@@ -72,14 +71,17 @@ const RetryOverlay = ({
             {description}
           </Typography>
           <Box className="buttonSection app-back">
-            <BackButton
-              backButtonLabel={t('global.actions.back')}
-              backButtonVariant="outlined"
-              onBackButtonClick={(e) => {
+            <CfxButton
+              data-testid="retry-overlay-back-button"
+              color="secondary"
+              onClick={(e) => {
                 handleOverlayClose(e)
               }}
-            />
-            <Button
+            >
+              {t('global.actions.back')}
+            </CfxButton>
+            <CfxButton
+              data-testid="retry-overlay-retry-button"
               variant="contained"
               color="success"
               className="retryButton"
@@ -88,7 +90,7 @@ const RetryOverlay = ({
               }}
             >
               {t('global.actions.retry')}
-            </Button>
+            </CfxButton>
           </Box>
         </DialogContent>
       </Dialog>

@@ -22,9 +22,9 @@ import {
   DialogActions,
   DialogContent,
   DialogHeader,
-  Button,
   Stepper,
   Typography,
+  CfxButton,
 } from '@cofinity-x/shared-components'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
@@ -162,7 +162,8 @@ export default function AddAppUserRoles() {
 
       <DialogActions>
         {activeStep === 1 ? (
-          <Button
+          <CfxButton
+            data-testid="add-app-user-roles-confirm-selected-users-button"
             variant="contained"
             onClick={() => {
               setActiveStep(2)
@@ -170,18 +171,20 @@ export default function AddAppUserRoles() {
             disabled={userIdsUpdated} // This should work now
           >
             {t('content.addUserRight.confirmSelectedUsers')}
-          </Button>
+          </CfxButton>
         ) : (
           <>
-            <Button
+            <CfxButton
+              data-testid="add-app-user-roles-back-button"
               variant="outlined"
               onClick={() => {
                 setActiveStep(1)
               }}
             >
               {t('global.actions.back')}
-            </Button>
-            <Button
+            </CfxButton>
+            <CfxButton
+              data-testid="add-app-user-roles-confirm-selected-roles-button"
               variant="contained"
               onClick={() => {
                 handleConfirm()
@@ -189,7 +192,7 @@ export default function AddAppUserRoles() {
               disabled={userIdsUpdated || roles.length <= 0}
             >
               {t('content.addUserRight.confirmSelectedRoles')}
-            </Button>
+            </CfxButton>
           </>
         )}
       </DialogActions>

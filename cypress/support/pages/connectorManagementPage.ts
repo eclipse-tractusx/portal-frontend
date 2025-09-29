@@ -6,7 +6,9 @@ export class connectorManagementPage {
 
   // Click the add connector icon
   clickAddConnectorIcon(): void {
-    cy.get('button.add-idp-btn', { timeout: 60000 }).click()
+    cy.get('[data-testid="connector-register-button"]', {
+      timeout: 60000,
+    }).click()
   }
 
   selectOwnCompanyConnector(): void {
@@ -17,7 +19,9 @@ export class connectorManagementPage {
 
   // Click the Next button
   clickNext(): void {
-    cy.contains('button', 'Next').click()
+    cy.get('[data-testid="connector-confirm-button"]', {
+      timeout: 60000,
+    }).click()
   }
 
   // Choose to create a new technical user (radio button)
@@ -29,10 +33,9 @@ export class connectorManagementPage {
 
   // Click the "Create a new technical user" button
   clickCreateNewTechnicalUser(): void {
-    cy.get('button[type="button"]')
-      .filter('.cx-button.cx-variant-contained.cx-color-primary')
-      .eq(0)
-      .click({ force: true })
+    cy.get('[data-testid="technical-user-add-button"]', {
+      timeout: 60000,
+    }).click({ force: true })
   }
 
   // Fill out the connector form for an existing technical user

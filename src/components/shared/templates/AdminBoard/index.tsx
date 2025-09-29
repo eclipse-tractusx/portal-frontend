@@ -501,7 +501,11 @@ export default function CommonAdminBoard({
                   marginTop: '30px',
                 }}
               >
-                <LoadMoreButton onClick={nextPage} label={loadMoreButtonText} />
+                <LoadMoreButton
+                  dataTestId="admin-board-load-more-button"
+                  onClick={nextPage}
+                  label={loadMoreButtonText}
+                />
               </div>
             )}
         </div>

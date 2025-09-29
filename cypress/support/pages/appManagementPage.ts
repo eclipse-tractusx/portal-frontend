@@ -26,8 +26,7 @@ export class appManagementPage {
     dropAppImage: 'div.cx-drop__area',
     saveAndProceed: '[data-testid="release-process-save-and-proceed-button"]',
     appCard: 'div.card.cx-card',
-    confirmToResume:
-      'button[type="button"].cx-button.cx-variant-contained.cx-color-primary',
+    confirmToResume: '[data-testid="app-overview-confirm-button"]',
     dropImages: '[data-testid="release-process-images-input"]',
     dropDataPrerequisite:
       '[data-testid="release-process-uploadDataPrerequisits-input"]',

@@ -20,7 +20,7 @@
 
 import {
   BackButton,
-  Button,
+  CfxButton,
   StaticTable,
   Typography,
   Image,
@@ -297,7 +297,8 @@ export default function ServiceAdminBoardDetail() {
           />
           <div className="divider-height" />
           <Divider sx={{ m: '32px 0px' }} />
-          <Button
+          <CfxButton
+            data-testid="service-admin-board-detail-back-button"
             color="secondary"
             size="small"
             onClick={() => {
@@ -305,7 +306,7 @@ export default function ServiceAdminBoardDetail() {
             }}
           >
             {t('adminboardDetail.backToBoard')}
-          </Button>
+          </CfxButton>
         </Box>
       )}
     </div>

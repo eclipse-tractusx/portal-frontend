@@ -22,7 +22,7 @@ import {
   DialogHeader,
   DialogContent,
   DialogActions,
-  Button,
+  CfxButton,
   CircleProgress,
   Typography,
 } from '@cofinity-x/shared-components'
@@ -140,6 +140,7 @@ export default function EditForm({
           setSuccess(true)
         })
     } catch (e) {
+      console.error('Failed to update company status to ready:', e)
       setError(true)
     }
     setLoading(false)
@@ -155,6 +156,7 @@ export default function EditForm({
           setIsValid(false)
         })
     } catch (e) {
+      console.error('Failed to update company data:', e)
       setError(true)
       setLoading(false)
     }
@@ -202,11 +204,16 @@ export default function EditForm({
           )}
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={handleClose}>
+          <CfxButton
+            data-testid="company-data-edit-form-cancel-button"
+            variant="outlined"
+            onClick={handleClose}
+          >
             {t('global.actions.cancel')}
-          </Button>
+          </CfxButton>
           {!loading && (
-            <Button
+            <CfxButton
+              data-testid="company-data-edit-form-submit-button"
               disabled={!isValid}
               variant="contained"
               onClick={handleSubmit}
@@ -214,7 +221,7 @@ export default function EditForm({
               {newForm
                 ? t('global.actions.submit')
                 : t('global.actions.saveSubmit')}
-            </Button>
+            </CfxButton>
           )}
           {loading && (
             <Box

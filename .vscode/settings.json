@@ -82,5 +82,9 @@
       "${commentprefix#} ${cx_header_with_#}",
       "${commentend#}"
     ]
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "cofinity-x",
+    "projectKey": "Cofinity-X_portal-frontend"
   }
 }

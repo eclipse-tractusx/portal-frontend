@@ -21,7 +21,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { Button, Typography } from '@cofinity-x/shared-components'
+import { CfxButton, Typography } from '@cofinity-x/shared-components'
 import {
   ApplicationStatus,
   useFetchApplicationsQuery,
@@ -89,7 +89,8 @@ export default function RegistrationStatus() {
         <Typography variant="body1" className="mainDescription">
           {t('content.registration.mainDescription')}
         </Typography>
-        <Button
+        <CfxButton
+          data-testid="registration-status-complete-button"
           variant="outlined"
           onClick={() => {
             window.open('/registration/form', '_blank')
@@ -98,7 +99,7 @@ export default function RegistrationStatus() {
           className="completeBtn mb-35"
         >
           {t('content.registration.completeBtn')}
-        </Button>
+        </CfxButton>
         <Typography variant="body3" className="description">
           {t('content.registration.description')}
         </Typography>

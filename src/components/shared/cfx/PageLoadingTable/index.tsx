@@ -197,6 +197,7 @@ export const PageLoadingTable = function <Row, Args>({
           tableVariant === TableVariants.LOAD_BUTTON && (
             <Box className="cx-table__page-loading--button">
               <LoadMoreButton
+                dataTestId="page-loading-table-load-more-button"
                 label={loadLabel ?? t('global.table.loadMore')}
                 onClick={nextPage}
               />

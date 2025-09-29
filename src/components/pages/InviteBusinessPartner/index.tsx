@@ -20,7 +20,7 @@
 
 import './style.scss'
 import {
-  Button,
+  CfxButton,
   Dialog,
   DialogContent,
   IconButton,
@@ -167,7 +167,8 @@ export default function InviteBusinessPartner() {
       />
 
       <section>
-        <Button
+        <CfxButton
+          data-testid="invite-business-partner-button"
           onClick={() => {
             setInviteOverlayOpen(true)
           }}
@@ -175,7 +176,7 @@ export default function InviteBusinessPartner() {
           sx={{ margin: 'auto', display: 'block' }}
         >
           {t('content.invite.invite')}
-        </Button>
+        </CfxButton>
         <InviteList
           fetchHook={useFetchInviteSearchQuery}
           fetchHookArgs={{ expr }}

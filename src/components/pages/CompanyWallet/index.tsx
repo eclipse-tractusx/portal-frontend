@@ -18,7 +18,7 @@
  ********************************************************************************/
 
 import { Trans, useTranslation } from 'react-i18next'
-import { Typography } from '@cofinity-x/shared-components'
+import { CfxButton, Typography } from '@cofinity-x/shared-components'
 import './style.scss'
 import {
   type WalletContent,
@@ -31,7 +31,7 @@ import WalletCard from './WalletCard'
 import RuleCard from './RuleCard'
 import { useEffect, useState } from 'react'
 import { groupBy } from 'lodash'
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import LoadingProgress from 'components/shared/basic/LoadingProgress'
 import Overlay from './Overlay'
 import { ServerResponseOverlay } from 'components/overlays/ServerResponse'
@@ -149,7 +149,8 @@ export default function CompanyWallet(): JSX.Element {
             openDialog={credentialId !== ''}
             className="cx-deactivate-credential-overlay"
             confirmButton={
-              <Button
+              <CfxButton
+                data-testid="company-wallet-overlay-confirm-button"
                 variant="contained"
                 className="cx-deactivate-credential-button"
                 onClick={() => {
@@ -157,7 +158,7 @@ export default function CompanyWallet(): JSX.Element {
                 }}
               >
                 {t('global.actions.deactivate')}
-              </Button>
+              </CfxButton>
             }
           />
         )}

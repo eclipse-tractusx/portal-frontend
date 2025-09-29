@@ -3,6 +3,7 @@ build
 node_modules
 storybook
 .vscode
+.vscode/settings.json
 *.log
 *.zip
 *.tgz

@@ -19,7 +19,7 @@
 
 import { Box, Divider } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Button, Typography } from '@cofinity-x/shared-components'
+import { CfxButton, Typography } from '@cofinity-x/shared-components'
 import { companyDataSelector } from 'features/companyData/slice'
 import { useSelector } from 'react-redux'
 import { CopyToClipboard } from 'components/shared/cfx/CopyToClipboard'
@@ -92,9 +92,13 @@ export default function SiteDetails({
       </Box>
       <Divider className={'cx-company-data__details--divider'} />
       <Box className={'cx-company-data__details--actions'}>
-        <Button size="medium" onClick={onEdit}>
+        <CfxButton
+          data-testid="company-data-site-details-edit-button"
+          size="medium"
+          onClick={onEdit}
+        >
           {t('global.actions.edit')}
-        </Button>
+        </CfxButton>
       </Box>
     </Box>
   )
