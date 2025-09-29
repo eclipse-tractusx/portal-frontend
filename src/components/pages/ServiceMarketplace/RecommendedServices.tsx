@@ -6,7 +6,6 @@ import './style.scss'
 import { AppCardWithImage } from 'components/AppCardImage'
 import { getApiBase } from 'services/EnvironmentService'
 import NoItems from 'components/pages/NoItems'
-import { ToTitleCase } from 'utils/dataMapper'
 
 export default function RecommendedServices({
   services,
@@ -47,9 +46,6 @@ export default function RecommendedServices({
                     name: item.title,
                     leadPictureId: imageUrl,
                   }}
-                  tags={(item.serviceTypeIds ?? []).map((category) =>
-                    ToTitleCase(category)
-                  )}
                   onClick={handleClick}
                 />
               </CfxGrid>

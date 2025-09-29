@@ -5,7 +5,6 @@ import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice
 import './style.scss'
 import { AppCardWithImage } from 'components/AppCardImage'
 import { getApiBase } from 'services/EnvironmentService'
-import { ToTitleCase } from 'utils/dataMapper'
 
 export default function ServicesElements({
   services,
@@ -48,9 +47,6 @@ export default function ServicesElements({
                       name: service.title,
                       leadPictureId: imageUrl,
                     }}
-                    tags={(service.serviceTypeIds ?? []).map((category) =>
-                      ToTitleCase(category)
-                    )}
                     onClick={handleClick}
                   />
                 </CfxGrid>
