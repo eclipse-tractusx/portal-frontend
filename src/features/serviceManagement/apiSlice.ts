@@ -194,7 +194,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     fetchServiceStatus: builder.query<ServiceStatusDataState, string>({
       query: (id) =>
-        `/api/services/appReleaseProcess/${id}/serviceStatus?languageShortName=${i18next.language}`,
+        `/api/services/serviceRelease/${id}/serviceStatus?languageShortName=${i18next.language}`,
     }),
     createService: builder.mutation<void, createServiceType>({
       query: (data) => ({
@@ -225,7 +225,7 @@ export const apiSlice = createApi({
     }),
     fetchServiceAgreementData: builder.query<AgreementType[], void>({
       query: () =>
-        `api/services/appReleaseProcess/agreementData?languageShortName=${i18next.language}`,
+        `api/services/serviceRelease/agreementData?languageShortName=${i18next.language}`,
     }),
     fetchServiceConsentData: builder.query<ConsentType, string>({
       query: (id: string) => `/api/services/serviceRelease/consent/${id}`,
