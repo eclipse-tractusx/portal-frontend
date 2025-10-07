@@ -138,6 +138,7 @@ export const AddTechnicalUser = () => {
                   clientSecret: {
                     label: t('content.techUser.details.clientSercret'),
                     value: data.secret,
+                    hideSecret: true,
                   },
                 }}
                 variant="wide"
