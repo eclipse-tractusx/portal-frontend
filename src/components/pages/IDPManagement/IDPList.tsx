@@ -88,6 +88,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
 
   const [disableLoading, setDisableLoading] = useState(false)
   const [deleteLoading, setDeleteLoading] = useState(false)
+  const [noRowsMsg, setNoRowsMsg] = useState<string>('')
 
   const { data, isFetching } = useFetchIDPListQuery()
   const idpsData = data
@@ -106,6 +107,13 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
   useEffect(() => {
     setIdpsManagedData(managedIdpsData)
   }, [data])
+
+  useEffect(() => {
+    const dataRows = isManagementOSP ? idpsManagedData : idpsData
+    if (dataRows && dataRows.length === 0) {
+      setNoRowsMsg(t('global.table.emptyDataMsg'))
+    }
+  }, [isManagementOSP, idpsData, idpsManagedData])
 
   const doDelete = async (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -474,6 +482,7 @@ export const IDPList = ({ isManagementOSP }: { isManagementOSP?: boolean }) => {
       rows={(isManagementOSP ? idpsManagedData : idpsData) ?? []}
       getRowId={(row: { [key: string]: string }) => row.identityProviderId}
       hasBorder={false}
+      noRowsMsg={noRowsMsg}
       searchPlaceholder={
         isManagementOSP
           ? t('content.onboardingServiceProvider.search')

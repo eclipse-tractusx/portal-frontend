@@ -61,6 +61,7 @@ export default function AddRoles() {
   const navigate = useNavigate()
   const appId = useParams().appId
   const [isLoading, setIsLoading] = useState(false)
+  const [noRowsMsg, setNoRowsMsg] = useState<string>('')
   const { state } = useLocation()
   const items = state
   const app = items?.filter((item: ItemType) => item.id === appId)
@@ -73,6 +74,14 @@ export default function AddRoles() {
     // eslint-disable-next-line
     [`${(<Checkbox disabled={true} />)}`],
   ])
+
+  const appRolesData =
+    data && data.length > 0
+      ? appRoles.map((item, i) => ({
+          establishedRoles: item[0],
+          id: i,
+        }))
+      : []
 
   useEffect(() => {
     refetch()
@@ -91,13 +100,11 @@ export default function AddRoles() {
     )
   }, [data])
 
-  const appRolesData =
-    data && data.length > 0
-      ? appRoles.map((item, i) => ({
-          establishedRoles: item[0],
-          id: i,
-        }))
-      : []
+  useEffect(() => {
+    if (appRolesData && appRolesData.length === 0) {
+      setNoRowsMsg(t('global.table.emptyDataMsg'))
+    }
+  }, [appRolesData])
 
   const columns = [
     {
@@ -194,6 +201,7 @@ export default function AddRoles() {
               rows={appRolesData}
               getRowId={(row) => uniqueId(row.urn)}
               hasBorder={false}
+              noRowsMsg={noRowsMsg}
             />
           </Box>
         </div>
