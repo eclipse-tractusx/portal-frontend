@@ -39,6 +39,7 @@ import { uniqueId } from 'lodash'
 import TitleDescriptionAndSectionlink from './Cards/TitleDescriptionAndSectionlink'
 import { StandardLibrariesTableColumns } from './Cards/StandardLibrariesTableColumns'
 import { type StandardLibraryType } from 'features/staticContent/staticContentApiSlice'
+import { useTranslation } from 'react-i18next'
 
 const TemplateConfig = ({
   provider,
@@ -239,6 +240,7 @@ export const StaticTemplateResponsive = ({
   baseUrl: string
   stdLibraries?: StandardLibraryType
 }) => {
+  const { t } = useTranslation()
   const [showScroll, setShowScroll] = useState(false)
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'), {
@@ -313,6 +315,7 @@ export const StaticTemplateResponsive = ({
                       rows={stdLibraries.rows}
                       getRowId={(row) => uniqueId(row.uid)}
                       hasBorder={false}
+                      noRowsMsg={t('shared.table.emptyTable')}
                     />
                   )}
                 </div>

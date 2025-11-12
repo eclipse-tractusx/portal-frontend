@@ -110,6 +110,8 @@ export enum PAGES {
   COMPANY_SUBSCRIPTIONS_DETAIL = 'companySubscriptionsDetail',
   COMPANY_DATA = 'companyData',
   ONBOARDING_SERVICE_PROVIDER_MANAGEMENT = 'onboardingServiceProviderManagement',
+  NO_TABLE_DATA = 'noItemsToDisplay',
+  NO_SEARCH_TABLE_DATA = 'noSearchItemsToDisplay',
 }
 
 export enum OVERLAYS {
