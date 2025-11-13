@@ -22,19 +22,12 @@ import { useParams } from 'react-router-dom'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import AppDetailContentDetails from './AppDetailContentDetails'
 import './style.scss'
-import { useSelector } from 'react-redux'
-import { currentSuccessType } from 'features/serviceMarketplace/slice'
-import { useEffect } from 'react'
 
 export default function AppDetail({ navigate }: { readonly navigate: string }) {
   const { appId } = useParams()
-  const { data, refetch } = useFetchAppDetailsQuery(appId ?? '')
+  const { data } = useFetchAppDetailsQuery(appId ?? '')
 
-  const success = useSelector(currentSuccessType)
+  if (!data) return null
 
-  useEffect(() => {
-    refetch()
-  }, [success, refetch])
-
-  return <>{data && <AppDetailContentDetails item={data} nav={navigate} />}</>
+  return <AppDetailContentDetails item={data} nav={navigate} />
 }

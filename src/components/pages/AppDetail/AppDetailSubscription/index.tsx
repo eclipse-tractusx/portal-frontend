@@ -31,7 +31,7 @@ export default function AppDetailSubscription({
   const { t } = useTranslation()
 
   return (
-    <div className="marketplace-subscriptions">
+    <div className="app-marketplace-subscriptions">
       <Typography variant="body2" sx={{ color: '#0d55af' }}>
         <b>
           {t('content.appSubscription.subscriptionHeading').replace(
