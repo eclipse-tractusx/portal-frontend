@@ -1,6 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2023 BMW Group AG
- * Copyright (c) 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2025 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -18,16 +17,32 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { useParams } from 'react-router-dom'
-import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
-import AppDetailContentDetails from './AppDetailContentDetails'
-import './style.scss'
+.app-marketplace-subscriptions {
+  .app-subscriptions-content {
+    display: flex;
+    flex-wrap: wrap;
 
-export default function AppDetail({ navigate }: { readonly navigate: string }) {
-  const { appId } = useParams()
-  const { data } = useFetchAppDetailsQuery(appId ?? '')
+    .app-subscription-list {
+      width: 33.3333%;
+      padding: 0 5px;
+      margin: 10px 0;
 
-  if (!data) return null
-
-  return <AppDetailContentDetails item={data} nav={navigate} />
+      .app-subscription-name {
+        border: 1px solid #0f71cb;
+        border-radius: 4px;
+        text-transform: capitalize;
+        display: inline-block;
+        width: 100%;
+        padding: 5px 10px;
+        .app-offerId {
+          display: inline-block;
+          width: 100%;
+        }
+        .app-subscription-status {
+          margin: 2px 15px;
+          height: 18px;
+        }
+      }
+    }
+  }
 }

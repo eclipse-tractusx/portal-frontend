@@ -24,8 +24,6 @@ import {
   Button,
   Typography,
   Checkbox,
-  OrderStatusButton,
-  paletteDefinitions,
 } from '@catena-x/portal-shared-components'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -50,27 +48,6 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
   const [checkedAgreementsIds, setCheckedAgreementsIds] = useState<string[]>([])
   const [subscriptionOverlay, setSubscriptionOverlay] = useState<boolean>(true)
   const [successOverlay, setSuccessOverlay] = useState<boolean>(false)
-
-  const OrderStatusButtonData = [
-    {
-      isIcon: false,
-      buttonLabel: t('content.appdetail.buttons.subscribtionInit'),
-      zIndex: 4,
-      backgroundColor: paletteDefinitions.buttons.darkGrey ?? '',
-    },
-    {
-      isIcon: false,
-      buttonLabel: t('content.appdetail.buttons.appDeployed'),
-      zIndex: 3,
-      backgroundColor: paletteDefinitions.buttons.lightGrey ?? '',
-    },
-    {
-      isIcon: false,
-      buttonLabel: t('content.appdetail.buttons.activation'),
-      zIndex: 2,
-      backgroundColor: paletteDefinitions.buttons.white ?? '',
-    },
-  ]
 
   const handleConfirmApp = async (id: string) => {
     const data = agreements?.map((agreement) => {
@@ -199,15 +176,6 @@ export default function AppMarketplaceRequest({ id }: { id: string }) {
             <Typography variant="body2" sx={{ mb: '20px' }}>
               {t('content.appMarketplace.desc7')}
             </Typography>
-            <Typography variant="body2" sx={{ mb: 3 }}>
-              {t('content.appMarketplace.statusHeading')}
-            </Typography>
-            <OrderStatusButton
-              color={'primary'}
-              label={t('content.appdetail.subscribe')}
-              buttonData={OrderStatusButtonData}
-              selectable={false}
-            />
             <Typography variant="body2" sx={{ mt: 3, mb: '20px' }}>
               {t('content.appMarketplace.desc8')}
             </Typography>

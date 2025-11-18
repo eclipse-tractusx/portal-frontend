@@ -48,9 +48,11 @@ import { PAGE_SIZE } from 'types/Constants'
 export const apiSlice = createApi({
   reducerPath: 'rtk/apps/marketplace',
   baseQuery: fetchBaseQuery(apiBaseQuery()),
+  tagTypes: ['AppDetails'],
   endpoints: (builder) => ({
     fetchAppDetails: builder.query<AppDetails, string>({
       query: (id: string) => `/api/apps/${id}?lang=${i18next.language}`,
+      providesTags: (_result, _error, id) => [{ type: 'AppDetails', id }],
     }),
     fetchActiveApps: builder.query<AppMarketplaceApp[], void>({
       async queryFn(_arg, _queryApi, _extraOptions, fetchWithBQ) {
@@ -135,6 +137,9 @@ export const apiSlice = createApi({
         method: 'POST',
         body: data.body,
       }),
+      invalidatesTags: (_result, _error, data) => [
+        { type: 'AppDetails', id: data.appId },
+      ],
     }),
     fetchAgreements: builder.query<AgreementRequest[], string>({
       query: (appId) => `/api/apps/appAgreementData/${appId}`,
