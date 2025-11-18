@@ -18,27 +18,27 @@
  ********************************************************************************/
 
 .app-marketplace-subscriptions {
-  .subscriptions-content {
+  .app-subscriptions-content {
     display: flex;
     flex-wrap: wrap;
 
-    .subscription-list {
+    .app-subscription-list {
       width: 33.3333%;
       padding: 0 5px;
       margin: 10px 0;
 
-      .subscription-name {
+      .app-subscription-name {
         border: 1px solid #0f71cb;
         border-radius: 4px;
         text-transform: capitalize;
         display: inline-block;
         width: 100%;
         padding: 5px 10px;
-        .offerId {
+        .app-offerId {
           display: inline-block;
           width: 100%;
         }
-        .subscription-status {
+        .app-subscription-status {
           margin: 2px 15px;
           height: 18px;
         }

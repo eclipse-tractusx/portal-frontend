@@ -40,11 +40,11 @@ export default function AppDetailSubscription({
           )}
         </b>
       </Typography>
-      <div className="subscriptions-content">
+      <div className="app-subscriptions-content">
         {item.offerSubscriptionDetailData?.map((data) => (
-          <div className="subscription-list" key={data.offerSubscriptionId}>
-            <span className="subscription-name">
-              <Typography variant="label3" className="offerId">
+          <div className="app-subscription-list" key={data.offerSubscriptionId}>
+            <span className="app-subscription-name">
+              <Typography variant="label3" className="app-offerId">
                 Id: {data.offerSubscriptionId}
               </Typography>
               <Typography variant="label3">
@@ -60,7 +60,7 @@ export default function AppDetailSubscription({
                   variant="outlined"
                   size="small"
                   withIcon
-                  className="subscription-status"
+                  className="app-subscription-status"
                 />
               </Typography>
             </span>
