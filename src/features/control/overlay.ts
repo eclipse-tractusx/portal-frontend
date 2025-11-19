@@ -27,6 +27,7 @@ export const name = 'control/overlay'
 export type OverlayState = {
   type: OVERLAYS
   id: string
+  subscriptionId: string
   title?: string
   status?: boolean
   subTitle?: string
@@ -36,6 +37,7 @@ export type OverlayState = {
 const initialState = {
   type: OVERLAYS.NONE,
   id: '',
+  subscriptionId: '',
   title: '',
   displayName: '',
   subTitle: '',
@@ -54,6 +56,7 @@ const show = createAction(
   (
     type: OVERLAYS,
     id?: string,
+    subscriptionId?: string,
     title?: string,
     status?: boolean,
     subTitle?: string,
@@ -62,6 +65,7 @@ const show = createAction(
     payload: {
       type,
       id,
+      subscriptionId,
       title,
       status,
       subTitle,

@@ -53,6 +53,7 @@ export default function AppUserManagement() {
   const userRoleResponse = useSelector(currentUserRoleResp)
 
   const [showAlert, setShowAlert] = useState<boolean>(false)
+  const [subscriptionId, setSubscriptionId] = useState<string>('')
 
   useEffect(() => {
     setShowAlert(
@@ -60,6 +61,12 @@ export default function AppUserManagement() {
         userRoleResponse === SuccessErrorType.SUCCESS
     )
   }, [userRoleResponse])
+
+  useEffect(() => {
+    setSubscriptionId(
+      appDetails?.offerSubscriptionDetailData?.[0]?.offerSubscriptionId ?? ''
+    )
+  }, [appDetails])
 
   useEffect(() => {
     dispatch(setUserRoleResp(''))
@@ -83,7 +90,11 @@ export default function AppUserManagement() {
         roles={data}
         error={isError ? JSON.stringify(data) : ''}
       />
-      <AppUserDetailsTable roles={data} userRoleResponse={userRoleResponse} />
+      <AppUserDetailsTable
+        subscriptionId={subscriptionId}
+        roles={data}
+        userRoleResponse={userRoleResponse}
+      />
       {/* success or error dialog/overlay */}
       {userRoleResponse && (
         <Dialog

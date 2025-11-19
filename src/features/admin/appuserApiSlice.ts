@@ -32,6 +32,7 @@ import type { TenantUser } from './userApiSlice'
 export interface UserRoleRequest {
   appId: string
   companyUserId: string
+  subscriptionId: string
   body: string[]
 }
 
@@ -108,7 +109,7 @@ export const apiSlice = createApi({
     }),
     updateUserRoles: builder.mutation<UserRoleResponse, UserRoleRequest>({
       query: (data: UserRoleRequest) => ({
-        url: `/api/administration/user/owncompany/users/${data.companyUserId}/apps/${data.appId}/roles`,
+        url: `/api/administration/user/owncompany/users/${data.companyUserId}/apps/${data.appId}/subscription/${data.subscriptionId}/roles`,
         method: 'PUT',
         body: data.body,
       }),
