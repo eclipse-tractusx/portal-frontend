@@ -82,7 +82,7 @@ export default function EditAppUserRoles({
     const data: UserRoleRequest = {
       appId,
       companyUserId: id,
-      subscriptionId: subscriptionId,
+      subscriptionId,
       body: roles,
     }
     try {
