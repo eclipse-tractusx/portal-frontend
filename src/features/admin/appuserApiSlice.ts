@@ -32,7 +32,7 @@ import type { TenantUser } from './userApiSlice'
 export interface UserRoleRequest {
   appId: string
   companyUserId: string
-  subscriptionId: string
+  subscriptionId?: string
   body: string[]
 }
 
