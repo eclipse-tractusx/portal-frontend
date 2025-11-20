@@ -42,7 +42,13 @@ import { useParams } from 'react-router-dom'
 import { OVERLAYS } from 'types/Constants'
 import './style.scss'
 
-export default function EditAppUserRoles({ id }: { id: string }) {
+export default function EditAppUserRoles({
+  id,
+  subscriptionId,
+}: {
+  id: string
+  subscriptionId: string
+}) {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const { appId } = useParams()
@@ -76,6 +82,7 @@ export default function EditAppUserRoles({ id }: { id: string }) {
     const data: UserRoleRequest = {
       appId,
       companyUserId: id,
+      subscriptionId,
       body: roles,
     }
     try {

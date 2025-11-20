@@ -35,9 +35,11 @@ import { userHasPortalRole } from 'services/AccessService'
 export const AppUserDetailsTable = ({
   roles,
   userRoleResponse,
+  subscriptionId,
 }: {
   roles: AppRole[] | undefined
   userRoleResponse: string
+  subscriptionId: string
 }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -66,7 +68,13 @@ export const AppUserDetailsTable = ({
       onDetailsClick={
         userHasPortalRole(ROLES.MODIFY_USER_ACCOUNT)
           ? (row: TenantUser) =>
-              dispatch(show(OVERLAYS.EDIT_APP_USER_ROLES, row.companyUserId))
+              dispatch(
+                show(
+                  OVERLAYS.EDIT_APP_USER_ROLES,
+                  row.companyUserId,
+                  subscriptionId
+                )
+              )
           : undefined
       }
     />

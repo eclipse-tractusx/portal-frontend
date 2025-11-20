@@ -55,6 +55,7 @@ export default function UserDetail() {
       show(
         OVERLAYS.CONFIRM_USER_ACTION,
         userId,
+        '',
         'resetPassword',
         false,
         `${data.firstName} ${data.lastName}`
