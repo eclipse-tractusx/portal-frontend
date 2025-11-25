@@ -44,10 +44,10 @@ export default function UserDetail() {
   const { data } = useFetchUserDetailsQuery(userId ?? '')
 
   const handleSuspendUser = () =>
-    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, userId, 'suspend'))
+    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, userId, '', 'suspend'))
 
   const handleDeleteUser = () =>
-    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, userId, 'user'))
+    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, userId, '', 'user'))
 
   const handleResetPasswordForUser = () =>
     data &&

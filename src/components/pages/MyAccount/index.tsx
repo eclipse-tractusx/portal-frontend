@@ -46,7 +46,9 @@ export default function MyAccount() {
   const dispatch = useDispatch()
 
   const handleDeleteUser = () =>
-    dispatch(show(OVERLAYS.CONFIRM_USER_ACTION, data?.companyUserId, 'ownUser'))
+    dispatch(
+      show(OVERLAYS.CONFIRM_USER_ACTION, data?.companyUserId, '', 'ownUser')
+    )
 
   return (
     <main className="my-account">

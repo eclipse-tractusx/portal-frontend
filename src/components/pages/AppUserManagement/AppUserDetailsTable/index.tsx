@@ -50,7 +50,9 @@ export const AppUserDetailsTable = ({
     <UserList
       sectionTitle={'content.usermanagement.appUserDetails.subheadline'}
       addButtonLabel={'content.usermanagement.appUserDetails.table.add'}
-      addButtonClick={() => dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId))}
+      addButtonClick={() =>
+        dispatch(show(OVERLAYS.ADD_APP_USER_ROLES, appId, subscriptionId))
+      }
       addButtonDisabled={
         !roles ||
         roles.length === 0 ||

@@ -220,6 +220,7 @@ export default function CompanyCertificateDetails({
                       show(
                         OVERLAYS.COMPANY_CERTIFICATE_CONFIRM_DELETE,
                         id,
+                        '',
                         selected.companyCertificateType
                       )
                     )
