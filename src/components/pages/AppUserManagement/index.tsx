@@ -21,7 +21,7 @@
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import CloseIcon from '@mui/icons-material/Close'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
@@ -51,9 +51,7 @@ export default function AppUserManagement() {
   const { data, isError } = useFetchAppRolesQuery(appId ?? '')
 
   const userRoleResponse = useSelector(currentUserRoleResp)
-
   const [showAlert, setShowAlert] = useState<boolean>(false)
-  const [subscriptionId, setSubscriptionId] = useState<string>('')
 
   useEffect(() => {
     setShowAlert(
@@ -62,11 +60,8 @@ export default function AppUserManagement() {
     )
   }, [userRoleResponse])
 
-  useEffect(() => {
-    setSubscriptionId(
-      appDetails?.offerSubscriptionDetailData?.[0]?.offerSubscriptionId ?? ''
-    )
-  }, [appDetails])
+  const [searchParams] = useSearchParams()
+  const subscriptionId = searchParams.get('subscriptionId') ?? ''
 
   useEffect(() => {
     dispatch(setUserRoleResp(''))
