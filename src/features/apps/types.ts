@@ -104,6 +104,7 @@ export type ActiveSubscriptionItem = {
   name: string
   provider: string
   image?: ImageType
+  subscriptionId: string
 }
 
 export type SubscriptionStatusItem = {

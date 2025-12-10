@@ -61,7 +61,9 @@ export const AppArea = () => {
                   expandOnHover={false}
                   filledBackground={true}
                   onClick={() => {
-                    navigate(`/appUserManagement/${item.offerId}`)
+                    navigate(
+                      `/appUserManagement/${item.offerId}?subscriptionId=${item.subscriptionId}`
+                    )
                   }}
                 />
               )
