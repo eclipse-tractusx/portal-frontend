@@ -36,7 +36,7 @@ export default function BoardConnectedData() {
     body: [
       ['Personal Information', 'Lorem Personal Information'],
       ['Used Content', 'Ipsum Used Content'],
-      ['Catena X Account Data', 'Lorem Catena X Account Data'],
+      ['Construct-X Account Data', 'Lorem Construct-X Account Data'],
       ['Diagnostic Data'],
     ],
   }
