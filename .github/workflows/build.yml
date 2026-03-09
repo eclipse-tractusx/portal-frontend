@@ -90,8 +90,9 @@ jobs:
           images: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ github.event.inputs.image_tag }}
+            type=raw,value=${{ github.sha }}
 
-      - name: Build and push Docker image to ACR
+      - name: Build and push Docker image to the HBR_REGISTRY
         uses: docker/build-push-action@67a2d409c0a876cbe6b11854e3e25193efe4e62d # v6.12.0
         with:
           context: .
