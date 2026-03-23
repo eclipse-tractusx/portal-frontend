@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import { ConnectorFormInputField } from './ConnectorFormInputField'
 import { InputLabel } from '@mui/material'
 import { useTranslation } from 'react-i18next'

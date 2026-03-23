@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Breadcrumb } from '@catena-x/portal-shared-components'
+import { Breadcrumb } from '@arena2036/portal-shared-components-construct-x'
 import { Link, Typography } from '@mui/material'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'

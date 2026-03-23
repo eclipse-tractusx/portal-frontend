@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Typography,
   PageNotifications,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
 import type { AppRole } from 'features/admin/appuserApiSlice'
 import './style.scss'

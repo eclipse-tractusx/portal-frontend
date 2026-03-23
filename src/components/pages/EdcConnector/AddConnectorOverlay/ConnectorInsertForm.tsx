@@ -31,7 +31,7 @@ import {
   SelectList,
   Tooltips,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Patterns from 'types/Patterns'
 import {

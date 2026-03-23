@@ -24,7 +24,7 @@ import {
   Button,
   Typography,
   Checkbox,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'

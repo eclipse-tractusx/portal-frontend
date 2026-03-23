@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { CardItems } from '@catena-x/portal-shared-components'
+import type { CardItems } from '@arena2036/portal-shared-components-construct-x'
 import type { TenantUser } from 'features/admin/userApiSlice'
 import type { AppMarketplaceApp } from 'features/apps/types'
 import type { BusinessPartner } from 'features/partnerNetwork/types'

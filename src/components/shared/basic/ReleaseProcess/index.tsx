@@ -19,11 +19,11 @@
  ********************************************************************************/
 
 import {
-  PageHeader,
+  PageHeader2,
   Typography,
   Button,
   ProcessList,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { Box } from '@mui/material'
 import './style.scss'
 
@@ -80,7 +80,7 @@ export const ReleaseProcess = ({
 }: ReleaseProcessProps) => {
   return (
     <div className="appOverview-main">
-      <PageHeader title={headerTitle} topPage={true} headerHeight={200} />
+      <PageHeader2 title={headerTitle} topPage={true} headerHeight={200} />
       <div className="desc-section">
         <div className="container">
           <Typography variant="h3" className="desc-heading">

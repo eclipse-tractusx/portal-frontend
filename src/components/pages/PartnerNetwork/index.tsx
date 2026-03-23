@@ -25,10 +25,10 @@ import {
   useFetchBusinessPartnerAddressMutation,
 } from 'features/newPartnerNetwork/partnerNetworkApiSlice'
 import {
-  PageHeader,
+  PageHeader2,
   Table,
   type PaginResult,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { updatePartnerSelector } from 'features/control/updates'
@@ -136,7 +136,7 @@ const PartnerNetwork = () => {
 
   return (
     <main className="partner-network-page-container">
-      <PageHeader
+      <PageHeader2
         title={t('content.partnernetwork.headertitle')}
         topPage={false}
         headerHeight={200}

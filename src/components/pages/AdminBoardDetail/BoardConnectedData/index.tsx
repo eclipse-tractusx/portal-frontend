@@ -23,7 +23,7 @@ import {
   Typography,
   StaticTable,
   type TableType,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import './style.scss'
 
 export default function BoardConnectedData() {
@@ -36,7 +36,7 @@ export default function BoardConnectedData() {
     body: [
       ['Personal Information', 'Lorem Personal Information'],
       ['Used Content', 'Ipsum Used Content'],
-      ['Catena X Account Data', 'Lorem Catena X Account Data'],
+      ['Construct-X Account Data', 'Lorem Construct-X Account Data'],
       ['Diagnostic Data'],
     ],
   }

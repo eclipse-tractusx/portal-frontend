@@ -17,7 +17,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Tooltips, Typography } from '@catena-x/portal-shared-components'
+import {
+  Tooltips,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import './style.scss'
 import {
   CredentialSubjectStatus,

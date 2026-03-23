@@ -38,7 +38,7 @@ import {
   DialogContent,
   IconButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import './style.scss'
 import { useTranslation } from 'react-i18next'
 

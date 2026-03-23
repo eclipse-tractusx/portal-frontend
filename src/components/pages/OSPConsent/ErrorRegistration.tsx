@@ -23,7 +23,7 @@ import {
   Button,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 
 interface ErrorRegProps {
   loading: boolean

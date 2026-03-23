@@ -20,7 +20,10 @@
 
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
-import { Typography, Tooltips } from '@catena-x/portal-shared-components'
+import {
+  Typography,
+  Tooltips,
+} from '@arena2036/portal-shared-components-construct-x'
 import type { IHashMap } from 'types/MainTypes'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'

@@ -19,7 +19,7 @@
 
 import { Box } from '@mui/material'
 import './style.scss'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 export interface SectionHeaderProps {

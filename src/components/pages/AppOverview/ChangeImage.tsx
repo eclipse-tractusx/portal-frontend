@@ -26,7 +26,7 @@ import {
   Card,
   type UploadFileStatus,
   UploadStatus,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'

@@ -30,7 +30,7 @@ import {
   Typography,
   CircleProgress,
   ErrorBar,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useFetchDecentralIdentityUrlsQuery } from 'features/connector/connectorApiSlice'
 import './style.scss'
 import { Box } from '@mui/material'

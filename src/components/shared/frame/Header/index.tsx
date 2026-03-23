@@ -31,7 +31,7 @@ import {
   CustomAccordion,
   MainNavigation,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import type { MenuItem, Tree } from 'types/MainTypes'
 import { getAssetBase } from 'services/EnvironmentService'
 import {
@@ -75,6 +75,15 @@ export const Header = ({
   const [submittedOverlayOpen, setSubmittedOverlayOpen] =
     useState<boolean>(false)
   const [headerNote, setHeaderNote] = useState(false)
+
+  // Due to the dynamic class 'css-429xfk', overwrite the logo container padding //
+  useEffect(() => {
+    const el = document.querySelector<HTMLElement>('.css-429xfk')!
+    if (el) {
+      el.style.paddingTop = '0px'
+      el.style.paddingBottom = '0px'
+    }
+  }, [])
 
   useEffect(() => {
     if (!(companyData && companyDetails)) return
@@ -202,7 +211,11 @@ export const Header = ({
       </header>
       <div className="mobileNav">
         <div className="mobileHeader">
-          <img src={`${getAssetBase()}/images/logos/cx-short.svg`} alt="logo" />
+          <img
+            src={`${getAssetBase()}/images/logos/construct-x-logo.svg`}
+            alt="logo"
+            style={{ width: '100px' }}
+          />
         </div>
         <div className="mobileHeaderRight">
           <div

@@ -23,7 +23,7 @@ import {
   MainHeader,
   PageHeader,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useCallback, useEffect, useState } from 'react'
 import '../ReleaseProcessSteps.scss'
 import ReleaseStepper, {
@@ -43,14 +43,14 @@ import OfferContractAndConsent from '../OfferContractAndConsent'
 import { serviceReleaseActiveStep } from 'features/serviceManagement/slice'
 import { ReleaseProcessTypes } from 'features/serviceManagement/apiSlice'
 import OfferValidateAndPublish from '../OfferValidateAndPublish'
-import { getAssetBase } from 'services/EnvironmentService'
+// import { getAssetBase } from 'services/EnvironmentService'
 import OfferTechnicalIntegration from '../OfferTechnicalIntegration'
 
 interface ReleaseProcessWrapperType {
   headerTitle: string
   processType: string
   stepsList: StepType[]
-  imagePath?: string
+  // imagePath?: string
   headerDescription?: string
   headerDescriptionComplete?: string
   yourCatenaXTeam?: string
@@ -64,7 +64,7 @@ export default function ReleaseProcessWrapper({
   headerTitle,
   processType,
   stepsList,
-  imagePath = `${getAssetBase()}/images/content/submit-app-background.png`,
+  // imagePath = `${getAssetBase()}/images/content/submit-app-background.png`,
   headerDescription,
   headerDescriptionComplete,
   yourCatenaXTeam,
@@ -118,7 +118,7 @@ export default function ReleaseProcessWrapper({
           headerHeight={731}
           subTitleWidth={500}
           background="LinearGradient1"
-          imagePath={imagePath}
+          imagePath="/orange-background-full.jpg"
         >
           <Typography variant="body1" sx={{ mt: 2 }}>
             {headerDescription}

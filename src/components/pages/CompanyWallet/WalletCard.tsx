@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import {
   CredentialSubjectStatus,
   type WalletContent,
@@ -97,11 +97,10 @@ export default function WalletCard({
           <div className="icon-text">
             <div className="icon">
               <img
-                src="/cx-logo.svg"
-                alt="cx logo"
-                style={{
-                  width: 40,
-                }}
+                id="wallet-logo"
+                src="/construct-x-logo-transparent.svg"
+                alt="Construct-X Logo"
+                style={{ display: 'inline', width: '100px', height: '80px' }}
               />
             </div>
             <Typography variant="body2">{type}</Typography>

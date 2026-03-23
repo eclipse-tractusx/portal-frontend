@@ -33,7 +33,7 @@ import {
   Tooltips,
   Datepicker,
   type DateType,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { Dropzone } from '../../shared/basic/Dropzone'
 import { error } from 'services/NotifyService'
 import {

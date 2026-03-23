@@ -20,7 +20,7 @@
 
 import { Box, Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import type {
   BpdmTypeUUIDKeyPair,
   BusinessPartner,

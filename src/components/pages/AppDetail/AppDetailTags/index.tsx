@@ -18,7 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Chip, Typography } from '@catena-x/portal-shared-components'
+import {
+  Chip,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import type { AppDetails } from 'features/apps/types'
 import './style.scss'
 import { useTranslation } from 'react-i18next'

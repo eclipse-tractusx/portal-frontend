@@ -18,8 +18,13 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+<<<<<<< HEAD
 import { type GridColDef } from '@mui/x-data-grid'
 import { IconButton } from '@catena-x/portal-shared-components'
+=======
+import type { GridColDef } from '@mui/x-data-grid'
+import { IconButton } from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { BusinessPartner } from 'features/newPartnerNetwork/types'
 import { OVERLAYS } from 'types/Constants'
@@ -58,8 +63,8 @@ export const PartnerNetworksTableColumns = (
       renderCell: (params: { row: BusinessPartner }) =>
         params?.row?.member ? (
           <img
-            src="/cx-logo.svg"
-            alt="cx logo"
+            src="/logo.svg"
+            alt="construct-x logo"
             style={{
               width: 40,
             }}

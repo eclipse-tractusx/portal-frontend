@@ -19,7 +19,7 @@
 
 import { type GridColDef } from '@mui/x-data-grid'
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline'
-import { IconButton } from '@catena-x/portal-shared-components'
+import { IconButton } from '@arena2036/portal-shared-components-construct-x'
 import {
   type StandardLibraryType,
   type StdRows,

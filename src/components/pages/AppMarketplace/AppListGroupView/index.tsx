@@ -19,7 +19,7 @@
 
 import './style.scss'
 import { Box } from '@mui/material'
-import { Cards } from '@catena-x/portal-shared-components'
+import { Cards } from '@arena2036/portal-shared-components-construct-x'
 import { multiMapBy } from 'utils/dataUtils'
 import { useTranslation } from 'react-i18next'
 import { AppListGroup } from '../AppListGroup'

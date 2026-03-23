@@ -24,7 +24,7 @@ import {
   Button,
   Typography,
   ContentCard,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useFetchCertificatesQuery } from 'features/companyCertification/companyCertificateApiSlice'
 import './style.scss'
 import { FilterType, SortType } from '../CompanyCertificates'

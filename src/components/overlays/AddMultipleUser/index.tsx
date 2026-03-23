@@ -38,7 +38,7 @@ import {
   CircleProgress,
   PageSnackbar,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import EditIcon from '@mui/icons-material/Edit'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'

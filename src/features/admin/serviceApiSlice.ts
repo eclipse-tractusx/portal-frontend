@@ -25,7 +25,7 @@ import { PAGE_SIZE } from 'types/Constants'
 import type {
   PaginFetchArgs,
   PaginResult,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 
 export enum ServiceAccountType {
   SECRET = 'SECRET',

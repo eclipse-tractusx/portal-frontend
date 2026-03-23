@@ -24,7 +24,7 @@ import {
   Button,
   DialogActions,
   DialogHeader,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 interface DeleteOverlayProps {
   openDialog?: boolean
   handleOverlayClose: React.MouseEventHandler

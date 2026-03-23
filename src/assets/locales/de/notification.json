@@ -1,8 +1,8 @@
 {
   "item": {
     "WELCOME": {
-      "title": "Willkommen bei Catena-X!",
-      "content": "Willkommen im Catena-X Netzwerk. Um Ihnen das Onboarding zu erleichtern, wurde eine Reihe von Benachrichtigungen / Onboarding-Schritten definiert. Bitte lesen Sie die folgenden Nachrichten und starten Sie die Konfiguration Ihres Unternehmensbereichs im Portal, um ein Netzwerkerlebnis nach Ihren Bedürfnissen zu erhalten."
+      "title": "Willkommen bei Construct-X!",
+      "content": "Willkommen im Construct-X Netzwerk. Um Ihnen das Onboarding zu erleichtern, wurde eine Reihe von Benachrichtigungen / Onboarding-Schritten definiert. Bitte lesen Sie die folgenden Nachrichten und starten Sie die Konfiguration Ihres Unternehmensbereichs im Portal, um ein Netzwerkerlebnis nach Ihren Bedürfnissen zu erhalten."
     },
     "WELCOME_USE_CASES": {
       "title": "Häufige Anwendungsfälle",
@@ -34,7 +34,7 @@
     },
     "APP_RELEASE_REQUEST": {
       "title": "App Release Request - App: {{app}}",
-      "content": "{{company}} created a new app to get published to the catena-x marketplace. Please review the app release request and approve or decline the request."
+      "content": "{{company}} created a new app to get published to the construct-x marketplace. Please review the app release request and approve or decline the request."
     },
     "APP_RELEASE_APPROVAL": {
       "title": "App-Anfrage genehmigt",
@@ -42,7 +42,7 @@
     },
     "APP_RELEASE_REJECTION": {
       "title": "App-Anfrage wurde abgelehnt",
-      "content": "Ihre Anfrage für App {{offer}} wurde abgelehnt. Wir bedauern, Ihnen mitteilen zu müssen, dass Ihre Anfrage zur Veröffentlichung der App abgelehnt wurde. Wir sind sehr stolz auf die Qualität unserer Apps und die Benutzererfahrung, die sie bieten. Obwohl Ihre App viel Potenzial hat, erfüllt sie nicht unsere Standards für die Markteinführung. Mit den entsprechenden Änderungen kann Ihre App das Qualitätsniveau erreichen, das unseren Standards entspricht. Wenn Sie Unterstützung benötigen, zögern Sie bitte nicht, sich an den Support zu wenden. Wir freuen uns darauf, zu sehen, wie Ihre App ihr volles Potenzial ausschöpft und veröffentlicht wird. Mit freundlichen Grüßen, Catena-X."
+      "content": "Ihre Anfrage für App {{offer}} wurde abgelehnt. Wir bedauern, Ihnen mitteilen zu müssen, dass Ihre Anfrage zur Veröffentlichung der App abgelehnt wurde. Wir sind sehr stolz auf die Qualität unserer Apps und die Benutzererfahrung, die sie bieten. Obwohl Ihre App viel Potenzial hat, erfüllt sie nicht unsere Standards für die Markteinführung. Mit den entsprechenden Änderungen kann Ihre App das Qualitätsniveau erreichen, das unseren Standards entspricht. Wenn Sie Unterstützung benötigen, zögern Sie bitte nicht, sich an den Support zu wenden. Wir freuen uns darauf, zu sehen, wie Ihre App ihr volles Potenzial ausschöpft und veröffentlicht wird. Mit freundlichen Grüßen, Construct-X."
     },
     "APP_ROLE_ADDED": {
       "title": "App {{app}} neue Userrollen hinzugefügt",
@@ -54,7 +54,7 @@
     },
     "SERVICE_RELEASE_REQUEST": {
       "title": "Service Release Request - Service: {{offer}}",
-      "content": "{{company}} created a new service to get published to the catena-x marketplace. Please review the service release request and approve or decline the service release."
+      "content": "{{company}} created a new service to get published to the construct-x marketplace. Please review the service release request and approve or decline the service release."
     },
     "SERVICE_RELEASE_APPROVAL": {
       "title": "Service release request approved",
@@ -158,7 +158,7 @@
   },
   "header": {
     "title": "Notifications",
-    "subtitle": "Hier erhalten Sie relevante Neuigkeiten zu Catena-X, veröffentlichten Apps und Diensten sowie den von Ihnen genutzten Apps und Diensten. Darüber hinaus werden Änderungen an Ihrem Benutzerkonto, z. B. neu zugewiesene oder entzogene Rollen, geteilt.",
+    "subtitle": "Hier erhalten Sie relevante Neuigkeiten zu Construct-X, veröffentlichten Apps und Diensten sowie den von Ihnen genutzten Apps und Diensten. Darüber hinaus werden Änderungen an Ihrem Benutzerkonto, z. B. neu zugewiesene oder entzogene Rollen, geteilt.",
     "linkText": "Help",
     "link": "/documentation/?path=user%2F06.+Notifications%2F01.+Notifications%2F01.+Overview.md"
   }

@@ -19,7 +19,10 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Cards, CategoryDivider } from '@catena-x/portal-shared-components'
+import {
+  Cards,
+  CategoryDivider,
+} from '@arena2036/portal-shared-components-construct-x'
 import { fetchImageWithToken } from 'services/ImageService'
 import type { AppMarketplaceCard } from 'features/apps/types'
 

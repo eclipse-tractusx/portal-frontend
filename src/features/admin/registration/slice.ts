@@ -23,6 +23,12 @@ import { type CompanyDetail, initialState, name } from './types'
 import { initialPaginResult, RequestState } from 'types/MainTypes'
 import { apiSlice } from './apiSlice'
 import type { RootState } from 'features/store'
+<<<<<<< HEAD
+=======
+import type { PaginationData } from '../../connector/types'
+import uniq from 'lodash.uniq'
+import type { PaginResult } from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 
 export const slice = createSlice({
   name,

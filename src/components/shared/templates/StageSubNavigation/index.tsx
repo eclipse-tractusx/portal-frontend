@@ -21,7 +21,7 @@
 import {
   ParentSubNavigation,
   NewSubNavigation,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import '../style.scss'
 import { Box, useMediaQuery } from '@mui/material'
 import { type SubNavigationType } from 'features/staticContent/staticContentApiSlice'

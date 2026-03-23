@@ -19,11 +19,14 @@
  ********************************************************************************/
 
 import { NavLink } from 'react-router-dom'
-import { Image } from '@catena-x/portal-shared-components'
+import { Image } from '@arena2036/portal-shared-components-construct-x'
 import { getAssetBase } from 'services/EnvironmentService'
 
 export const Logo = () => (
   <NavLink to="/">
-    <Image src={`${getAssetBase()}/images/logos/cx-text.svg`} />
+    <Image
+      src={`${getAssetBase()}/images/logos/construct-x-logo.svg`}
+      style={{ width: '125px', height: '80px', marginLeft: '50px' }}
+    />
   </NavLink>
 )

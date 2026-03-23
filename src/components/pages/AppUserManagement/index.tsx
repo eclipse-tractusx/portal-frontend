@@ -33,7 +33,7 @@ import {
   IconButton,
   PageHeader,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import {
   currentUserRoleResp,
   setUserRoleResp,

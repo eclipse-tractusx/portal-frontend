@@ -25,7 +25,7 @@ import {
   DialogActions,
   Typography,
   Button,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useDispatch } from 'react-redux'
 import { exec } from 'features/control/overlay'
 import { ACTIONS } from 'types/Constants'

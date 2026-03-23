@@ -26,7 +26,7 @@ import {
   DialogHeader,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'
 import { useState } from 'react'

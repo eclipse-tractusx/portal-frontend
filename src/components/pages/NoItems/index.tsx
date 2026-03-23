@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 export default function NoItems() {
   const { t } = useTranslation()
@@ -28,10 +28,7 @@ export default function NoItems() {
         mb={2}
         variant="h3"
         align="center"
-        sx={{
-          fontFamily:
-            '"LibreFranklin", "Libre Franklin", "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif !important',
-        }}
+        sx={{ fontFamily: 'Montserrat-Light' }}
       >
         {t('global.noData.heading')}
       </Typography>

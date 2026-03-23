@@ -18,7 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { CardHorizontal, Typography } from '@catena-x/portal-shared-components'
+import {
+  CardHorizontal,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import { Grid, Box } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -61,7 +64,7 @@ export default function ServicesElements({
           <Box className="services-section-main">
             <div className="services-section-content">
               <Typography
-                sx={{ fontFamily: 'LibreFranklin-Light' }}
+                sx={{ fontFamily: 'Montserrat-Light' }}
                 variant="h3"
                 className="section-title"
               >

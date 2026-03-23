@@ -20,7 +20,10 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, Checkbox } from '@catena-x/portal-shared-components'
+import {
+  Typography,
+  Checkbox,
+} from '@arena2036/portal-shared-components-construct-x'
 import { Box, Grid } from '@mui/material'
 import { type CompanyDetails } from 'features/admin/userApiSlice'
 import { ConnectType } from 'features/connector/connectorApiSlice'

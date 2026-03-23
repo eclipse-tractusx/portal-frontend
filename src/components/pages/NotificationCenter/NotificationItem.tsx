@@ -35,7 +35,10 @@ import { NavLink } from 'react-router-dom'
 import UserService from 'services/UserService'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import './style.scss'
-import { Tooltips, Typography } from '@catena-x/portal-shared-components'
+import {
+  Tooltips,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import LabelImportantIcon from '@mui/icons-material/LabelImportant'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import CloseIcon from '@mui/icons-material/Close'

@@ -30,7 +30,7 @@ import {
   DropArea,
   type DropAreaProps,
   LoadingButton,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { error, success } from 'services/NotifyService'
 import { OVERLAYS } from 'types/Constants'
 import { closeOverlay, show } from 'features/control/overlay'

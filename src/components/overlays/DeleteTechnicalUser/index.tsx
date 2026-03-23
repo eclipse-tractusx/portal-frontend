@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import type { PageNotificationsProps } from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import {
   useFetchServiceAccountDetailQuery,

@@ -19,11 +19,11 @@
  ********************************************************************************/
 
 import {
-  PageHeader,
+  PageHeader2,
   Typography,
   CardHorizontal,
   StaticTable,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import '../ServiceReleaseProcessForm/style.scss'
 import 'components/styles/document.scss'
 import {
@@ -85,7 +85,7 @@ export default function ServiceDetails() {
   return (
     <main>
       <div>
-        <PageHeader
+        <PageHeader2
           title={t('servicedetails.headerTitle')}
           topPage={true}
           headerHeight={200}

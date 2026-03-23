@@ -24,7 +24,7 @@ import {
   DialogContent,
   DialogHeader,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { closeOverlay } from 'features/control/overlay'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'

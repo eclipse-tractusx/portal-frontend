@@ -20,10 +20,10 @@
 
 import {
   Button,
-  PageHeader,
+  PageHeader2,
   PageSnackbar,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box, Grid } from '@mui/material'
@@ -127,8 +127,15 @@ export default function SemanticHub() {
 
   return (
     <>
-      <Box sx={{ position: 'sticky' }}>
-        <PageHeader
+      <Box
+        sx={{
+          position: 'sticky',
+          '& .cx-main-header__content': {
+            paddingTop: '0px !important',
+          },
+        }}
+      >
+        <PageHeader2
           headerHeight={200}
           topPage={true}
           title={t('content.semantichub.title')}

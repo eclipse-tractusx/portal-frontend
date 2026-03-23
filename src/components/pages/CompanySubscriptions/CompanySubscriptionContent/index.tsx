@@ -19,7 +19,10 @@
 
 import { useTranslation } from 'react-i18next'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
-import { ImageGallery, Typography } from '@catena-x/portal-shared-components'
+import {
+  ImageGallery,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import { type AppDetails } from 'features/apps/types'
 import CommonService from 'services/CommonService'
 import { type ServiceDetailsResponse } from 'features/serviceSubscription/serviceSubscriptionApiSlice'

@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import 'components/styles/document.scss'
 import { type AppDetails, type Documents } from 'features/apps/types'

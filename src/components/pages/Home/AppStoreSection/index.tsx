@@ -24,7 +24,7 @@ import {
   Button,
   Typography,
   type CardItems,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useNavigate } from 'react-router-dom'
 import './style.scss'
 import { useFetchActiveAppsQuery } from 'features/apps/apiSlice'
@@ -39,7 +39,7 @@ export default function AppStoreSection() {
   return (
     <section className="app-store-section">
       <Typography
-        sx={{ fontFamily: 'LibreFranklin-Light' }}
+        sx={{ fontFamily: 'Montserrat-Light' }}
         variant="h2"
         className="section-title"
       >

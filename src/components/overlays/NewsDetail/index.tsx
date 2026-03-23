@@ -22,7 +22,7 @@ import {
   Cards,
   DialogContent,
   DialogHeader,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { show } from 'features/control/overlay'
 import { useGetItemsQuery } from 'features/info/news/apiSlice'
 import type { AppDispatch } from 'features/store'

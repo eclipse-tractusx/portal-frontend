@@ -2,8 +2,8 @@
   {
     "id": "1",
     "title": "CX Design launched!",
-    "subtitle": "Catena-X",
-    "description": "The new Catena-X Portal designed launched successfully in Catena-X NG",
+    "subtitle": "Construct-X",
+    "description": "The new Construct-X Portal designed launched successfully in Construct-X NG",
     "readMoreText": "Read more",
     "readMoreLink": "#",
     "image": {
@@ -13,8 +13,8 @@
   },
   {
     "id": "1",
-    "title": "Catena-X Network of Networks started",
-    "subtitle": "Catena-X",
+    "title": "Construct-X Network of Networks started",
+    "subtitle": "Construct-X",
     "description": "Lets get started! The Network of Networks team will start with first PoCs.",
     "readMoreText": "Read more",
     "readMoreLink": "#",
@@ -26,7 +26,7 @@
   {
     "id": "1",
     "title": "HMI Preparation Ongoing",
-    "subtitle": "Catena-X",
+    "subtitle": "Construct-X",
     "description": "The HMI (Hannover Fair) preparation are ongoing and looking forward to see you there.",
     "readMoreText": "Read more",
     "readMoreLink": "#",

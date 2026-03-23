@@ -27,7 +27,12 @@ import {
   Input,
   LoadingButton,
   Typography,
+<<<<<<< HEAD
 } from '@catena-x/portal-shared-components'
+=======
+  CircleProgress,
+} from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import { useTranslation, Trans } from 'react-i18next'
 import { isKeycloakURL } from 'types/Patterns'

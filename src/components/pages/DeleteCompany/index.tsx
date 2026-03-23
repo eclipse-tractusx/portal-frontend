@@ -27,7 +27,7 @@ import {
   CircleProgress,
   LoadingButton,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import {
   ApplicationStatus,
   useDeclineRegistrationMutation,
@@ -95,13 +95,13 @@ export default function DeleteCompany() {
         <div
           className="deleteMain"
           style={{
-            backgroundImage: `url(${getAssetBase()}/images/frame/home-stage-desktop.png)`,
+            backgroundImage: `url(${getAssetBase()}/images/frame/home-stage-desktop.jpg)`,
           }}
         >
           <div className="container">
             <div className="logo text-center">
               <img
-                src={`${getAssetBase()}/images/logos/cx-text.svg`}
+                src={`${getAssetBase()}/images/logos/construct-x-logo.svg`}
                 alt="logo"
               />
             </div>

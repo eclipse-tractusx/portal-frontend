@@ -22,7 +22,7 @@ import {
   IconButton,
   Tooltips,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import './style.scss'
 import { type ComapnyCertificateData } from 'features/companyCertification/companyCertificateApiSlice'
 import { Box, ClickAwayListener } from '@mui/material'

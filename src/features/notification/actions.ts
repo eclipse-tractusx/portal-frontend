@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { createAction } from '@reduxjs/toolkit'
-import type { PageNotificationsProps } from '@catena-x/portal-shared-components'
+import type { PageNotificationsProps } from '@arena2036/portal-shared-components-construct-x'
 import { type NotificationFetchType, name } from './types'
 
 const setNotification = createAction(

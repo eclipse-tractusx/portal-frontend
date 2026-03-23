@@ -18,8 +18,16 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+<<<<<<< HEAD
 import { DialogContent, DialogHeader } from '@catena-x/portal-shared-components'
 import { useFetchAnyQuery } from 'features/admin/userOwn/apiSlice'
+=======
+import {
+  DialogContent,
+  DialogHeader,
+} from '@arena2036/portal-shared-components-construct-x'
+import { fetchAny } from 'features/admin/userOwn/actions'
+>>>>>>> old/feature/construct-x
 import { UserdetailSelector } from 'features/admin/userOwn/slice'
 import { show } from 'features/control/overlay'
 import type { AppDispatch } from 'features/store'

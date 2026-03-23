@@ -22,7 +22,7 @@ import {
   IconButton,
   PageLoadingTable,
   type PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useDispatch, useSelector } from 'react-redux'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import type { CompanyInvite } from 'features/admin/inviteApiSlice'

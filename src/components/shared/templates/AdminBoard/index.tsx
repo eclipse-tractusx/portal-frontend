@@ -26,10 +26,10 @@ import {
   SearchInput,
   ViewSelector,
   SortOption,
-  PageHeader,
+  PageHeader2,
   LoadMoreButton,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import './style.scss'
 import AdminBoardElements from './AdminBoardElements'
 import { currentSuccessType } from 'features/adminBoard/slice'
@@ -398,7 +398,7 @@ export default function CommonAdminBoard({
 
   return (
     <div className="adminBoard">
-      <PageHeader title={headerTitle} topPage={true} headerHeight={200} />
+      <PageHeader2 title={headerTitle} topPage={true} headerHeight={200} />
       <div className="mainContainer">
         <div className="searchContainer">
           <SearchInput

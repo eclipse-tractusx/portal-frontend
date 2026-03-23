@@ -20,7 +20,11 @@
 
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Typography, Carousel, Card } from '@catena-x/portal-shared-components'
+import {
+  Typography,
+  Carousel,
+  Card,
+} from '@arena2036/portal-shared-components-construct-x'
 import Box from '@mui/material/Box'
 import uniqueId from 'lodash/uniqueId'
 import PageService from 'services/PageService'
@@ -78,7 +82,7 @@ export default function BusinessApplicationsSection() {
       <section className="business-applications-section">
         <Typography
           sx={{
-            fontFamily: 'LibreFranklin-Light',
+            fontFamily: 'Montserrat-Light',
             marginBottom: '48px !important',
           }}
           variant="h2"

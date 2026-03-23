@@ -25,7 +25,7 @@ import {
   DialogActions,
   DialogHeader,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { Box } from '@mui/material'
 interface OverlayProps {
   title: string

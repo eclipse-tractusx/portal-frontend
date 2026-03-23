@@ -1,9 +1,9 @@
-<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 153" width="1440" height="153">
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 153" width="1440" height="153" preserveAspectRatio="none">
 	<title>Subtract-svg</title>
 	<defs>
 		<linearGradient id="g1" x1="1663.4" y1="426.4" x2="1130.9" y2="-461" gradientUnits="userSpaceOnUse">
-			<stop offset="0" stop-color="#ff782c"/>
-			<stop offset="1" stop-color="#ffb326"/>
+			<stop offset="0" stop-color="#3c6cb2"/>
+			<stop offset="1" stop-color="#3c6cb2"/>
 		</linearGradient>
 	</defs>
 	<style>

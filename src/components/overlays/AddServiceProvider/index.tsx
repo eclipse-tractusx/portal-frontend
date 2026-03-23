@@ -25,7 +25,12 @@ import {
   DialogContent,
   DialogHeader,
   PageSnackbar,
+<<<<<<< HEAD
 } from '@catena-x/portal-shared-components'
+=======
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 import { closeOverlay } from 'features/control/overlay'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'

@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
-import { BackButton } from '@catena-x/portal-shared-components'
+import { BackButton } from '@arena2036/portal-shared-components-construct-x'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { t } from 'i18next'

@@ -18,7 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { PageHeader, Typography } from '@catena-x/portal-shared-components'
+import {
+  PageHeader,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 
 export default function Imprint() {

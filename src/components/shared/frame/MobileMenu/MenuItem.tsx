@@ -92,8 +92,7 @@ export const MenuItem = ({
           textDecoration: 'none',
           whiteSpace: 'nowrap',
           fontSize: '14px',
-          fontFamily:
-            '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
+          fontFamily: 'Montserrat-Light',
           ':hover': {
             backgroundColor: 'rgba(15, 113, 203, 0.05)',
             color: 'primary.dark',

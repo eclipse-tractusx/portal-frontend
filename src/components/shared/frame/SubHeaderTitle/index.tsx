@@ -18,7 +18,12 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+<<<<<<< HEAD
 import Typography, { type TypographyProps } from '@mui/material/Typography'
+=======
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
+import type { TypographyProps } from '@mui/material'
+>>>>>>> old/feature/construct-x
 import { useTranslation } from 'react-i18next'
 
 interface ComponentProps extends TypographyProps {
@@ -35,9 +40,14 @@ export default function SubHeaderTitle({
 
   return (
     <Typography
+<<<<<<< HEAD
       sx={{ fontFamily: 'LibreFranklin-Light' }}
       // eslint-disable-next-line
       variant={variant as any}
+=======
+      sx={{ fontFamily: 'Montserrat-Light' }}
+      variant={variant}
+>>>>>>> old/feature/construct-x
       className="section-title"
     >
       {`${t(title, params ?? {})}`}

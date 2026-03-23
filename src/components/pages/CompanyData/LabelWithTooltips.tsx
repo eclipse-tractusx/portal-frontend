@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Tooltips } from '@catena-x/portal-shared-components'
+import { Tooltips } from '@arena2036/portal-shared-components-construct-x'
 import { Box, Typography } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 

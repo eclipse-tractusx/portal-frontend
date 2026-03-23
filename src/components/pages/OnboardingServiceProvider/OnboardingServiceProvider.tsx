@@ -32,7 +32,7 @@ import {
   DialogContent,
   Dialog,
   LoadingButton,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Box } from '@mui/material'
 import './style.scss'

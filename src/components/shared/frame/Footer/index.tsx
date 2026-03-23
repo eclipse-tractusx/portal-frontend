@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react'
 import {
   Navigation,
   ScrollToTopButton,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useLocation } from 'react-router-dom'
 import './style.scss'
@@ -87,11 +87,18 @@ export const Footer = ({ pages }: { pages: string[] }) => {
     <footer style={{ background: getPreferredColor() }}>
       {showScrollToTop && <ScrollToTopButton onButtonClick={scrollToTop} />}
       <img
+        id="footer-head"
         className="footer-head"
-        src="/orange-background-head.svg"
-        alt="orange background"
+        //src="/orange-background-head.jpg"
+        //alt="orange background"
       />
       <div className="footer-content">
+        <img
+          id="footer-logo"
+          src="/BMWE2025_NextGenEU.svg"
+          alt="BMWE 2025 Next Gen EU"
+          style={{ display: 'inline', width: '350px' }}
+        />
         <Navigation unstyled items={items} component={NavLink} />
         <span className="copyright">{`${t('content.footer.copyright')}`}</span>
       </div>

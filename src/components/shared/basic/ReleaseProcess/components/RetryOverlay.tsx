@@ -25,7 +25,7 @@ import {
   Button,
   Typography,
   BackButton,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import Box from '@mui/material/Box'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import './styles.scss'

@@ -24,7 +24,7 @@ import { initServicetNotifications, initialPaginMeta } from 'types/MainTypes'
 import type {
   PageNotificationsProps,
   PaginMeta,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import {
   type NotificationFetchType,
   type NOTIFICATION_TOPIC,

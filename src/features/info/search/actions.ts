@@ -33,7 +33,10 @@ import {
   userToSearchItem,
 } from './mapper'
 import { name, type SearchItem } from './types'
-import type { CardItems, PaginResult } from '@catena-x/portal-shared-components'
+import type {
+  CardItems,
+  PaginResult,
+} from '@arena2036/portal-shared-components-construct-x'
 import { isUUID, Patterns } from 'types/Patterns'
 import type {
   BusinessPartner,

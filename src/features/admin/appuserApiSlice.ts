@@ -24,7 +24,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type {
   PaginResult,
   PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import i18next from 'i18next'
 import { PAGE_SIZE } from 'types/Constants'
 import { apiBaseQuery } from 'utils/rtkUtil'

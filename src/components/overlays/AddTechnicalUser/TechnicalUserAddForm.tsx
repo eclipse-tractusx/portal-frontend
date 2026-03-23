@@ -31,7 +31,7 @@ import {
   Radio,
   Typography,
   Tooltips,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import {
   type ServiceAccountRole,
   useFetchServiceAccountRolesQuery,

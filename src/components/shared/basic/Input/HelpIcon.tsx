@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Tooltips } from '@catena-x/portal-shared-components'
+import { Tooltips } from '@arena2036/portal-shared-components-construct-x'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 export default function HelpIcon({ msg }: { msg: string }) {

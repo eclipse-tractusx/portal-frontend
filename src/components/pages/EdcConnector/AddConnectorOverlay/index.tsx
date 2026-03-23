@@ -28,7 +28,7 @@ import {
   DialogHeader,
   CircleProgress,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import ConnectorTypeSelection from './ConnectorTypeSelection'
 import ConnectorInsertForm from './ConnectorInsertForm'
 import { useForm } from 'react-hook-form'

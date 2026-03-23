@@ -24,7 +24,7 @@ import {
 } from 'features/info/search/slice'
 import { SearchResult } from 'components/shared/basic/SearchResult'
 import './style.scss'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import { useEffect, useState } from 'react'
 import { clearSearch } from 'features/info/search/actions'
 

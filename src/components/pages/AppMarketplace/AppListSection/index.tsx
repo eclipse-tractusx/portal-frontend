@@ -22,7 +22,7 @@ import {
   CircleProgress,
   ErrorBar,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTheme } from '@mui/material'
 import { AppListGroupView } from '../AppListGroupView'
 import { useNavigate, useParams, useLocation } from 'react-router-dom'

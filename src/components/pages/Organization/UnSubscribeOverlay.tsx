@@ -30,7 +30,7 @@ import {
   Checkbox,
   StaticTable,
   LoadingButton,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import Box from '@mui/material/Box'
 import { useFetchSubscriptionAppQuery } from 'features/apps/apiSlice'
 import './style.scss'

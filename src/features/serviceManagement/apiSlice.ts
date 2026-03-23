@@ -22,8 +22,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { DocumentTypeId } from 'features/appManagement/apiSlice'
 import { apiBaseQuery } from 'utils/rtkUtil'
 import type { ServiceStatusDataState } from './types'
+<<<<<<< HEAD
 import type { PaginFetchArgs } from '@catena-x/portal-shared-components'
 import i18next from 'i18next'
+=======
+import type { PaginFetchArgs } from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 
 export enum ReleaseProcessTypes {
   APP_RELEASE = 'appRelease',

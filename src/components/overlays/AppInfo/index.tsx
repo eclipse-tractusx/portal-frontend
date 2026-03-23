@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import AppDetailContentDetails from 'components/pages/AppDetail/AppDetailContentDetails'
-import { DialogContent, DialogHeader } from '@catena-x/portal-shared-components'
+import {
+  DialogContent,
+  DialogHeader,
+} from '@arena2036/portal-shared-components-construct-x'
 import { useFetchAppDetailsQuery } from 'features/apps/apiSlice'
 import { show } from 'features/control/overlay'
 import { useDispatch } from 'react-redux'

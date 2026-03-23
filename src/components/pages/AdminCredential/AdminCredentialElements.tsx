@@ -47,7 +47,7 @@ import {
   LoadingButton,
   StatusTag,
   Tooltips,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { ROLES } from 'types/Constants'
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore'
 import { userHasSsiCredentialRole } from 'services/AccessService'

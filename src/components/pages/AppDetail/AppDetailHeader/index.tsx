@@ -18,8 +18,17 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+<<<<<<< HEAD
 import { useDispatch } from 'react-redux'
 import { Typography, Button } from '@catena-x/portal-shared-components'
+=======
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  Typography,
+  OrderStatusButton,
+  paletteDefinitions,
+} from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 import { useTranslation } from 'react-i18next'
 import type { AppDetails } from 'features/apps/details/types'
 import './style.scss'

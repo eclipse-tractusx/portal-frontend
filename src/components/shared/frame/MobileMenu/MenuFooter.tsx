@@ -18,7 +18,10 @@
  ********************************************************************************/
 
 import { Box } from '@mui/material'
-import { Typography, LanguageSwitch } from '@catena-x/portal-shared-components'
+import {
+  Typography,
+  LanguageSwitch,
+} from '@arena2036/portal-shared-components-construct-x'
 import { useDispatch } from 'react-redux'
 import i18next, { changeLanguage, t } from 'i18next'
 import I18nService from 'services/I18nService'
@@ -58,8 +61,7 @@ export const MenuFooter = (): JSX.Element => {
           sx={{
             paddingLeft: '10px',
             fontSize: '14px',
-            fontFamily:
-              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
+            fontFamily: 'Montserrat-Light',
           }}
           variant="body2"
         >
@@ -78,8 +80,7 @@ export const MenuFooter = (): JSX.Element => {
           sx={{
             paddingLeft: '10px',
             fontSize: '14px',
-            fontFamily:
-              '"LibreFranklin-Medium",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
+            fontFamily: 'Montserrat-Light',
           }}
           variant="body2"
         >

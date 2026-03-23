@@ -21,7 +21,7 @@
 import {
   type PaginFetchArgs,
   type PaginResult,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { type PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import {

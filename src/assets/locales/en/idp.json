@@ -13,7 +13,7 @@
     "enableIdpSuccessSubheadline": "Go and test the login now",
     "disableIdpHeadline": "Disable Identity Provider {{ idp }}",
     "disableIdpSubheadline": "This will remove the option to sign in for people of your company",
-    "description": "Here you can manage how the users of your company authenticate with Catena-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page.",
+    "description": "Here you can manage how the users of your company authenticate with Construct-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page.",
     "create": "Add Identity Provider"
   },
   "idpdetail": {
@@ -80,7 +80,7 @@
     "title": "Identity Provider Configured",
     "subtitle": "Your IdP has been set up successfully",
     "desc": "The IdP is disabled for now and can get enabled by following the steps below.",
-    "note": "Please note before enabling the IdP and trying to log in you must link your current Catena-X user to your according user on the own IdP.",
+    "note": "Please note before enabling the IdP and trying to log in you must link your current Construct-X user to your according user on the own IdP.",
     "understood": "Click 'Understood' to proceed to enable the IdP."
   },
   "enable": {
@@ -91,7 +91,7 @@
       "thirdStep": "Connect user profile"
     },
     "created": "Created",
-    "desc": "In the next step, your IdP needs to be activated. <br /><br />To do this, connect your existing Catena-X user <br />with your user ID  in the IdP you just have added.",
+    "desc": "In the next step, your IdP needs to be activated. <br /><br />To do this, connect your existing Construct-X user <br />with your user ID  in the IdP you just have added.",
     "label": "Your IdP - User ID",
     "hint": "Your existing user ID (not name) on target IDP",
     "success": "IdP got enabled",
@@ -116,7 +116,7 @@
     "note": "Please note:",
     "or": "OR",
     "successText": "If the test succeeds, <br />... commence user migration <br />... deactivate old IdP",
-    "failText": "If the test fails,<br />please “sign in” with your “old” <br />Catena-X user and check the settings <br />of your new IdP. "
+    "failText": "If the test fails,<br />please “sign in” with your “old” <br />Construct-X user and check the settings <br />of your new IdP. "
   },
   "disable": {
     "title": "Disable Identity Provider",
@@ -152,7 +152,7 @@
     "title": "Update/Migrate User Accounts",
     "subtitle": "Make sure users can continue working",
     "short": "Link IdP Users",
-    "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Catena-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP.<br />All user data and settings are retained and assigned to the correct user. <br /><br />To do this, select the file format and download a list of your Catena-X users. <br />Add the corresponding unique user ID from your own IdP to each Catena-X user.<br/> Upload the updated file back to Catena-X.<br />This will link the existing Catena-X user accounts to the corresponding user account from your own IdP.<br /> <br /> Your users can now log in to the CX-Portal with their company credentials.",
+    "desc1": "When you create your own Identity Provider, you can migrate/connect your existing Construct-X users with the users listed in your own IdP. This is facilitated by the Keycloak IdP.<br />All user data and settings are retained and assigned to the correct user. <br /><br />To do this, select the file format and download a list of your Construct-X users. <br />Add the corresponding unique user ID from your own IdP to each Construct-X user.<br/> Upload the updated file back to Construct-X.<br />This will link the existing Construct-X user accounts to the corresponding user account from your own IdP.<br /> <br /> Your users can now log in to the CX-Portal with their company credentials.",
     "bulkUploadHeading": "Bulk upload process",
     "step1Heading": "Download user list as file. Please select your prefered file type:",
     "step1Intro": "Content current userlist:",
@@ -172,7 +172,7 @@
   },
   "userssuccess": {
     "title": "Upload updated user list successfull",
-    "desc": "Your companies Catena-X users will now be able to login with their company credentials.<br />The former Catena-X logins will be disabled in the near future."
+    "desc": "Your companies Construct-X users will now be able to login with their company credentials.<br />The former Construct-X logins will be disabled in the near future."
   },
   "userserror": {
     "title": "Upload updated user list",

@@ -18,7 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { IconButton, Typography } from '@catena-x/portal-shared-components'
+import {
+  IconButton,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import type { ProviderProps } from '../StaticTypes'
 import '../style.scss'
 import RenderImage from './RenderImage'

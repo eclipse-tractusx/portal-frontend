@@ -24,7 +24,13 @@ import {
   Button,
   Typography,
   Checkbox,
+<<<<<<< HEAD
 } from '@catena-x/portal-shared-components'
+=======
+  OrderStatusButton,
+  paletteDefinitions,
+} from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'

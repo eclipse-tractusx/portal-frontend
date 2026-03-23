@@ -27,7 +27,7 @@ import {
   Tab,
   TabPanel,
   Image,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import CommonService from 'services/CommonService'
 import { getAssetBase } from 'services/EnvironmentService'
 import { uniqueId } from 'lodash'
@@ -64,7 +64,7 @@ export default function RoleDetails() {
         <div className="heading">
           <Typography
             sx={{
-              fontFamily: 'LibreFranklin-Light',
+              fontFamily: 'Montserrat-Light',
               marginBottom: '40px !important',
               maxWidth: '30%',
               margin: '0 auto',

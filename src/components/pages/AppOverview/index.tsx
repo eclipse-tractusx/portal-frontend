@@ -21,7 +21,7 @@
 import { useCallback, useMemo, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  PageHeader,
+  PageHeader2,
   Typography,
   ViewSelector,
   SearchInput,
@@ -31,7 +31,7 @@ import {
   ErrorBar,
   CircleProgress,
   LoadMoreButton,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTheme, Box } from '@mui/material'
 import {
   appCardStatus,
@@ -251,7 +251,7 @@ export default function AppOverview() {
 
   return (
     <div className="appOverview-app">
-      <PageHeader
+      <PageHeader2
         title={t('content.appOverview.headerTitle')}
         topPage={true}
         headerHeight={200}
@@ -286,7 +286,7 @@ export default function AppOverview() {
         <Box sx={{ marginTop: '20px' }} className="overview-section">
           <section className="overview-section-content">
             <Typography
-              sx={{ fontFamily: 'LibreFranklin-Light' }}
+              sx={{ fontFamily: 'Montserrat-Light' }}
               variant="h3"
               className="section-title"
             >

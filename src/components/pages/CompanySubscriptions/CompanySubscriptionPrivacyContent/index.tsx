@@ -20,7 +20,7 @@
 import { uniqueId } from 'lodash'
 import { Apartment, Person, LocationOn, Web, Info } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import { PrivacyPolicyType } from 'features/adminBoard/adminBoardApiSlice'
 import { type AppDetails } from 'features/apps/types'
 import './style.scss'

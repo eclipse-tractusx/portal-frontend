@@ -26,7 +26,7 @@ import UserService from 'services/UserService'
 import type {
   PaginResult,
   PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { PAGE_SIZE } from 'types/Constants'
 
 export interface UserAppRoles {

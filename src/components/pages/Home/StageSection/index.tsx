@@ -36,7 +36,7 @@ export default function StageSection() {
           {
             title: t('content.home.stage.slider1.title'),
             subTitle: t('content.home.stage.slider1.subtitle'),
-            imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
+            imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.jpg`,
             buttonText: t('content.home.stage.slider1.buttonName'),
             handleClick: () => {
               navigate(t('content.home.stage.slider1.navigation'))
@@ -46,7 +46,7 @@ export default function StageSection() {
           {
             title: t('content.home.stage.slider2.title'),
             subTitle: t('content.home.stage.slider2.subtitle'),
-            imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
+            imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.jpg`,
             buttonText: t('content.home.stage.slider2.buttonName'),
             handleClick: () => {
               navigate(t('content.home.stage.slider2.navigation'))
@@ -55,7 +55,7 @@ export default function StageSection() {
           {
             title: t('content.home.stage.slider3.title'),
             subTitle: t('content.home.stage.slider3.subtitle'),
-            imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.png`,
+            imagePath: `${getAssetBase()}/images/frame/home-stage-desktop.jpg`,
             buttonText: t('content.home.stage.slider3.buttonName'),
             handleClick: () => {
               navigate(t('content.home.stage.slider3.navigation'))
@@ -65,7 +65,7 @@ export default function StageSection() {
           {
             title: t('content.home.stage.slider4.title'),
             subTitle: t('content.home.stage.slider4.subtitle'),
-            imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.png`,
+            imagePath: `${getAssetBase()}/images/frame/desktop-bg-frame.jpg`,
             buttonText: t('content.home.stage.slider4.buttonName'),
             handleClick: () => {
               navigate(t('content.home.stage.slider4.navigation'))

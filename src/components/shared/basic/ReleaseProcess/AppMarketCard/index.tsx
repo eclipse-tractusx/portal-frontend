@@ -28,7 +28,7 @@ import {
   type UploadFileStatus,
   UploadStatus,
   PageSnackbar,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import { Grid } from '@mui/material'
 import { useState, useEffect, useMemo, useRef } from 'react'
@@ -744,7 +744,7 @@ export default function AppMarketCard() {
 
             <div className="form-field">
               <Typography
-                sx={{ fontFamily: 'LibreFranklin-Medium' }}
+                sx={{ fontFamily: 'Montserrat-Light' }}
                 variant="subtitle2"
               >
                 {t('content.apprelease.appMarketCard.salesManager')}

@@ -21,7 +21,7 @@
 import { Box } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled'
-import { IconButton } from '@catena-x/portal-shared-components'
+import { IconButton } from '@arena2036/portal-shared-components-construct-x'
 import { useEffect, useState } from 'react'
 
 export default function ItemProcessor({

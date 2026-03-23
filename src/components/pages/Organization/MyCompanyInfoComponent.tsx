@@ -1,4 +1,7 @@
-import { StatusTag, Typography } from '@catena-x/portal-shared-components'
+import {
+  StatusTag,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import { Box } from '@mui/material'
 import { KeyValueView } from 'components/shared/basic/KeyValueView'
 import { useFetchOwnCompanyDetailsQuery } from 'features/admin/userApiSlice'

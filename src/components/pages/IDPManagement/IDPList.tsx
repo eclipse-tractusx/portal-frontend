@@ -30,7 +30,7 @@ import {
   StatusTag,
   Table,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import IDPStateProgress from './IDPStateProgress'
 import { show } from 'features/control/overlay'
 import { OVERLAYS } from 'types/Constants'

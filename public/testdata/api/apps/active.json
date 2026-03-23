@@ -2,7 +2,7 @@
   {
     "id": "876de3be-3e96-4897-a8fa-7c26cbbcf3b8",
     "title": "Part Chain",
-    "subtitle": "Catena-X",
+    "subtitle": "Construct-X",
     "shortDescription": "CX App Part Chain Details",
     "price": "free of charge",
     "rating": 4.1,
@@ -41,7 +41,7 @@
   {
     "id": "7da9ce41-689f-4ac8-9065-244c75c71f57",
     "title": "Material Traceability",
-    "subtitle": "Catena-X",
+    "subtitle": "Construct-X",
     "description": "SAP App Material Traceability Details",
     "price": "free of charge",
     "rating": 4.1,
@@ -54,7 +54,7 @@
   {
     "id": "1a4ac107-2b6e-4190-89df-4b8442b12f04",
     "title": "Component Performance",
-    "subtitle": "Catena-X",
+    "subtitle": "Construct-X",
     "description": "BMW App Component Performance Monitor Details",
     "price": "free of charge",
     "rating": 4.1,
@@ -106,7 +106,7 @@
   {
     "id": "1a4ac107-2b6e-4190-89df-4b8442b12f05",
     "title": "MultiApp",
-    "subtitle": "Catena-X",
+    "subtitle": "Construct-X",
     "description": "Works with multiple use cases",
     "price": "free of charge",
     "useCases": ["Traceability", "Quality & Demand Management"],

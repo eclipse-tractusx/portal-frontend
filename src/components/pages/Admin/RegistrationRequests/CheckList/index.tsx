@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import Box from '@mui/material/Box'
-import { Typography, Button } from '@catena-x/portal-shared-components'
+import {
+  Typography,
+  Button,
+} from '@arena2036/portal-shared-components-construct-x'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ReportProblemIcon from '@mui/icons-material/ReportProblem'
 import LoopIcon from '@mui/icons-material/Loop'

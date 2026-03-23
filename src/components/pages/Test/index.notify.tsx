@@ -17,7 +17,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button } from '@catena-x/portal-shared-components'
+import { Button } from '@arena2036/portal-shared-components-construct-x'
 import { error, success } from 'services/NotifyService'
 
 const checkDate = (date: number) => {

@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { PageHeader, Typography } from '@catena-x/portal-shared-components'
+import {
+  PageHeader,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 
 export default function CookiePolicy() {
   const { t } = useTranslation('footer', { keyPrefix: 'cookies' })

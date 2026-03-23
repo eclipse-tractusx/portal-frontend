@@ -17,12 +17,14 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Button, MainHeader } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  MainHeader,
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import PageService from 'services/PageService'
 import { label as AppList } from '../AppListSection'
 import FavoriteSection from '../FavoriteSection'
-import { getAssetBase } from 'services/EnvironmentService'
 
 export default function SearchSection() {
   const { t } = useTranslation()
@@ -35,7 +37,7 @@ export default function SearchSection() {
         headerHeight={731}
         subTitleWidth={787}
         background="LinearGradient1"
-        imagePath={`${getAssetBase()}/images/content/app-store-stage-desktop.png`}
+        imagePath="/orange-background-full.jpg"
       >
         <Button
           sx={{ margin: '40px 10px 0 0' }}

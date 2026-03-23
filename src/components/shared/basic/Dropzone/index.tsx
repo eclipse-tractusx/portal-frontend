@@ -28,7 +28,7 @@ import {
   DropArea as DefaultDropArea,
   DropPreview as DefaultDropPreview,
   UploadStatus,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { type FunctionComponent, useCallback, useState } from 'react'
 import { type Accept, useDropzone } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'

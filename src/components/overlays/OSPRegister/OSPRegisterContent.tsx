@@ -42,7 +42,7 @@ import {
   Checkbox,
   SelectList,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import {
   type PartnerRegistration,
   type CompanyRoleAgreementData,

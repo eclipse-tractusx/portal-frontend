@@ -1,5 +1,5 @@
 {
-  "title": "Catena-X Portal",
+  "title": "Construct-X Portal",
   "pages": {
     "home": "Startseite",
     "registration": "Onboarding Registrierung",
@@ -116,7 +116,7 @@
   },
   "content": {
     "registration": {
-      "title": "Willkommen bei Catena-X",
+      "title": "Willkommen bei Construct-X",
       "mainDescription": "Vielen Dank, dass Sie sich bei uns registriert haben. Sie haben Ihren Registrierungsprozess gestartet, aber es fehlen noch ein paar Dinge.",
       "completeBtn": "Vervollständige deine Registrierung",
       "description": "Zum aktuellen Stand der Registrierung können Sie nicht auf das Portal zugreifen. Nach Abschluss aller Phasen der Registrierung erhalten Sie eingeschränkten Zugriff auf das Portal, während Ihre Registrierung überprüft wird.",
@@ -129,10 +129,10 @@
         "tooltipText": "Fahren Sie dort fort, wo Sie aufgehört haben"
       },
       "helpText": "Wenn Sie Fragen zu Ihrer Registrierung haben, wenden Sie sich bitte an unseren Helpdesk:",
-      "email": "help@catena-x.com"
+      "email": "help@construct-x.net"
     },
     "registrationInreview": {
-      "title": "Welcome to Catena-X",
+      "title": "Welcome to Construct-X",
       "description": "Thank you for registering with us. <br/ ><br/ ><strong>Your registration is currently under review. You will be notified by email when the process is complete. </strong>",
       "subDescription": "At the current state of the review you already have limited access to the portal.",
       "stageTitle": "Current review stage:  {{step}}/{{totalSteps}}",
@@ -151,11 +151,11 @@
         "DONE": "Erledigt",
         "FAILED": "Fehlgeschlagen"
       },
-      "helperText": "If you have any questions regarding your registration please contact our helpdesk: <0>help@catena-x.com.</0>",
+      "helperText": "If you have any questions regarding your registration please contact our helpdesk: <0>help@construct-x.net.</0>",
       "note": "NOTE:",
       "noteDetail": "Your companies registration is under review. Your access to the portal is currently limited. For help, please contact our helpdesk:",
       "helpText": "If you have any questions regarding your registration please contact our helpdesk:",
-      "email": "help@catena-x.com"
+      "email": "help@construct-x.net"
     },
     "registrationDeclined": {
       "title": "Registration Status",
@@ -178,7 +178,7 @@
         "bpnError": "Valid BPN eg: BPNLXXXXXXXXXXXX",
         "headertitle": "Admin Board",
         "headersubtitle": "Application Requests",
-        "introText1": "Das Application Panel enthält alle aktuell ausstehenden Catena-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Catena-X Netzwerk.",
+        "introText1": "Das Application Panel enthält alle aktuell ausstehenden Construct-X Bewerberanfragen, sowie eine Übersicht über bestätigte und abgelehnte Applications im Construct-X Netzwerk.",
         "introText2": "Mit der Genehmigung des Antrages, wird dem Berwerberunternehmen Zugang zum CX-Portal gegeben, um das technische und funktionale Onboarding zu starten. Bitte stellen Sie sicher, dass Sie die Antragsdetails validieren, bevor Sie einen Antrag genehmigen.",
         "tabletitle": "Registrierungsanfragen",
         "pending": "anstehend",
@@ -200,7 +200,7 @@
           "taxid": "Steuernummer",
           "address": "Address",
           "docs": "Document(s)",
-          "roles": "Company Role(s) in Catena-X",
+          "roles": "Company Role(s) in Construct-X",
           "activeParticipation": "Teilnehmer",
           "appProvider": "App Anbieter",
           "onboardingProvider": "Onboarding Service Anbieter",
@@ -257,8 +257,8 @@
       "slider4": "Benutzermanagement",
       "stage": {
         "slider1": {
-          "title": "Catena-X",
-          "subtitle": "das Tor zum digitalen Automotive-Netzwerk",
+          "title": "Construct-X",
+          "subtitle": "das Tor zum digitalen Bauwesen-Netzwerk",
           "buttonName": "Meine Apps",
           "navigation": "/appManagement"
         },
@@ -282,7 +282,7 @@
         }
       },
       "searchSection": {
-        "inputPlaceholder": "Suche in Catena-X"
+        "inputPlaceholder": "Suche in Construct-X"
       },
       "businessApplicationsSection": {
         "title": "Meine Applications"
@@ -296,7 +296,7 @@
     },
     "appstore": {
       "stage": {
-        "title": "Catena-X App Store",
+        "title": "Construct-X App Store",
         "subtitle": "Ein skalierendes und erweiterbares Ökosystem",
         "appButton": "App Übersicht"
       },
@@ -335,7 +335,7 @@
     "semantichub": {
       "title": "Semantische Datenmodelle",
       "introText_0": "Semantische Modelle dienen zur Strukturierung von Daten. Als Konzept ermöglichen sie es, Daten und ihren Beziehungen eine grundlegende Bedeutung zu verleihen. Im Rahmen der Datenmodellierung und Datenorganisation realisieren sie die einfache Entwicklung von Anwendungen wie auch die Aufrechterhaltung von Datenkonsistenz.",
-      "introText_1": "In Catena-X werden semantische Datenmodelle in einem geeigneten Publikationssystem, dem sogenannten Semantic Hub, bereitgestellt. Für Daten bzw. Service Anbieter stellt der Semantic Hub  eine Grundlage für die Nutzung und Wiederverwendung von semantischen Modellen. Aus diesem Grund erfolgt die Veröffentlichung eines semantischen Datenmodells unter der Angabe einer Version. Dies fördert Transparenz wie auch Kontrolle über alle semantischen Modelle und deren Freigabestatus.",
+      "introText_1": "In Construct-X werden semantische Datenmodelle in einem geeigneten Publikationssystem, dem sogenannten Semantic Hub, bereitgestellt. Für Daten bzw. Service Anbieter stellt der Semantic Hub  eine Grundlage für die Nutzung und Wiederverwendung von semantischen Modellen. Aus diesem Grund erfolgt die Veröffentlichung eines semantischen Datenmodells unter der Angabe einer Version. Dies fördert Transparenz wie auch Kontrolle über alle semantischen Modelle und deren Freigabestatus.",
       "addModel": "Neues Model anlegen",
       "alerts": {
         "alertSuccessTitle": "Erfolg!",
@@ -395,7 +395,7 @@
           "itemXml": "XML"
         },
         "fileError": "Fehler: Die Datei konnte nicht geladen werden.",
-        "ttlTooltip": "Das runtergeladene Turtle-Dokument sieht anders aus, ist jedoch semantisch das gleiche im Vergleich zum hochgeladenen Aspekt Turtle-Dokument. Um bestehende Aspekte weiterzuentwickeln, beziehen Sie sich auf die Turtle-Quelldateien (z. B. im Catena-X BAMM Model GitHub Repository).",
+        "ttlTooltip": "Das runtergeladene Turtle-Dokument sieht anders aus, ist jedoch semantisch das gleiche im Vergleich zum hochgeladenen Aspekt Turtle-Dokument. Um bestehende Aspekte weiterzuentwickeln, beziehen Sie sich auf die Turtle-Quelldateien (z. B. im Construct-X BAMM Model GitHub Repository).",
         "downloadTitle": "Download-Optionen für das Aspekt-Modell",
         "openApi": {
           "inputLabel": "Gebe eine URL ein, um den Basis-Pfad der Open API URL zu ändern.",
@@ -435,7 +435,7 @@
         "region": "Country Code & Region"
       },
       "companyRoles": {
-        "title": "Company Roles in Catena-X",
+        "title": "Company Roles in Construct-X",
         "RoleName": "Active Participant"
       },
       "deleteAccount": "Delete Account",
@@ -537,7 +537,7 @@
     },
     "deactivate": {
       "headerTitle": "Deaktivierung Business-App",
-      "description": "Die Deaktivierung von Geschäftsanwendungen deaktiviert das App-Angebot innerhalb des Catena-X-Marktplatzes. Alle derzeit aktiven Abonnements bleiben aktiv und Kunden sind von der Deaktivierung nicht betroffen. Neue Abonnements sind nicht möglich.",
+      "description": "Die Deaktivierung von Geschäftsanwendungen deaktiviert das App-Angebot innerhalb des Construct-X-Marktplatzes. Alle derzeit aktiven Abonnements bleiben aktiv und Kunden sind von der Deaktivierung nicht betroffen. Neue Abonnements sind nicht möglich.",
       "checkboxLabel": "Hiermit bestätige ich, dass ich die Geschäftsbedingungen der Business-App zur Kenntnis genommen habe und meine Firmen-Business-App mit sofortiger Wirkung vom Marktplatz deaktiviere. Ich habe verstanden, dass es nicht möglich ist, die Deaktivierung selbstständig rückgängig zu machen.",
       "checkboxErrorMsg": "Bitte bestätigen Sie, dass Sie die obigen Deaktivierungsauswirkungen gelesen haben, bevor Sie fortfahren",
       "successMsg": "Deactivierung war erfolgreich.",
@@ -637,7 +637,7 @@
         "apiErrorDesc1": "Die Connector-Daten können derzeit nicht geladen werden",
         "apiErrorDesc2": "Bitte laden Sie die Seite neu oder versuchen Sie es später noch einmal",
         "apiErrorDesc3": "Sollte das Problem weiterhin bestehen, wenden Sie sich bitte an:",
-        "apiErrorDesc4": "support@catena-x.com",
+        "apiErrorDesc4": "support@construct-x.net",
         "apiErrorDesc5": "Bitte versuchen Sie es später noch einmal.",
         "configureConnector": "Connector konfigurieren",
         "viewEditConnectorData": "Connector-Daten anzeigen/bearbeiten",
@@ -725,7 +725,7 @@
             "label": "Connector-Katalog-Endpunkt*",
             "placeholder": "Example: https://connector.control.plane/api/v1/dsp",
             "mandatoryError": "Die Connector-URL ist obligatorisch.",
-            "patternError": "Geben Sie eine gültige URL ein – z. B.: https://catena-x.net",
+            "patternError": "Geben Sie eine gültige URL ein – z. B.: https://construct-x.net",
             "tooltipMsg": "Base URL of the Catalog Service endpoint of a DSP Connector, e.g., https://connector.control.plane/{catalogPath}."
           },
           "bpn": {
@@ -829,7 +829,7 @@
       "headerIntro": "Add below the business partner registration contact and the company name.",
       "subHeaderTitle": "Invite a new partner",
       "inviteText1": "Registration application invite process.",
-      "inviteText2": "Invite a new partner to Catena-X.",
+      "inviteText2": "Invite a new partner to Construct-X.",
       "invite": "Einladung",
       "success": "Business Partner Einladung erfolgreich gesendet.",
       "successSubText": "Das Fenster wird automatisch geschlossen. Falls dies nicht der Fall ist, verwenden Sie bitte die Schaltfläche 'Schließen' oben rechts.",
@@ -993,7 +993,7 @@
       "deleteUserConfirm": {
         "header": "Delete user account",
         "confirmTitle": "Sind Sie sicher, dass Sie das Benutzerkonto von {userName} löschen möchten?",
-        "description": "Durch das Löschen des Kontos werden dem Benutzer der Zugriff auf Catena-X sowie sämtliche Rechte und Datenzugriffe entzogen.",
+        "description": "Durch das Löschen des Kontos werden dem Benutzer der Zugriff auf Construct-X sowie sämtliche Rechte und Datenzugriffe entzogen.",
         "note": "Hinweis: Wenn Sie das Konto jetzt löschen, können Sie es später nicht erneut aktivieren.",
         "successTitle": "User successfully deleted",
         "successDescription": "Der Benutzer wurde erfolgreich gelöscht. Alle Rechte wurden deaktiviert. Bitte beachten Sie, dass der Benutzer die Anwendung möglicherweise noch in den nächsten 10 Minuten nutzen kann. Spätestens nach 10 Minuten wird der Benutzer automatisch abgemeldet und ein neuer Anmeldeversuch wird abgelehnt",
@@ -1003,7 +1003,7 @@
       "suspendUserConfirm": {
         "header": "Suspend user account",
         "confirmTitle": "Sind Sie sicher, dass Sie das Benutzerkonto von {userName} sperren möchten?",
-        "description": "Durch die Sperrung des Kontos werden der Zugriff dieses Benutzers auf Catena-X sowie alle Berechtigungen und Datenzugriffe vorübergehend deaktiviert.",
+        "description": "Durch die Sperrung des Kontos werden der Zugriff dieses Benutzers auf Construct-X sowie alle Berechtigungen und Datenzugriffe vorübergehend deaktiviert.",
         "note": "Hinweis: Gesperrte Konten können jederzeit reaktiviert werden.",
         "successTitle": "User successfully suspended",
         "successDescription": "Der Benutzer wurde erfolgreich gesperrt und alle Rechte wurden deaktiviert.",
@@ -1022,7 +1022,7 @@
       "deleteOwnUserConfirm": {
         "header": "Delete my user account",
         "confirmTitle": "Sind Sie sicher, dass Sie dieses Benutzerkonto löschen möchten?",
-        "description": "Durch das Löschen des Kontos werden dem Benutzer der Zugriff auf Catena-X sowie sämtliche Rechte und Datenzugriffe entzogen.",
+        "description": "Durch das Löschen des Kontos werden dem Benutzer der Zugriff auf Construct-X sowie sämtliche Rechte und Datenzugriffe entzogen.",
         "note": "Hinweis: Wenn Sie das Konto jetzt löschen, können Sie es später nicht erneut aktivieren.",
         "successTitle": "User successfully deleted",
         "successDescription": "Ihr Benutzer wurde erfolgreich gelöscht. Ihre Verbindung wird innerhalb der folgenden 5 Sekunden getrennt.",
@@ -1043,7 +1043,7 @@
       "enableIdpSuccessSubheadline": "Login Test",
       "disableIdpHeadline": "Deactiviere Identity Provider {{ idp }}",
       "disableIdpSubheadline": "Mit der Deaktivierung des IdPs wird ein Zugriff über diesen Login nicht mehr möglich sein. Alle Nutzer müssen sich über den neuen IdP einloggen.",
-      "description": "Here you can manage how the users of your company authenticate with Catena-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page.",
+      "description": "Here you can manage how the users of your company authenticate with Construct-X. On registration we have created an IDP with one user entry for the admin (that's probably you ;). Many companies already have their own IDP where users authenticate using their known company user id and a familiar login mask. In this case you will probably prefer to use your own company IDP and you can create and manage the federation on this page.",
       "create": "Add Identity Provider"
     },
     "idpdetail": {
@@ -1163,7 +1163,7 @@
       }
     },
     "footer": {
-      "copyright": "Copyright © Catena-X Automotive Network"
+      "copyright": "Copyright © Construct-X Network"
     },
     "logout": {
       "message": "Wir melden Sie nun ab... Wir freuen uns Sie bald wieder hier zu sehen!"
@@ -1175,7 +1175,7 @@
       "button": "Startseite",
       "reason": {
         "nopermission": "Sie haben keine Berechtigung diesen Inhalt zu sehen oder",
-        "notexisting": "die Seite existiert im Catena-X Portal nicht oder",
+        "notexisting": "die Seite existiert im Construct-X Portal nicht oder",
         "notimplemented": "sie wurde noch nicht implementiert."
       },
       "further": "Wenn Sie denken, dass hier etwas sein sollte kontaktieren Sie bitte Ihren Administrator."
@@ -1232,7 +1232,7 @@
     },
     "apprelease": {
       "headerTitle": "App Release Process",
-      "descHeading": "Publish your company app inside the Catena-X marketplace",
+      "descHeading": "Publish your company app inside the Construct-X marketplace",
       "descMessage": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
       "startCreatingButton": "App Registrierung starten",
       "registerButton": "App Registrierung starten",
@@ -1255,7 +1255,7 @@
         "headerTitle": "Create App",
         "headerDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard .",
         "defaultCardAppImageAlt": "App Logo",
-        "defaultCardAppProvider": "Catena-X",
+        "defaultCardAppProvider": "Construct-X",
         "defaultCardAppTitle": "Digital Twin Aspect Debugger",
         "defaultCardShortDescriptionEN": "[short description EN] Lorem ipsum sapientem ne neque dolor erat",
         "appTitle": "App title",
@@ -1287,7 +1287,7 @@
         "providerHomePage": "Provider Homepage",
         "providerContactEmail": "Customer Contact E-Mail",
         "providerPhoneContact": "Provider Phone Contact",
-        "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
+        "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://construct-x.net",
         "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail",
         "pleaseEnterValidContact": "Bitte fügen Sie eine gültige Telefonnummer im folgenden Format hinzu: „+ xx xxxx xxxxxx“, „+ xxx xxxx-xxxx“, „+xx xxxxxxxxxx“. Hinweis: Es sind weitere Formate zulässig. Die genannten Formate sind die am häufigsten verwendeten Formate.",
         "privacyInformation": "Privacy Information",
@@ -1304,7 +1304,7 @@
       },
       "technicalIntegration": {
         "headerTitle": "Technical Integration",
-        "headerDescription": "Integrieren Sie Ihre App mit dem catena-x-Datenraum. Für die Integration müssen Sie die von der Anwendung unterstützten Rollen sowie das erforderliche technische Benutzerprofil hochladen, das zum Ausführen Ihrer Anwendung im Netzwerk erforderlich ist. Bitte beachten Sie: In diesem Schritt legen Sie nur den Rahmen der Authentifizierung fest – es werden keine Benutzer erstellt. Wenn Sie Unterstützung benötigen, können Sie gerne die Schaltfläche „Hilfe“ oder die beigefügte Vorlage verwenden.",
+        "headerDescription": "Integrieren Sie Ihre App mit dem construct-x-Datenraum. Für die Integration müssen Sie die von der Anwendung unterstützten Rollen sowie das erforderliche technische Benutzerprofil hochladen, das zum Ausführen Ihrer Anwendung im Netzwerk erforderlich ist. Bitte beachten Sie: In diesem Schritt legen Sie nur den Rahmen der Authentifizierung fest – es werden keine Benutzer erstellt. Wenn Sie Unterstützung benötigen, können Sie gerne die Schaltfläche „Hilfe“ oder die beigefügte Vorlage verwenden.",
         "step1Header": "1. User Role Upload",
         "step1HeaderDescription": "Laden Sie Ihre Anwendungsrollen hoch, die Benutzeridentitäten zugewiesen werden können, um auf die Anwendung zugreifen zu können.",
         "clientID": "Client ID",
@@ -1389,9 +1389,9 @@
       },
       "submit": {
         "headerTitle": "App erfolgreich eingereicht!",
-        "headerDescription": "After a review by a Catena-X administrator, you will receive",
+        "headerDescription": "After a review by a Construct-X administrator, you will receive",
         "headerDescriptionComplete": "further information on app release",
-        "yourCatenaXTeam": "Dein Catena-X team",
+        "yourCatenaXTeam": "Dein Construct-X team",
         "overview": "My apps overview"
       },
       "defaultValues": {
@@ -1632,7 +1632,7 @@
         "technicalNameInfo": "Technischer Benutzername des technischen Benutzer-/Dienstkontos, das für das spezifische App-Abonnement erstellt wurde. Sie können auf den technischen Benutzernamen klicken, um die Client-ID und die geheimen Details abzurufen.",
         "technicalPermission": "Technical User Permission",
         "technicalPermissionInfo": "Dem technischen Benutzer zugewiesene Berechtigungen.",
-        "helpText": "For any questions regarding these change(s), please contact the Catena-X helpdesk:",
+        "helpText": "For any questions regarding these change(s), please contact the Construct-X helpdesk:",
         "email": "xxx@xxxx.xxxx",
         "tenantUrlSuccessMsg": "App Tenant URL successfully updated",
         "tenantUrlErrorMsg": "Fehler! Etwas ist schief gelaufen",
@@ -1917,13 +1917,13 @@
       }
     },
     "roleDetails": {
-      "heading": "Overview of the available Catena-X portal roles",
+      "heading": "Overview of the available Construct-X portal roles",
       "tab1": "Role Descriptions",
       "tab2": "Role Comparison"
     },
     "companyRolesUpdate": {
       "heading": "Change Company Role",
-      "description": "Below you can manage the roles your company takes in Catena-X.",
+      "description": "Below you can manage the roles your company takes in Construct-X.",
       "step1": "You can change your current role by deselecting it and selecting another role.",
       "step2": "If you already have more than one role for your company, you can deselect roles. At least one role must always be assigned to your company.",
       "step3": "You can add a new role to your existing role by selecting one or more of the other available roles.",
@@ -1961,7 +1961,7 @@
     },
     "usecaseParticipation": {
       "heading": "Use Case Participation",
-      "description": "Below you can manage your use case participation in Catena-X. <br>Please note - the selection of the useCase participatiance is relevant for data provider and data consumer.",
+      "description": "Below you can manage your use case participation in Construct-X. <br>Please note - the selection of the useCase participatiance is relevant for data provider and data consumer.",
       "step1": "You can view your current signed use case participation",
       "step2": "You can sign additional use cases by selecting the document download, signing the document and upload the same",
       "note": "Please note: ",
@@ -2017,7 +2017,7 @@
         "nextSteps": "Next Steps",
         "verification": "Verification",
         "pending": "Pending",
-        "queryDescription": "For any queries regarding these change(s), please contact the Catena-X helpdesk:",
+        "queryDescription": "For any queries regarding these change(s), please contact the Construct-X helpdesk:",
         "email": "email_address@catena_support.com"
       },
       "certificateCard": {
@@ -2138,11 +2138,11 @@
       "heading": "Mein Firmen-Wallet",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "activate": "Connected",
-      "activateDescription": "Sie haben Ihr Catena-X-Wallet aktiviert.",
+      "activateDescription": "Sie haben Ihr Construct-X-Wallet aktiviert.",
       "error": "Nicht verbunden",
       "errorDescription": "Wallet-Mandant konnte nicht gefunden werden.",
       "inactive": "Nicht verbunden",
-      "inactiveDescription": "Sie haben Ihr Catena-X-Wallet nicht aktiviert.",
+      "inactiveDescription": "Sie haben Ihr Construct-X-Wallet nicht aktiviert.",
       "subnavigation": {
         "title": "Wallet-Operationen :",
         "button1": "Fordern Sie neue Use-Case-Anmeldeinformationen an",
@@ -2385,7 +2385,7 @@
       }
     },
     "userRoles": {
-      "title": "Assigned Catena-X Portal Roles",
+      "title": "Assigned Construct-X Portal Roles",
       "changeRoleBtn": "Change Portal Role",
       "errorMsg": "Sie sind nicht berechtigt, Ihre eigenen Administrator-Rollen zu ändern. Bitte wenden Sie sich an einen anderen Administrator."
     }

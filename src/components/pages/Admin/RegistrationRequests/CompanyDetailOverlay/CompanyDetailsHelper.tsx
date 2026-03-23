@@ -26,7 +26,7 @@ import {
 import { Trans } from 'react-i18next'
 import type i18next from 'i18next'
 import dayjs from 'dayjs'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import { type CompanyDetail } from 'features/admin/registration/types'
 
 export const getTitle = (

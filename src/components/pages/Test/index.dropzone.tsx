@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { Dropzone } from 'components/shared/basic/Dropzone'
-import { Cards } from '@catena-x/portal-shared-components'
+import { Cards } from '@arena2036/portal-shared-components-construct-x'
 import { appToCard } from 'features/apps/mapper'
 import { isString } from 'lodash'
 import { useState } from 'react'

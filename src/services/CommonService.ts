@@ -21,7 +21,7 @@
 import { getApiBase, getAssetBase } from './EnvironmentService'
 import i18next from 'i18next'
 import type { AppMarketplaceApp, AppMarketplaceCard } from 'features/apps/types'
-import type { ImageType } from '@catena-x/portal-shared-components'
+import type { ImageType } from '@arena2036/portal-shared-components-construct-x'
 import { fetchImageWithToken } from './ImageService'
 import type { RoleDescData } from 'components/pages/RoleDetails'
 import type { RolesData } from 'features/companyRoles/companyRoleApiSlice'
@@ -57,7 +57,7 @@ const imagesAndAppidToImageType = (
   // eslint-disable-next-line
   images?.map((image: any) => ({
     url: getPictureURL(appId, image.documentId ?? image),
-    text: 'Catena-X',
+    text: 'Construct-X',
     loader: fetchImageWithToken,
   }))
 

@@ -19,13 +19,13 @@
 
 import {
   Typography,
-  PageHeader,
+  PageHeader2,
   Card,
   Checkbox,
   Button,
   Tooltips,
   LoadingButton,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
@@ -71,7 +71,7 @@ export default function ServiceDeactivate() {
 
   return (
     <main className="deactivate-main">
-      <PageHeader
+      <PageHeader2
         title={service?.[0]?.title}
         topPage={true}
         headerHeight={200}

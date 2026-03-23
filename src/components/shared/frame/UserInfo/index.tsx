@@ -25,7 +25,7 @@ import {
   UserMenu,
   UserNav,
   type NotificationBadgeType,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import UserService from 'services/UserService'
 import i18next, { changeLanguage } from 'i18next'
 import I18nService from 'services/I18nService'

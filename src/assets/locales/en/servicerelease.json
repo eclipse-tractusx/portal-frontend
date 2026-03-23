@@ -1,6 +1,6 @@
 {
   "headerTitle": "Service Release Process",
-  "descHeading": "Publish your company services inside the Catena-X marketplace",
+  "descHeading": "Publish your company services inside the Construct-X marketplace",
   "descMessage": "Register your service and metadata to get published on the marketplace. Scrolling down, you can find a quick overview of the service release process.",
   "startCreatingButton": "Start to register your service offering",
   "registerButton": "Register your service",
@@ -50,12 +50,12 @@
     "providerDetails": "Provider Details",
     "providerHomePage": "Provider Homepage",
     "providerContactEmail": "Customer Contact E-Mail",
-    "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://catena-x.net",
+    "pleaseEnterValidHomePageURL": "Please enter a valid url - eg: https://construct-x.net",
     "pleaseEnterValidEmail": "Please enter a valid Customer Contact E-Mail"
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
-    "headerDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
+    "headerDescription": "To publish your service on the marketplace, a number of Construct-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
     "uploadImageConformity": "Conformity Service Certificate",
     "documentDeleteSuccess": "Document deleted successfully"
   },
@@ -113,13 +113,13 @@
   },
   "submit": {
     "headerTitle": "Thank you for submitting the service!",
-    "headerDescription": "After a review by a Catena-X administrator, you will receive",
+    "headerDescription": "After a review by a Construct-X administrator, you will receive",
     "headerDescriptionComplete": "further information on service release",
-    "yourCatenaXTeam": "Your Catena-X team",
+    "yourCatenaXTeam": "Your Construct-X team",
     "overview": "My services overview"
   },
   "defaultValues": {
-    "conformityDocumentsDescription": "To publish your service on the marketplace, a number of Catena-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
+    "conformityDocumentsDescription": "To publish your service on the marketplace, a number of Construct-X specific agreements need to get signed by you. Please have a look at the mentioned agreements and agree to them via the checklist approval.",
     "documentsDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   "serviceOverview": {
@@ -140,7 +140,7 @@
     },
     "serviceDeactivate": {
       "headerTitle": "Deactivate Service",
-      "description": "Deactivation of service will deactivate the service offer inside the Catena-X marketplace. Any current active subscription will stay active and customers wont be effected by the deactivation. New subscriptions are not possible.",
+      "description": "Deactivation of service will deactivate the service offer inside the Construct-X marketplace. Any current active subscription will stay active and customers wont be effected by the deactivation. New subscriptions are not possible.",
       "checkboxLabel": "Hereby I confirm that I have read the business service terms and conditions and that I am deactivating my company business services from the marketplace with immediate effect. I understand that it is not possible to self-reverse the deactivation.",
       "checkboxErrorMsg": "Please confirm that you have read the deactivation impact above before proceeding",
       "successMsg": "Deactivation successfully completed",

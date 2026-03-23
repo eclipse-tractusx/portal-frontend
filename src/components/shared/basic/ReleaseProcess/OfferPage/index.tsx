@@ -23,7 +23,7 @@ import {
   IconButton,
   type UploadFileStatus,
   UploadStatus,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import { Divider, InputLabel } from '@mui/material'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'

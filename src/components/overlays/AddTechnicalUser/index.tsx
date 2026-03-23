@@ -26,7 +26,7 @@ import {
   DialogHeader,
   CircleProgress,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { closeOverlay } from 'features/control/overlay'

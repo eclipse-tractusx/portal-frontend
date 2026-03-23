@@ -23,7 +23,7 @@ import { apiBpdmPoolQuery } from 'utils/rtkUtil'
 import type {
   PaginResult,
   PaginFetchArgs,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import type { BusinessPartner } from './types'
 import { isBPN } from 'types/Patterns'
 

@@ -18,6 +18,10 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
+<<<<<<< HEAD
+=======
+import type { CardItems } from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 import { createSlice } from '@reduxjs/toolkit'
 import { apiSlice } from './apiSlice'
 import type { RootState } from 'features/store'

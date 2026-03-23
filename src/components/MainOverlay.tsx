@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Dialog } from '@catena-x/portal-shared-components'
+import { Dialog } from '@arena2036/portal-shared-components-construct-x'
 import { stateSelector } from 'features/control/overlay'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'

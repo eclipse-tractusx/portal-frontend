@@ -21,7 +21,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-  PageHeader,
+  PageHeader2,
   ViewSelector,
   SearchInput,
   Cards,
@@ -30,7 +30,7 @@ import {
   PageSnackbar,
   ErrorBar,
   CircleProgress,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { serviceToCard } from 'features/apps/mapper'
 import { fetchImageWithToken } from 'services/ImageService'
 import {
@@ -208,7 +208,7 @@ export default function ServiceListOverview() {
 
   return (
     <main>
-      <PageHeader
+      <PageHeader2
         title={t('serviceOverview.headerTitle')}
         topPage={true}
         headerHeight={200}
@@ -338,3 +338,5 @@ export default function ServiceListOverview() {
     </main>
   )
 }
+
+//tested

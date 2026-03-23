@@ -25,7 +25,7 @@ import {
   Button,
   Stepper,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { AppRoles } from './AppRoles'

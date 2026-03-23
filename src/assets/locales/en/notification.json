@@ -1,7 +1,7 @@
 {
   "item": {
     "WELCOME": {
-      "title": "Welcome to Catena-X!",
+      "title": "Welcome to Construct-X!",
       "content": "Welcome to the Catena- X Network. To easily get you onboarded, a number of notifications / onboarding steps have been defined. Please check your notifications and start the configuration of your company area inside the portal to have a network experience based on your need."
     },
     "WELCOME_USE_CASES": {
@@ -34,7 +34,7 @@
     },
     "APP_RELEASE_REQUEST": {
       "title": "App Release Request - App: {{offer}}",
-      "content": "{{company}} created a new app to get published to the catena-x marketplace. Please review the app release request and approve or decline the request."
+      "content": "{{company}} created a new app to get published to the construct-x marketplace. Please review the app release request and approve or decline the request."
     },
     "APP_RELEASE_APPROVAL": {
       "title": "App request approved",
@@ -42,7 +42,7 @@
     },
     "APP_RELEASE_REJECTION": {
       "title": "App Release request rejected",
-      "content": "Your request for app {{offer}} got rejected. We regret to inform you that your app release request has been rejected. We take great pride in the quality of our apps and the user experience that they provide. Although your app has a lot of potential, it does not meet our standards for marketplace release. With the appropriate changes, your app can reach the level of quality that meets our standards. If you need support, please don't esitate to reach out for support. We look forward to seeing your app reach its full potential and be released. Sincerely, Catena-X."
+      "content": "Your request for app {{offer}} got rejected. We regret to inform you that your app release request has been rejected. We take great pride in the quality of our apps and the user experience that they provide. Although your app has a lot of potential, it does not meet our standards for marketplace release. With the appropriate changes, your app can reach the level of quality that meets our standards. If you need support, please don't esitate to reach out for support. We look forward to seeing your app reach its full potential and be released. Sincerely, Construct-X."
     },
     "APP_ROLE_ADDED": {
       "title": "App {{app}} new Roles added",
@@ -54,7 +54,7 @@
     },
     "SERVICE_RELEASE_REQUEST": {
       "title": "Service Release Request - Service: {{offer}}",
-      "content": "{{company}} created a new service to get published to the catena-x marketplace. Please review the service release request and approve or decline the service release."
+      "content": "{{company}} created a new service to get published to the construct-x marketplace. Please review the service release request and approve or decline the service release."
     },
     "SERVICE_RELEASE_APPROVAL": {
       "title": "Service release request approved",
@@ -158,7 +158,7 @@
   },
   "header": {
     "title": "Notifications",
-    "subtitle": "Here you will receive relevant news about Catena-X, published apps and services and the apps and services you use. In addition, changes to your user account, e.g. newly assigned or revoked roles.",
+    "subtitle": "Here you will receive relevant news about Construct-X, published apps and services and the apps and services you use. In addition, changes to your user account, e.g. newly assigned or revoked roles.",
     "linkText": "Help",
     "link": "/documentation/?path=user%2F06.+Notifications%2F01.+Notifications%2F01.+Overview.md"
   }

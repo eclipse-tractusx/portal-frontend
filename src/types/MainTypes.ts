@@ -21,7 +21,7 @@
 import type {
   PageNotificationsProps,
   PaginMeta,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import type { ErrorServiceState } from 'features/error/types'
 
 export type Nullable<T> = T | null

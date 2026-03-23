@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@mui/material'
-import { SortOption } from '@catena-x/portal-shared-components'
+import { SortOption } from '@arena2036/portal-shared-components-construct-x'
 import {
   notificationFetchSelector,
   setOrder,

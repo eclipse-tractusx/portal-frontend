@@ -1,6 +1,6 @@
 {
   "headerTitle": "Service Release Process",
-  "descHeading": "Veröffentlichen Sie Ihre Service auf dem Catena-X Marktplatz",
+  "descHeading": "Veröffentlichen Sie Ihre Service auf dem Construct-X Marktplatz",
   "descMessage": "Registrieren Sie Ihren Service und Ihre Metadaten, um auf dem Marktplatz veröffentlicht zu werden. Wenn Sie nach unten scrollen, finden Sie einen ersten Überblick zu dem Service-Freigabeprozess.",
   "startCreatingButton": "Beginnen Sie mit der Registrierung Ihres Serviceangebots",
   "registerButton": "Registrieren Sie Ihre Serviceangebot",
@@ -50,12 +50,12 @@
     "providerDetails": "Provider Details",
     "providerHomePage": "Provider Homepage",
     "providerContactEmail": "Customer Contact E-Mail",
-    "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - eg: https://catena-x.net",
+    "pleaseEnterValidHomePageURL": "Bitte geben Sie eine gültige URL ein - eg: https://construct-x.net",
     "pleaseEnterValidEmail": "Bitte geben Sie eine gültige Email an"
   },
   "step3": {
     "headerTitle": "Agreements and Consent",
-    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Catena-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu.",
+    "headerDescription": "Um Ihren Service auf dem Marktplatz zu veröffentlichen, müssen Sie eine Reihe von Construct-X-spezifischen Vereinbarungen unterzeichnen. Bitte sehen Sie sich die genannten Vereinbarungen an und stimmen Sie diesen über die Checkliste Genehmigung zu.",
     "uploadImageConformity": "Conformity Service Certificate",
     "documentDeleteSuccess": "Document deleted successfully"
   },
@@ -113,9 +113,9 @@
   },
   "submit": {
     "headerTitle": "Service erfolgreich eingereicht!",
-    "headerDescription": "Nach einer Überprüfung durch einen Catena-X-Administrator erhalten Sie",
+    "headerDescription": "Nach einer Überprüfung durch einen Construct-X-Administrator erhalten Sie",
     "headerDescriptionComplete": "weitere Informationen zur Servicefreigabe",
-    "yourCatenaXTeam": "Dein Catena-X team",
+    "yourCatenaXTeam": "Dein Construct-X team",
     "overview": "Zu meiner Service Übersicht"
   },
   "defaultValues": {
@@ -140,7 +140,7 @@
     },
     "serviceDeactivate": {
       "headerTitle": "Dienst deaktivieren",
-      "description": "Durch die Deaktivierung des Dienstes wird das Serviceangebot auf dem Catena-X-Marktplatz deaktiviert. Alle derzeit aktiven Abonnements bleiben aktiv und die Kunden sind von der Deaktivierung nicht betroffen. Neue Abonnements sind nicht möglich.",
+      "description": "Durch die Deaktivierung des Dienstes wird das Serviceangebot auf dem Construct-X-Marktplatz deaktiviert. Alle derzeit aktiven Abonnements bleiben aktiv und die Kunden sind von der Deaktivierung nicht betroffen. Neue Abonnements sind nicht möglich.",
       "checkboxLabel": "Hiermit bestätige ich, dass ich die Geschäftsbedingungen für Business-Services gelesen habe und dass ich die Business-Services meines Unternehmens mit sofortiger Wirkung vom Marktplatz deaktiviere. Ich verstehe, dass es nicht möglich ist, die Deaktivierung selbst rückgängig zu machen.",
       "checkboxErrorMsg": "Bitte bestätigen Sie, dass Sie die oben genannten Auswirkungen der Deaktivierung gelesen haben, bevor Sie fortfahren",
       "successMsg": "Deaktivierung erfolgreich abgeschlossen",

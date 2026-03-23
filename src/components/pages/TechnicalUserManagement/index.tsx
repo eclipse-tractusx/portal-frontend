@@ -22,7 +22,10 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import PageHeaderWithCrumbs from 'components/shared/frame/PageHeaderWithCrumbs'
 import { OVERLAYS, PAGES } from 'types/Constants'
 import SubHeaderTitle from 'components/shared/frame/SubHeaderTitle'
-import { Button, PageNotifications } from '@catena-x/portal-shared-components'
+import {
+  Button,
+  PageNotifications,
+} from '@arena2036/portal-shared-components-construct-x'
 import { show } from 'features/control/overlay'
 import UserService from 'services/UserService'
 import {

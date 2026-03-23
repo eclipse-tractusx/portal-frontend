@@ -24,7 +24,7 @@ import {
   Button,
   ImageGallery,
   Typography,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import BoardHeader from './BoardHeader'
 import BoardDocuments from './BoardDocuments'
 import BoardProvider from './BoardProvider'

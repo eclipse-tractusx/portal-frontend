@@ -24,7 +24,7 @@ import {
   Navigation,
   ImageGallery,
   BackButton,
-} from '@catena-x/portal-shared-components'
+} from '@arena2036/portal-shared-components-construct-x'
 import { useTranslation } from 'react-i18next'
 import AppDetailHeader from './AppDetailHeader'
 import AppDetailPrivacy from './AppDetailPrivacy'

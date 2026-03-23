@@ -25,8 +25,7 @@
 
 body {
   min-height: 100vh;
-  font-family: 'LibreFranklin', 'Libre Franklin', 'Franklin Gothic Medium',
-    'Arial Narrow', Arial, sans-serif !important;
+  font-family: 'Montserrat-Light' !important;
   color: color(text-primary) !important;
   font-weight: 300 !important;
   max-width: 1800px;
@@ -79,16 +78,22 @@ a {
   }
 }
 
+.css-otvh5u-MuiTypography-root {
+  padding-top: 0px !important;
+}
+
+.css-7agmcy {
+  height: 200px !important;
+  margin-top: 0px !important;
+}
 .orange-background {
-  background-image: linear-gradient(
-    to right,
-    #ffb326,
-    #ffa524,
-    #ff9625,
-    #ff8728,
-    #ff782c
-  );
+  background-image: url(../../../../public/orange-background-full.jpg);
   overflow: hidden;
+}
+
+.custom-header {
+  height: 200px !important;
+  margin-top: 12px !important;
 }
 
 .slick-slide {

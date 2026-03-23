@@ -1,8 +1,8 @@
 {
-  "name": "@catena-x/portal-frontend",
-  "version": "v2.6.0",
-  "description": "Catena-X Portal Frontend",
-  "author": "Catena-X Contributors",
+  "name": "@construct-x/portal-frontend",
+  "version": "v1.0.0",
+  "description": "Construct-X Portal Frontend",
+  "author": "Construct-X Contributors",
   "license": "Apache-2.0",
   "type": "module",
   "repository": {
@@ -34,7 +34,7 @@
     ]
   },
   "dependencies": {
-    "@catena-x/portal-shared-components": "^4.0.1",
+    "@catena-x/portal-shared-components": "^3.7.6",
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@hookform/error-message": "^2.0.1",

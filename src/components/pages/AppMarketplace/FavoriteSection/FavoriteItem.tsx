@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { Card } from '@catena-x/portal-shared-components'
+import { Card } from '@arena2036/portal-shared-components-construct-x'
 import uniqueId from 'lodash/uniqueId'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'

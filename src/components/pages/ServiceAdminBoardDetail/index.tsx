@@ -22,8 +22,12 @@ import {
   Button,
   StaticTable,
   Typography,
+<<<<<<< HEAD
   Image,
 } from '@catena-x/portal-shared-components'
+=======
+} from '@arena2036/portal-shared-components-construct-x'
+>>>>>>> old/feature/construct-x
 import { useNavigate, useParams } from 'react-router-dom'
 import '../AdminBoardDetail/style.scss'
 import {

@@ -19,7 +19,10 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Chip, Typography } from '@catena-x/portal-shared-components'
+import {
+  Chip,
+  Typography,
+} from '@arena2036/portal-shared-components-construct-x'
 import type { ServiceRequest } from 'features/serviceMarketplace/serviceApiSlice'
 import './style.scss'
 

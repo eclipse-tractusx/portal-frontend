@@ -18,7 +18,7 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-import { ImageItem } from '@catena-x/portal-shared-components'
+import { ImageItem } from '@arena2036/portal-shared-components-construct-x'
 import { useMediaQuery } from '@mui/material'
 import { type CSSProperties } from 'react'
 import '../style.scss'

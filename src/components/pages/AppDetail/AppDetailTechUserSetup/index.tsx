@@ -19,7 +19,7 @@
  ********************************************************************************/
 
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@catena-x/portal-shared-components'
+import { Typography } from '@arena2036/portal-shared-components-construct-x'
 import type { AppDetails } from 'features/apps/types'
 import '../style.scss'
 import { useFetchTechnicalUserProfilesQuery } from 'features/appManagement/apiSlice'
