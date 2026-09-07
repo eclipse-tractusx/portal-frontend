@@ -70,9 +70,9 @@
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^14.2.2",
     "@testing-library/user-event": "^14.5.2",
-    "@types/autosuggest-highlight": "^3.2.3",
+    "@types/autosuggest-highlight": "^3.2.4",
     "@types/jest": "^29.5.14",
-    "@types/lodash": "^4.17.20",
+    "@types/lodash": "^4.17.25",
     "@types/lodash.debounce": "^4.0.9",
     "@types/lodash.uniq": "^4.5.9",
     "@types/node": "^20.16.15",
@@ -102,12 +102,12 @@
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3",
-    "vite": "^5.4.19",
+    "vite": "^5.4.21",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "resolutions": {
-    "@types/lodash": "^4.17.20"
+    "@types/lodash": "^4.17.25"
   },
   "scripts": {
     "prepare": "husky",
