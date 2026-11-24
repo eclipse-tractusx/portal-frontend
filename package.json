@@ -46,7 +46,7 @@
     "autosuggest-highlight": "^3.3.4",
     "buffer": "^6.0.3",
     "dayjs": "^1.11.13",
-    "i18next": "^23.15.2",
+    "i18next": "^26.3.4",
     "i18next-browser-languagedetector": "^7.2.2",
     "keycloak-js": "^25.0.6",
     "lodash.debounce": "^4.0.8",
